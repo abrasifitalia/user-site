@@ -1,0 +1,365 @@
+/* src/styles/Homepage.css */
+
+.min-h-screen {
+    min-height: 100vh;
+  }
+  
+  .bg-gray-50 {
+    background-color: #F9FAFB;
+  }
+  
+  .bg-white {
+    background-color: #FFFFFF;
+  }
+  
+  .shadow-sm {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  }
+  
+  .max-w-7xl {
+    max-width: 80rem;
+  }
+  
+  .mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .py-4 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+  
+  .flex {
+    display: flex;
+  }
+  
+  .items-center {
+    align-items: center;
+  }
+  
+  .justify-between {
+    justify-content: space-between;
+  }
+  
+  .space-x-4 > * + * {
+    margin-left: 1rem;
+  }
+  
+  .space-x-6 > * + * {
+    margin-left: 1.5rem;
+  }
+  
+  .h-6 {
+    height: 1.5rem;
+  }
+  
+  .w-6 {
+    width: 1.5rem;
+  }
+  
+  .cursor-pointer {
+    cursor: pointer;
+  }
+  
+  .text-2xl {
+    font-size: 1.5rem;
+  }
+  
+  .font-bold {
+    font-weight: 700;
+  }
+  
+  .text-gray-900 {
+    color: #111827;
+  }
+  
+  .relative {
+    position: relative;
+  }
+  
+  .w-64 {
+    width: 16rem;
+  }
+  
+  .pl-10 {
+    padding-left: 2.5rem;
+  }
+  
+  .pr-4 {
+    padding-right: 1rem;
+  }
+  
+  .py-2 {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+  
+  .border {
+    border-width: 1px;
+  }
+  
+  .rounded-lg {
+    border-radius: 0.5rem;
+  }
+  
+  .h-5 {
+    height: 1.25rem;
+  }
+  
+  .w-5 {
+    width: 1.25rem;
+  }
+  
+  .absolute {
+    position: absolute;
+  }
+  
+  .left-3 {
+    left: 0.75rem;
+  }
+  
+  .top-2\.5 {
+    top: 0.625rem;
+  }
+  
+  .text-gray-400 {
+    color: #9CA3AF;
+  }
+  
+  .text-gray-600 {
+    color: #4B5563;
+  }
+  
+  .bg-gray-900 {
+    background-color: #111827;
+  }
+  
+  .h-96 {
+    height: 24rem;
+  }
+  
+  .inset-0 {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+  
+  .bg-center {
+    background-position: center;
+  }
+  
+  .bg-cover {
+    background-size: cover;
+  }
+  
+  .bg-black {
+    background-color: #000000;
+  }
+  
+  .opacity-50 {
+    opacity: 0.5;
+  }
+  
+  .py-24 {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .text-4xl {
+    font-size: 2.25rem;
+  }
+  
+  .text-white {
+    color: #FFFFFF;
+  }
+  
+  .mb-4 {
+    margin-bottom: 1rem;
+  }
+  
+  .text-xl {
+    font-size: 1.25rem;
+  }
+  
+  .text-gray-200 {
+    color: #E5E7EB;
+  }
+  
+  .mb-8 {
+    margin-bottom: 2rem;
+  }
+  
+  .px-8 {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  
+  .py-3 {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+  
+  .font-semibold {
+    font-weight: 600;
+  }
+  
+  .hover\:bg-gray-100:hover {
+    background-color: #F3F4F6;
+  }
+  
+  .py-12 {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+  
+  .grid {
+    display: grid;
+  }
+  
+  .gap-6 {
+    gap: 1.5rem;
+  }
+  
+  .shadow-md {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+  
+  .p-6 {
+    padding: 1.5rem;
+  }
+  
+  .hover\:shadow-lg:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .transition-shadow {
+    transition-property: box-shadow;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+  }
+  
+  .overflow-hidden {
+    overflow: hidden;
+  }
+  
+  .h-48 {
+    height: 12rem;
+  }
+  
+  .bg-gray-200 {
+    background-color: #E5E7EB;
+  }
+  
+  .p-4 {
+    padding: 1rem;
+  }
+  
+  .text-lg {
+    font-size: 1.125rem;
+  }
+  
+  .text-sm {
+    font-size: 0.875rem;
+  }
+  
+  .mt-4 {
+    margin-top: 1rem;
+  }
+  
+  .w-full {
+    width: 100%;
+  }
+  
+  .hover\:bg-gray-800:hover {
+    background-color: #1F2937;
+  }
+  
+  .bg-gray-100 {
+    background-color: #F3F4F6;
+  }
+  
+  .max-w-md {
+    max-width: 28rem;
+  }
+  
+  .flex-1 {
+    flex: 1 1 0%;
+  }
+  
+  .border-2 {
+    border-width: 2px;
+  }
+  
+  .border-r-0 {
+    border-right-width: 0;
+  }
+  
+  .rounded-l-lg {
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+  }
+  
+  .rounded-r-lg {
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+  }
+  
+  .space-y-2 > * + * {
+    margin-top: 0.5rem;
+  }
+  
+  /* Responsive Design */
+  @media (min-width: 768px) {
+    .md\:grid-cols-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  
+    .md\:grid-cols-4 {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+  
+  @media (max-width: 767px) {
+    .grid-cols-1 {
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+  }
+  /* Appliquer une taille fixe et cohérente à toutes les images du carrousel */
+.carousel-inner .carousel-item img {
+  height: 400px; /* Choisissez la hauteur qui vous convient */
+  object-fit: cover; /* Pour que l'image couvre toute la zone sans déformation */
+  width: 100%; /* S'adapte à la largeur du parent */
+}
+/* Par défaut, les liens sont bleus */
+a {
+  color: rgb(6, 71, 15);
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+/* Lorsqu'un lien est activé ou sélectionné, il devient noir */
+a:active {
+  color: rgb(60, 2, 2);
+}
+
+/* Lorsqu'on survole un lien, il devient gris */
+a:hover {
+  color: limegreen;
+}
+
+/* Optionnel : lorsqu'un lien est visité, il peut avoir une couleur différente */
+a:visited {
+  color: rgb(9, 8, 8);
+}
