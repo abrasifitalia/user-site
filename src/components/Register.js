@@ -28,7 +28,7 @@ const Register = () => {
     setError('');
 
     try {
-      const response = await fetch('http://localhost:5000/api/client/client/register', {
+      const response = await fetch(`${process.env.API_BASE_URL}/api/client/client/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

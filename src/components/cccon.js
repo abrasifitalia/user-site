@@ -26,9 +26,9 @@ const ArticlesList = () => {
     const fetchData = async () => {
       try {
         const [articlesRes, categoriesRes, subCategoriesRes] = await Promise.all([
-          fetch("http://localhost:5000/api/article/article"),
-          fetch("http://localhost:5000/api/category/categories"),
-          fetch("http://localhost:5000/api/subcategory/subcategory"),
+          fetch(`${process.env.API_BASE_URL}/api/article/article`),
+          fetch(`${process.env.API_BASE_URL}/api/category/categories`),
+          fetch(`${process.env.API_BASE_URL}/api/subcategory/subcategory`),
         ]);
 
         setArticles(await articlesRes.json());
@@ -50,7 +50,7 @@ const ArticlesList = () => {
       return;
     }
     try {
-      const response = await fetch('http://localhost:5000/api/view/view', {
+        const response = await fetch(`${process.env.API_BASE_URL}/api/view/view`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -181,7 +181,7 @@ const ArticlesList = () => {
               filteredArticles.map((article) => (
                 <div key={article._id} className="card h-100 shadow-md">
                   <img
-                    src={`http://localhost:5000${article.image}`}
+                    src={`${process.env.API_BASE_URL}${article.image}`}
                     alt={article.name}
                     className="card-img-top"
                     style={{ width: '100%', height: '200px', objectFit: 'contain', backgroundColor: '#f0f0f0' }}

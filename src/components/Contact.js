@@ -9,7 +9,7 @@ const ContactPage = () => {
     email: '',
     phone: '',
     objet: '',
-    message: ''
+    message: '' 
   });
 
   const [loading, setLoading] = useState(false);
@@ -18,7 +18,7 @@ const ContactPage = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.post('http://localhost:5000/api/message/message', formData);
+      await axios.post(`${process.env.API_BASE_URL}/api/message/message`, formData);
       setFormData({
         nom: '',
         email: '',
