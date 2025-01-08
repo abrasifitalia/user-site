@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "./navbar";
 import { useNavigate } from "react-router-dom";
+import dotenv from 'dotenv';
+
+// Configure dotenv
+dotenv.config();
 
 const ArticlesList = () => {
   const [articles, setArticles] = useState([]);

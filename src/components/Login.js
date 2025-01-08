@@ -3,6 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import Navbar from '../components/navbar';
 import '../components/LoginPage.css';
+import dotenv from 'dotenv';
+
+// Configure dotenv
+dotenv.config();  
 
 const Login = () => {
   const { login } = useAuth();  // Récupérer la fonction de connexion du contexte

@@ -5,6 +5,10 @@ import Carousel from './carousels/Carousel';
 import Produit from'./carousels/produit'; // Assurez-vous d'importer le composant Carousel
 import '../components/Home.css';
 import Navbar from './navbar';
+import dotenv from 'dotenv';
+
+// Configure dotenv
+dotenv.config();  
 
 const HomePage = () => {
   const Style = {

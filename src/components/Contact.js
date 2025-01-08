@@ -3,6 +3,11 @@ import { useState } from 'react';
 import axios from 'axios';
 import '../components/Home.css';
 import Navbar from './navbar';
+import dotenv from 'dotenv';
+
+// Configure dotenv
+dotenv.config();
+
 const ContactPage = () => {
   const [formData, setFormData] = useState({
     nom: '',

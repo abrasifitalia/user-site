@@ -3,6 +3,10 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Loader2 } from "lucide-react";
 import Navbar from "./navbar";
+import dotenv from 'dotenv';
+
+// Configure dotenv
+dotenv.config();
 
 const ArticleDetail = () => {
   const { id } = useParams();
@@ -19,12 +23,16 @@ const ArticleDetail = () => {
       return;
     }
 
+    // Log the API URL for debugging
+    console.log('API URL:', `${process.env.API_BASE_URL}/api/article/article/get/${id}`);
+
     axios.get(`${process.env.API_BASE_URL}/api/article/article/get/${id}`)
       .then(response => {
         setArticle(response.data);
         setLoading(false);
       })
       .catch(err => {
+        console.error('API Error:', err);
         setError("Une erreur est survenue lors du chargement de l'article.");
         setLoading(false);
       });
