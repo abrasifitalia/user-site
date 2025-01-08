@@ -26,7 +26,7 @@ const ArticleDetail = () => {
     // Log the API URL for debugging
     console.log('API URL:', `${process.env.API_BASE_URL}/api/article/article/get/${id}`);
 
-    axios.get(`${process.env.API_BASE_URL}/api/article/article/get/${id}`)
+      axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/article/article/get/${id}`)
       .then(response => {
         setArticle(response.data);
         setLoading(false);
@@ -68,7 +68,7 @@ const ArticleDetail = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await axios.post(`${process.env.API_BASE_URL}/api/order/order`, orderData);
+      const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/order/order`, orderData);
       console.log("Réponse API :", response.data);
       alert("Commande passée avec succès !");
     } catch (error) {

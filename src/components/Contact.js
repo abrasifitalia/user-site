@@ -3,11 +3,6 @@ import { useState } from 'react';
 import axios from 'axios';
 import '../components/Home.css';
 import Navbar from './navbar';
-import dotenv from 'dotenv';
-
-// Configure dotenv
-dotenv.config();
-
 const ContactPage = () => {
   const [formData, setFormData] = useState({
     nom: '',
@@ -23,7 +18,7 @@ const ContactPage = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.post(`${process.env.API_BASE_URL}/api/message/message`, formData);
+       await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/message/message`, formData);
       setFormData({
         nom: '',
         email: '',

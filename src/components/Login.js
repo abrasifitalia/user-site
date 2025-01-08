@@ -3,10 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import Navbar from '../components/navbar';
 import '../components/LoginPage.css';
-import dotenv from 'dotenv';
-
-// Configure dotenv
-dotenv.config();  
+  
 
 const Login = () => {
   const { login } = useAuth();  // Récupérer la fonction de connexion du contexte
@@ -25,7 +22,7 @@ const Login = () => {
     setError('');
 
     try {
-      const response = await fetch(`${process.env.API_BASE_URL}/api/client/client/login`, {
+      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/client/client/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),

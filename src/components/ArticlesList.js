@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "./navbar";
 import { useNavigate } from "react-router-dom";
-import dotenv from 'dotenv';
-
-// Configure dotenv
-dotenv.config();
-  
 
 const ArticlesList = () => {
   const [articles, setArticles] = useState([]);
@@ -20,9 +15,9 @@ const ArticlesList = () => {
     const fetchData = async () => {
       try {
         const [articlesRes, categoriesRes, subCategoriesRes] = await Promise.all([
-          fetch(`${process.env.API_BASE_URL}/api/article/article`),
-          fetch(`${process.env.API_BASE_URL}/api/category/categories`),
-          fetch(`${process.env.API_BASE_URL}/api/subcategory/subcategory`),
+         fetch(`${process.env.REACT_APP_API_BASE_URL}/api/article/article`),
+          fetch(`${process.env.REACT_APP_API_BASE_URL}/api/category/categories`),
+          fetch(`${process.env.REACT_APP_API_BASE_URL}/api/subcategory/subcategory`),
         ]);
 
         setArticles(await articlesRes.json());

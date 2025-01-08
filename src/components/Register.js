@@ -2,11 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './navbar';
 import './RegisterPage.css'; // Créez ce fichier CSS pour styliser la page d'enregistrement
-import dotenv from 'dotenv';
-
-// Configure dotenv
-dotenv.config();
-  
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -33,7 +28,7 @@ const Register = () => {
     setError('');
 
     try {
-      const response = await fetch(`${process.env.API_BASE_URL}/api/client/client/register`, {
+      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/client/client/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
