@@ -184,7 +184,7 @@ const ArticlesList = () => {
               filteredArticles.map((article) => (
                 <div key={article._id} className="card h-100 shadow-md">
                   <img
-                    src={`${process.env.API_BASE_URL}${article.image}`}
+                      src={`${process.env.REACT_APP_API_BASE_URL}${article.image}`}
                     alt={article.name}
                     className="card-img-top"
                     style={{ width: '100%', height: '200px', objectFit: 'contain', backgroundColor: '#f0f0f0' }}

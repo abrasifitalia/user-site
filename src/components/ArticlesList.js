@@ -95,7 +95,7 @@ const ArticlesList = () => {
                 <div key={article._id} className="col">
   <div className="card h-100 shadow-md">
     <img
-      src={`${process.env.API_BASE_URL}${article.image}`}
+        src={`${process.env.REACT_APP_API_BASE_URL}${article.image}`}
       alt={article.name}
       className="card-img-top"
       style={{
