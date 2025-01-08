@@ -37,7 +37,7 @@ const Login = () => {
           clientId: data.clientId,
           token: data.token,
         });
-        navigate('/articlel');
+        navigate('/article');
       } else {
         setError(data.message || 'Une erreur est survenue');
       }

@@ -41,7 +41,7 @@ const App = () => {
             path="/order" 
             element={<PrivateRoute element={<Order />} />} 
           />
-          <Route path="/articel" element={<Articleliste />} />
+          <Route path="/article" element={<Articleliste />} />
         </Routes>
       </Router>
     </AuthProvider>
