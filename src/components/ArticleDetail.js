@@ -19,7 +19,7 @@ const ArticleDetail = () => {
       return;
     }
 
-    axios.get(`http://localhost:5000/api/article/article/get/${id}`)
+    axios.get(`${process.env.API_BASE_URL}/api/article/article/get/${id}`)
       .then(response => {
         setArticle(response.data);
         setLoading(false);
@@ -60,7 +60,7 @@ const ArticleDetail = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await axios.post("http://localhost:5000/api/order/order", orderData);
+      const response = await axios.post(`${process.env.API_BASE_URL}/api/order/order`, orderData);
       console.log("Réponse API :", response.data);
       alert("Commande passée avec succès !");
     } catch (error) {
@@ -121,7 +121,7 @@ const ArticleDetail = () => {
                 <h3 className="text-lg font-semibold mb-2">Images</h3>
                 <div className=" text-center">
                   <img
-                    src={`http://localhost:5000${article.image}`}
+                    src={`${process.env.REACT_APP_API_BASE_URL}${article.image}`}
                     alt={article.name}
                     className="w-85 h-85 object-contain rounded-lg shadow-md"
                   />
@@ -135,7 +135,7 @@ const ArticleDetail = () => {
                 <div className="text-center">
                 <video controls className="w-85 h-85 object-contain rounded-lg shadow-md">
                               <source
-                                src={`http://localhost:5000${article.video}`}
+                                src={`${process.env.API_BASE_URL}${article.video}`}
                                 type="video/mp4"
                               />
                               Votre navigateur ne supporte pas la vidéo.

@@ -31,13 +31,13 @@ const Navbar = () => {
   const menuItems = isLoggedIn ? [
     { label: 'Accueil', icon: <Home size={20} />, to: '/' },
     { label: 'Contact', icon: <Phone size={20} />, to: '/client/contact' },
-    { label: 'Nos Articles', icon: <Package size={20} />, to: '/articlel' }
+    { label: 'Nos Articles', icon: <Package size={20} />, to: '/articel' }
   ] : [
     { label: 'Accueil', icon: <Home size={20} />, to: '/' },
     { label: 'Connexion', icon: <User size={20} />, to: '/login' },
     { label: "S'inscrire", icon: <User size={20} />, to: '/register' },
     { label: 'Contact', icon: <Phone size={20} />, to: '/client/contact' },
-    { label: 'Nos Articles', icon: <Package size={20} />, to: '/articlel' }
+    { label: 'Nos Articles', icon: <Package size={20} />, to: '/articel' }
   ];
 
   return (

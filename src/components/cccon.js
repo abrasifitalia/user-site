@@ -176,7 +176,10 @@ const ArticlesList = () => {
           <h2 className="text-2xl font-bold mb-6">Liste des Articles</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {filteredArticles.length === 0 ? (
-              <p>Aucun article trouvé</p>
+              <div className="col-span-full text-center">
+                <h3 className="text-xl font-semibold text-gray-600">Coming Soon!</h3>
+                <p className="text-gray-500">De nouveaux articles seront bientôt disponibles.</p>
+              </div>
             ) : (
               filteredArticles.map((article) => (
                 <div key={article._id} className="card h-100 shadow-md">
