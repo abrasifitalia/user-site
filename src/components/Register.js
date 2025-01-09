@@ -39,7 +39,7 @@ const Register = () => {
       const data = await response.json();
 
       if (response.ok) {
-        navigate('/articlel'); // Redirige vers la page de connexion après enregistrement
+        navigate('/article'); // Redirige vers la page de connexion après enregistrement
       } else {
         setError(data.message || 'Une erreur est survenue');
       }
