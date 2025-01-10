@@ -25,10 +25,19 @@ const ArticlesList = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const requestOptions = {
+          method: 'GET',
+          mode: 'cors',
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+          }
+        };
+
         const [articlesRes, categoriesRes, subCategoriesRes] = await Promise.all([
-          fetch(`${process.env.REACT_APP_API_BASE_URL}/api/article/article`),
-          fetch(`${process.env.REACT_APP_API_BASE_URL}/api/category/categories`),
-          fetch(`${process.env.REACT_APP_API_BASE_URL}/api/subcategory/subcategory`),
+          fetch(`${process.env.REACT_APP_API_BASE_URL}/api/article/article`, requestOptions),
+          fetch(`${process.env.REACT_APP_API_BASE_URL}/api/category/categories`, requestOptions),
+          fetch(`${process.env.REACT_APP_API_BASE_URL}/api/subcategory/subcategory`, requestOptions),
         ]);
 
         setArticles(await articlesRes.json());
@@ -52,8 +61,10 @@ const ArticlesList = () => {
     try {
         const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/view/view`, {
         method: 'POST',
+        mode: 'cors',
         headers: {
           'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
         },
         body: JSON.stringify({
           clientId: clientId,
