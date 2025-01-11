@@ -47,7 +47,7 @@ const Navbar = () => {
           {/* Logo and Brand */}
           <div className="flex items-center">
             <img
-              src="/assets/Capture d'écran 2024-12-12 152743.png"
+              src="/assets/logo.png"
               alt="Logo"
               className="h-10 w-auto"
             />
