@@ -49,7 +49,7 @@ const Navbar = () => {
             <img
               src="/assets/logo.png"
               alt="Logo"
-              className="h-10 w-auto"
+              className="h-10 w-auto mix-blend-multiply"
             />
             <span className="ml-3 text-xl font-bold text-gray-800">
               Abrasif Italia
