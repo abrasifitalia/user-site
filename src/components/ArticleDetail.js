@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Loader2 } from "lucide-react";
 import Navbar from "./navbar";
+import Footer from './includes/footer';
 
 
 const ArticleDetail = () => {
@@ -21,9 +22,9 @@ const ArticleDetail = () => {
     }
 
     // Log the API URL for debugging
-     console.log('API URL:', `${process.env.REACT_APP_API_BASE_URL}/api/article/article/get/${id}`);
+    console.log('API URL:', `${process.env.REACT_APP_API_BASE_URL}/api/article/article/get/${id}`);
 
-      axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/article/article/get/${id}`)
+    axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/article/article/get/${id}`)
       .then(response => {
         setArticle(response.data);
         setLoading(false);
@@ -111,7 +112,7 @@ const ArticleDetail = () => {
                 </div>
               </div>
               <div className="flex items-center text-xl font-bold text-green-600 {article.price}">
-             
+
               </div>
             </div>
           </div>
@@ -138,13 +139,13 @@ const ArticleDetail = () => {
               <div className="my-6 text-center">
                 <h3 className="text-lg font-semibold mb-2">Vidéo</h3>
                 <div className="text-center">
-                <video controls className="w-85 h-85 object-contain rounded-lg shadow-md">
-                              <source
-                                src={`${process.env.API_BASE_URL}${article.video}`}
-                                type="video/mp4"
-                              />
-                              Votre navigateur ne supporte pas la vidéo.
-                            </video>
+                  <video controls className="w-85 h-85 object-contain rounded-lg shadow-md">
+                    <source
+                      src={`${process.env.API_BASE_URL}${article.video}`}
+                      type="video/mp4"
+                    />
+                    Votre navigateur ne supporte pas la vidéo.
+                  </video>
                 </div>
               </div>
             )}
@@ -181,38 +182,7 @@ const ArticleDetail = () => {
           </div>
         </div>
       </div>
-      <footer className="bg-gray-900 text-white py-12">
-        <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Contactez</h4>
-            <p className="text-gray-400">Nous sommes là pour répondre à toutes vos questions et vous aider dans vos projets</p>
-          </div>
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Nos locaux</h4>
-            <ul className="space-y-2 text-gray-400">
-              <li>Arian: croisement la Soukra</li>
-              <li>Sousse: Bouhssina Cité Boukhzar Sousse</li>
-              <li>L'aouina: AV. Mongi Slim-Laouina</li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Téléphone</h4>
-            <ul className="space-y-2 text-gray-400">
-              <li>+21620235829</li>
-              <li>+21658982743</li>
-              <li>+21655888111</li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Réseaux sociaux</h4>
-            <ul className="space-y-2 text-gray-400">
-              <li>Instagram Abrasif Italia Klindex</li>
-              <li>Email abrasif.italia3@gmail.com</li>
-              <li>Facebook Abrasif Italia Klindex</li>
-            </ul>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };

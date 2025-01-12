@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import Navbar from '../components/navbar';
 import '../components/LoginPage.css';
-  
+import Footer from './includes/footer';
+
 
 const Login = () => {
   const { login } = useAuth();  // Récupérer la fonction de connexion du contexte
@@ -91,44 +92,7 @@ const Login = () => {
           </form>
         </div>
       </div>
-      <footer className="bg-gray-900 text-white py-12">
-        <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Contactez</h4>
-            <p className="text-gray-400">Nous sommes là pour répondre à toutes vos questions et vous aider dans vos projets</p>
-          </div>
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Nos locaux</h4>
-            <ul className="space-y-2 text-gray-400">
-              <li>Arian: croisement la Soukra</li>
-              <li>Sousse: Bouhssina Cité Boukhzar Sousse</li>
-              <li>L'aouina: AV. Mongi Slim-Laouina</li>
-              
-            </ul>
-          </div>
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Téléphone</h4>
-            <ul className="space-y-2 text-gray-400">
-              <li>+21620235829</li>
-              <li>     +21658982743</li>
-              <li>+21655888111</li>
-             
-            </ul>
-          </div>
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Réseaux sociaux</h4>
-            <ul className="space-y-2 text-gray-400">
-              <li>Instagram
-              Abrasif Italia Klindex</li>
-              <li>Email
-              abrasif.italia3@gmail.com</li>
-              <li>Facebook
-              Abrasif Italia Klindex
-           </li>
-            </ul>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };
