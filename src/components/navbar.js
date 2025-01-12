@@ -47,7 +47,9 @@ const Navbar = () => {
           {/* Logo and Brand */}
           <div className="flex items-center">
             <img
-              src="/assets/logo.png"
+              src="/assets/logo-v1.png"
+              height="50px"
+              width="50px"
               alt="Logo"
               className="h-10 w-auto mix-blend-multiply"
             />
