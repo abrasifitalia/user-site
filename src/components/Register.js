@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './includes/navbar';
-import './RegisterPage.css'; // Créez ce fichier CSS pour styliser la page d'enregistrement
+import './styles/RegisterPage.css'; // Créez ce fichier CSS pour styliser la page d'enregistrement
 import Footer from './includes/footer';
 
 const Register = () => {
@@ -53,9 +53,9 @@ const Register = () => {
 
   return (
     <div> <Navbar/>
-    <div className="register-container">
+    <div className="register-container ">
      
-      <div className="register-card">
+      <div className="register-card ">
         <h2>Inscription</h2>
         <p className="register-subtitle">
           Entrez vos informations pour créer un compte

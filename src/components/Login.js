@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import Navbar from './includes/navbar';
-import '../components/LoginPage.css';
+import './styles/LoginPage.css';
 import Footer from './includes/footer';
 
 
