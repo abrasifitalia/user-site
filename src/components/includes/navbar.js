@@ -25,43 +25,51 @@ const Navbar = () => {
     setIsLoggedIn(false);
     setClientName('');
     setIsMobileMenuOpen(false);
-    navigate('/');
+    navigate('/'); // Redirect to home page
   };
 
-  const menuItems = isLoggedIn
-    ? [
-        { label: 'Accueil', icon: <Home size={20} />, to: '/' },
-        { label: 'Contact', icon: <Phone size={20} />, to: '/client/contact' },
-        { label: 'Nos Articles', icon: <Package size={20} />, to: '/article' },
-      ]
-    : [
-        { label: 'Accueil', icon: <Home size={20} />, to: '/' },
-        { label: 'Connexion', icon: <User size={20} />, to: '/login' },
-        { label: "S'inscrire", icon: <User size={20} />, to: '/register' },
-        { label: 'Contact', icon: <Phone size={20} />, to: '/client/contact' },
-        { label: 'Nos Articles', icon: <Package size={20} />, to: '/article' },
-      ];
+  const menuItems = isLoggedIn ? [
+    { label: 'Accueil', icon: <Home size={20} />, to: '/' },
+    { label: 'Contact', icon: <Phone size={20} />, to: '/client/contact' },
+    { label: 'Nos Articles', icon: <Package size={20} />, to: '/article' }
+  ] : [
+    { label: 'Accueil', icon: <Home size={20} />, to: '/' },
+    { label: 'Connexion', icon: <User size={20} />, to: '/login' },
+    { label: "S'inscrire", icon: <User size={20} />, to: '/register' },
+    { label: 'Contact', icon: <Phone size={20} />, to: '/client/contact' },
+    { label: 'Nos Articles', icon: <Package size={20} />, to: '/article' }
+  ];
 
   return (
-    <nav className="bg-gray-100 border-b border-gray-200 fixed w-full top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16 items-center">
-          {/* Logo and Brand */}
-          <div className="flex items-center">
-            <img
-              src="/assets/Capture d'écran 2024-12-12 152743.png"
-              alt="Logo"
-              className="h-10 w-auto"
-            />
-            <span className="ml-3 text-xl font-bold text-gray-800">
-              Abrasif Italia
-            </span>
-          </div>
-
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-4">
+    
+    
+    <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top text-center pb-3">
+      
+      <div className="container">
+        <Link className="navbar-brand mx-auto" to="/">
+          <img
+            src="/assets/logo-v1.png"
+            height="50"
+            width="50"
+            alt="Logo"
+            className="d-inline-block align-text-top"
+          />
+          Abrasif Italia
+        </Link>
+        <button
+          className="navbar-toggler"
+          type="button"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-controls="navbarNav"
+          aria-expanded={isMobileMenuOpen}
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className={`collapse navbar-collapse ${isMobileMenuOpen ? 'show' : ''}`} id="navbarNav">
+          <div className="navbar-nav mx-auto">
             {isLoggedIn && (
-              <span className="text-gray-800">
+              <span className="navbar-text me-3">
                 Bonjour, <span className="font-semibold">{clientName}</span>
               </span>
             )}
@@ -69,72 +77,25 @@ const Navbar = () => {
               <Link
                 key={item.label}
                 to={item.to}
-                className="inline-flex items-center px-4 py-2 text-sm font-medium text-black hover:text-green-700 hover:bg-gray-200 rounded-md transition-colors"
+                className="nav-link mx-2"
               >
                 {item.icon}
-                <span className="ml-2">{item.label}</span>
+                <span className="ms-2">{item.label}</span>
               </Link>
             ))}
             {isLoggedIn && (
               <button
                 onClick={handleLogout}
-                className="inline-flex items-center px-4 py-2 text-sm font-medium text-red-600 hover:text-red-900 hover:bg-red-50 rounded-md transition-colors"
+                className="btn btn-outline-danger mx-2"
               >
                 <LogOut size={20} />
-                <span className="ml-2">Déconnexion</span>
+                <span className="ms-2">Déconnexion</span>
               </button>
             )}
           </div>
-
-          {/* Mobile Menu Toggle */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-500"
-          >
-            <span className="sr-only">Open main menu</span>
-            {isMobileMenuOpen ? (
-              <X className="block h-6 w-6" aria-hidden="true" />
-            ) : (
-              <Menu className="block h-6 w-6" aria-hidden="true" />
-            )}
-          </button>
         </div>
       </div>
-
-      {/* Mobile Navigation */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden bg-white shadow-lg">
-          <div className="px-4 py-4 space-y-2">
-            {isLoggedIn && (
-              <div className="text-sm text-gray-600 border-b border-gray-100 pb-3">
-                Bonjour, <span className="font-semibold">{clientName}</span>
-              </div>
-            )}
-            {menuItems.map((item) => (
-              <Link
-                key={item.label}
-                to={item.to}
-                className="flex items-center px-4 py-2 text-base font-medium text-black hover:text-green-700 hover:bg-gray-200 rounded-md transition-colors"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {item.icon}
-                <span className="ml-3">{item.label}</span>
-              </Link>
-            ))}
-            {isLoggedIn && (
-              <button
-                onClick={handleLogout}
-                className="w-full flex items-center px-4 py-2 text-base font-medium text-red-600 hover:text-red-900 hover:bg-red-50 rounded-md"
-              >
-                <LogOut size={20} />
-                <span className="ml-3">Déconnexion</span>
-              </button>
-            )}
-          </div>
-        </div>
-      )}
     </nav>
   );
 };
-
 export default Navbar;

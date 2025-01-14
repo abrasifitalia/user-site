@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Loader2 } from "lucide-react";
-import Navbar from "./navbar";
+import Navbar from "./includes/navbar";
 import Footer from './includes/footer';
 
 

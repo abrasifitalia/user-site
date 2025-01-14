@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "./navbar";
+import Navbar from "./includes/navbar";
 import { useNavigate } from "react-router-dom";
 
 const ArticlesList = () => {

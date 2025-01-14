@@ -2,8 +2,9 @@ import React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
 import '../components/Home.css';
-import Navbar from './navbar';
+import Navbar from './includes/navbar';
 import Footer from './includes/footer';
+
 const ContactPage = () => {
   const [formData, setFormData] = useState({
     nom: '',
@@ -41,12 +42,12 @@ const ContactPage = () => {
   };
 
   return (
-    <div>
-      <div className="max-w-4xl mx-auto px-4 py-12">
-        <Navbar />
+    <div className="min-h-screen bg-gray-50">
+      <Navbar />
+      <div className="max-w-4xl mx-auto px-4 py-24"> {/* Adjusted padding to py-24 for better spacing with the navbar */}
         <h1 className="text-center text-4xl font-bold mb-3">Contactez-nous</h1>
         <p className="text-center text-gray-600 mb-8">Nous sommes là pour vous aider</p>
-        <div>
+        <div className="bg-white shadow-lg rounded-lg p-8">
           <form onSubmit={handleSubmit} className="space-y-6">
             <input
               type="text"
@@ -54,7 +55,7 @@ const ContactPage = () => {
               placeholder="Votre nom"
               value={formData.nom}
               onChange={handleChange}
-              className="w-full p-3 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 transition-colors bg-white"
+              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 transition-colors bg-gray-100"
               required
             />
 
@@ -64,7 +65,7 @@ const ContactPage = () => {
               placeholder="Votre email"
               value={formData.email}
               onChange={handleChange}
-              className="w-full p-3 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 transition-colors bg-white"
+              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 transition-colors bg-gray-100"
               required
             />
 
@@ -74,7 +75,7 @@ const ContactPage = () => {
               placeholder="Votre téléphone"
               value={formData.phone}
               onChange={handleChange}
-              className="w-full p-3 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 transition-colors bg-white"
+              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 transition-colors bg-gray-100"
               required
             />
 
@@ -84,7 +85,7 @@ const ContactPage = () => {
               placeholder="Objet"
               value={formData.objet}
               onChange={handleChange}
-              className="w-full p-3 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 transition-colors bg-white"
+              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 transition-colors bg-gray-100"
               required
             />
 
@@ -94,23 +95,19 @@ const ContactPage = () => {
               value={formData.message}
               onChange={handleChange}
               rows="6"
-              className="w-full p-3 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 transition-colors bg-white resize-none"
+              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 transition-colors bg-gray-100 resize-none"
               required
             />
 
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-gray-100 hover:bg-gray-200 text-gray-800 font-normal py-3 px-6 rounded-lg transition-colors duration-200"
+              className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200"
             >
               {loading ? 'Envoi en cours...' : 'Envoyer le message'}
             </button>
-
-            <br>
-            </br>
           </form>
         </div>
-        <div className="max-w-7xl mx-auto px-4 py-12"></div>
       </div>
       <Footer />
     </div>
