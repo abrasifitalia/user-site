@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Loader2 } from 'lucide-react';
 import Navbar from './includes/navbar';
 import Footer from './includes/footer';
+import Loading from './includes/loading';
 
 const ArticleDetail = () => {
   const { id } = useParams();
@@ -12,6 +13,7 @@ const ArticleDetail = () => {
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [imageLoading, setImageLoading] = useState(true);
 
   // Charger les détails de l'article
   useEffect(() => {
@@ -69,9 +71,7 @@ const ArticleDetail = () => {
   // Affichage des états de chargement ou d'erreur
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
-        <Loader2 className="h-16 w-16 animate-spin text-blue-500" />
-      </div>
+      <Loading />
     );
   }
 
@@ -96,26 +96,32 @@ const ArticleDetail = () => {
               <span className="px-3 py-1 border border-gray-300 text-gray-600 rounded-full text-sm">{article.subcategory?.name}</span>
             </div>
           </div>
-          <div className="p-6 space-y-6">
-            <h3 className="text-lg font-semibold">Description</h3>
-            <p className="text-gray-600">{article.description}</p>
+          <div className="p-6 space-y-6 pt-0">
+            <h3 className="text-lg font-semibold bg-gray-100 rounded-lg p-2">Description</h3>
+            <p className=" p-10 space-y-6 ">{article.description}</p>
 
             {article.image && (
-              <div>
-                <h3 className="text-lg font-semibold">Images</h3>
-                <img
-                  src={`${process.env.REACT_APP_API_BASE_URL}${article.image}`}
-                  alt={article.name}
-                  className="rounded-lg shadow-md mx-auto block w-full md:w-[500px] h-[300px] md:h-[400px]"
-                  style={{
-                    objectFit: 'contain',
-                    backgroundColor: '#f0f0f0',
-                    margin: '0 auto'
-                  }}
-                  loading="lazy"
-                />
-              </div>
-            )}
+  <div className="flex justify-center items-center my-6">
+   
+    {imageLoading && <Loading />}
+    <img
+      src={`${process.env.REACT_APP_API_BASE_URL}${article.image}`}
+      alt={article.name}
+      className={`rounded-lg  mx-auto block ${imageLoading ? 'hidden' : ''}`}
+      style={{
+        width: '200%', // Pour s'assurer que l'image occupe toute la largeur disponible
+        maxWidth: '250px', // Limite maximale pour l'image
+        height: 'auto', // Ajuste automatiquement la hauteur en fonction de la largeur
+        objectFit: 'cover',
+       
+      }}
+      loading="lazy"
+      onLoad={() => setImageLoading(false)}
+    />
+  </div>
+)}
+
+
 
             {article.video && (
               <div>
@@ -129,7 +135,7 @@ const ArticleDetail = () => {
 
             {article.fonctionnalite && (
               <div>
-                <h3 className="text-lg font-semibold">Fonctionnalités</h3>
+                <h3 className="text-lg font-semibold bg-gray-100 rounded-lg p-2">Fonctionnalités</h3>
                 <ul className="list-disc ml-5">
                   {(Array.isArray(article.fonctionnalite) ? article.fonctionnalite : article.fonctionnalite.split(',')).map((feature, index) => (
                     <li key={index} className="text-gray-700">{feature}</li>
@@ -149,7 +155,7 @@ const ArticleDetail = () => {
               <button
                 onClick={handleOrder}
                 disabled={isSubmitting}
-                className={`bg-blue-500 text-white px-4 py-2 rounded-md animate-pulse ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
+                className={`bg-green-500  px-4 py-2 rounded-lg ${isSubmitting ? 'text-green-500 cursor-not-allowed ' : ''}`}
               >
                 {isSubmitting ? "Commande en cours..." : "Passer commande"}
               </button>

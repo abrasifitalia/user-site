@@ -177,7 +177,8 @@ const ArticlesList = () => {
                 key={article._id}
                 className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4"
               >
-                <div className="card h-100 shadow-sm">
+                <div className="card h-100 shadow-sm relative">
+                  
                   <img
                     src={`${process.env.REACT_APP_API_BASE_URL}${article.image}`}
                     alt={article.name}
@@ -190,7 +191,7 @@ const ArticlesList = () => {
                     }}
                   />
                   <div className="card-body">
-                    <h5 className="card-title">{article.name}</h5>
+                    <h5 className="card-title text-center text-lg font-bold rounded-lg bg-gray-100 p-2">{article.name}</h5>
                     <p className="card-text text-gray-600">
                       {article.description}
                     </p>
@@ -201,7 +202,7 @@ const ArticlesList = () => {
                         className="btn btn-primary w-100"
                         onClick={() => handleClick(article._id)}
                       >
-                        Voir
+                        Voir Détails
                       </button>
                     </div>
                   )}
