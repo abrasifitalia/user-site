@@ -11,18 +11,17 @@ const Navbar = () => {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    if (token) {
+    const storedClientName = localStorage.getItem('clientName');
+    if (token && storedClientName) {
       setIsLoggedIn(true);
-      const storedClientName = localStorage.getItem('clientName');
-      if (storedClientName) {
-        setClientName(storedClientName);
-      }
+      setClientName(storedClientName);
     }
   }, []);
 
   const handleLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('clientName');
+    localStorage.removeItem('clientId');
     setIsLoggedIn(false);
     setClientName('');
     setIsMobileMenuOpen(false);
@@ -78,7 +77,7 @@ const Navbar = () => {
           </button>
           <div className={`collapse navbar-collapse ${isMobileMenuOpen ? 'show' : ''}`} id="navbarNav">
             <div className="navbar-nav mx-auto">
-              {isLoggedIn && (
+              {isLoggedIn && clientName && (
                 <span className="navbar-text me-3 text-muted">
                   Bonjour, <span className="font-semibold">{clientName}</span>
                 </span>

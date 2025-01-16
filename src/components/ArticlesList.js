@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "./includes/navbar";
 import { useNavigate } from "react-router-dom";
+import Loading from "./includes/loading"; 
 
 const ArticlesList = () => {
   const [articles, setArticles] = useState([]);
@@ -44,7 +45,8 @@ const ArticlesList = () => {
     setSelectedSubCategory("");
   };
 
-  if (loading) return <p>Chargement des données...</p>;
+  if (loading) return <Loading/>;
+
 
   return (
     <div>

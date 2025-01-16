@@ -32,6 +32,11 @@ const Login = () => {
       const data = await response.json();
 
       if (response.ok) {
+        // Store client data in localStorage
+        localStorage.setItem('clientName', data.clientName);
+        localStorage.setItem('clientId', data.clientId);
+        localStorage.setItem('token', data.token);
+        
         // Appeler la fonction login du contexte avec les données du client
         login({
           clientName: data.clientName,

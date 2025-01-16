@@ -95,110 +95,110 @@ const ArticlesList = () => {
   return (
     <div>
       <Navbar />
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <div className="bg-light pt-5">
         <div className="container">
-          <div className="navbar-collapse collapse justify-content-center" id="navbarSupportedContent">
-            <ul className="navbar-nav">
-              {categories.map((category) => (
-                <li key={category._id} className="nav-item dropdown">
-                  <button
-                    className="nav-link dropdown-toggle"
-                    onClick={() => setSelectedCategory(category._id)}
-                    id={`dropdown${category._id}`}
-                  >
-                    {category.name}
-                  </button>
-                  {selectedCategory === category._id && (
-                    <div className="dropdown-menu show" aria-labelledby={`dropdown${category._id}`}>
-                      {subCategories.filter(subCat => subCat.categoryId?._id === selectedCategory).map(subCat => (
-                        <button
-                          key={subCat._id}
-                          className="dropdown-item"
-                          onClick={() => {
-                            setSelectedSubCategory(subCat._id);
-                            setSelectedCategory(null); // Fermer la liste déroulante
-                          }}
-                        >
-                          {subCat.name}
-                        </button>
-                      ))}
-                    </div>
-                  )}
-                </li>
-              ))}
-              <li className="nav-item">
+          <div className="d-flex justify-content-center flex-wrap gap-3">
+            {categories.map((category) => (
+              <div key={category._id} className="dropdown position-relative">
                 <button
-                  className="nav-link"
-                  onClick={showAllArticles}
+                  className="btn btn-primary dropdown-toggle"
+                  onClick={() => setSelectedCategory(category._id)}
+                  id={`dropdown${category._id}`}
                 >
-                  Voir tous les articles
+                  {category.name}
                 </button>
-              </li>
-            </ul>
+                {selectedCategory === category._id && (
+                  <div
+                    className="dropdown-menu show shadow"
+                    aria-labelledby={`dropdown${category._id}`}
+                    style={{
+                      position: "absolute",
+                      top: "100%",
+                      zIndex: 1000,
+                      display: "block",
+                    }}
+                  >
+                    {subCategories.filter(
+                      (subCat) => subCat.categoryId?._id === selectedCategory
+                    ).length > 0 ? (
+                      subCategories
+                        .filter(
+                          (subCat) =>
+                            subCat.categoryId?._id === selectedCategory
+                        )
+                        .map((subCat) => (
+                          <button
+                            key={subCat._id}
+                            className="dropdown-item"
+                            onClick={() => {
+                              setSelectedSubCategory(subCat._id);
+                              setSelectedCategory(null); // Close dropdown
+                            }}
+                          >
+                            {subCat.name}
+                          </button>
+                        ))
+                    ) : (
+                      <div className="dropdown-item text-muted">
+                        Pas de sous-catégories disponibles
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            ))}
+            <button
+              className="btn btn-secondary"
+              onClick={showAllArticles}
+            >
+              Voir tous les articles
+            </button>
           </div>
         </div>
-      </nav>
+      </div>
 
-
-      <div className="min-h-screen flex">
-        <aside className="w-64 bg-white shadow-lg p-4">
-          <h3 className="text-lg font-semibold mb-4">Catégories</h3>
-          {categories.map((category) => (
-            <div key={category._id} className="mb-2">
-              <button
-                className={`w-full text-left p-2 hover:bg-gray-50 ${selectedCategory === category._id ? 'bg-blue-200' : 'bg-gray-100'} rounded`}
-                onClick={() => setSelectedCategory(category._id)}
-              >
-                {category.name}
-              </button>
-              {selectedCategory === category._id && (
-                <div className="ml-4 mt-2">
-                  {subCategories.filter(subCat => subCat.categoryId?._id === selectedCategory).map(subCat => (
-                    <button
-                      key={subCat._id}
-                      className={`w-full text-left p-2 text-sm hover:bg-gray-50 ${selectedSubCategory === subCat._id ? 'bg-green-200' : 'bg-gray-50'} rounded`}
-                      onClick={() => setSelectedSubCategory(subCat._id)}
-                    >
-                      {subCat.name}
-                    </button>
-                  ))}
-                </div>
-              )}
+      <div className="container py-5">
+        <h2 className="text-center text-2xl font-bold mb-6">
+          Liste des Articles
+        </h2>
+        <div className="row">
+          {filteredArticles.length === 0 ? (
+            <div className="col-12 text-center">
+              <h3 className="text-xl font-semibold text-gray-600">
+                Coming Soon!
+              </h3>
+              <p className="text-gray-500">
+                De nouveaux articles seront bientôt disponibles.
+              </p>
             </div>
-          ))}
-          <button
-            className="w-full text-left p-2 mt-4 text-sm bg-yellow-100 hover:bg-yellow-200 rounded"
-            onClick={showAllArticles}
-          >
-            Voir tous les articles
-          </button>
-        </aside>
-
-        <main className="flex-1 p-8">
-          <h2 className="text-2xl font-bold mb-6">Liste des Articles</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-            {filteredArticles.length === 0 ? (
-              <div className="col-span-full text-center">
-                <h3 className="text-xl font-semibold text-gray-600">Coming Soon!</h3>
-                <p className="text-gray-500">De nouveaux articles seront bientôt disponibles.</p>
-              </div>
-            ) : (
-              filteredArticles.map((article) => (
-                <div key={article._id} className="card h-100 shadow-md">
+          ) : (
+            filteredArticles.map((article) => (
+              <div
+                key={article._id}
+                className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4"
+              >
+                <div className="card h-100 shadow-sm">
                   <img
                     src={`${process.env.REACT_APP_API_BASE_URL}${article.image}`}
                     alt={article.name}
                     className="card-img-top"
-                    style={{ width: '100%', height: '200px', objectFit: 'contain', backgroundColor: '#f0f0f0' }}
+                    style={{
+                      width: "100%",
+                      height: "200px",
+                      objectFit: "contain",
+                      backgroundColor: "#f0f0f0",
+                    }}
                   />
                   <div className="card-body">
                     <h5 className="card-title">{article.name}</h5>
-                    <p className="card-text text-gray-600">{article.description}</p>
+                    <p className="card-text text-gray-600">
+                      {article.description}
+                    </p>
                   </div>
                   {clientId && (
                     <div className="card-footer">
                       <button
-                        className="btn btn-primary w-full"
+                        className="btn btn-primary w-100"
                         onClick={() => handleClick(article._id)}
                       >
                         Voir
@@ -206,15 +206,15 @@ const ArticlesList = () => {
                     </div>
                   )}
                 </div>
-              ))
-            )}
-          </div>
-        </main>
+              </div>
+            ))
+          )}
+        </div>
       </div>
-
       <Footer />
     </div>
   );
 };
+
 
 export default ArticlesList;
