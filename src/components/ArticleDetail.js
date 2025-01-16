@@ -5,8 +5,11 @@ import { Loader2 } from 'lucide-react';
 import Navbar from './includes/navbar';
 import Footer from './includes/footer';
 import Loading from './includes/loading';
+import { Modal, Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 const ArticleDetail = () => {
+  
   const { id } = useParams();
   const [article, setArticle] = useState(null);
   const [error, setError] = useState(null);
@@ -14,6 +17,12 @@ const ArticleDetail = () => {
   const [quantity, setQuantity] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [imageLoading, setImageLoading] = useState(true);
+  const [modalState, setModalState] = useState({
+    show: false,
+    title: '',
+    message: '',
+    variant: ''
+  });
 
   // Charger les détails de l'article
   useEffect(() => {
@@ -41,13 +50,23 @@ const ArticleDetail = () => {
   // Gestion de la commande
   const handleOrder = async () => {
     if (quantity <= 0) {
-      alert("La quantité doit être supérieure à 0.");
+      setModalState({
+        show: true,
+        title: "Problème",
+        message: "La quantité doit être supérieure à 0.",
+        variant: "danger"
+      });
       return;
     }
 
     const clientId = localStorage.getItem('clientId');
     if (!clientId) {
-      alert("Vous devez être connecté pour passer une commande.");
+      setModalState({
+        show: true,
+        title: "Avertissement",
+        message: "Vous devez être connecté pour passer une commande.",
+        variant: "warning"
+      });
       return;
     }
 
@@ -59,10 +78,21 @@ const ArticleDetail = () => {
     setIsSubmitting(true);
     try {
       const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/order/order`, orderData);
-      alert("Commande passée avec succès !");
+      setModalState({
+        show: true,
+        title: "Succès", 
+        message: "Commande passée avec succès ! Vous serez contacté pour confirmer.",
+        variant: "success"
+      });
+  
     } catch (error) {
       console.error("Erreur lors de la commande :", error.response?.data || error.message);
-      alert("Une erreur est survenue lors du passage de la commande.");
+      setModalState({
+        show: true,
+        title: "Erreur",
+        message: "Une erreur est survenue lors du passage de la commande. Veuillez réessayer plus tard.",
+        variant: "danger"
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -90,38 +120,34 @@ const ArticleDetail = () => {
       <div className="max-w-4xl mx-auto p-4">
         <div className="bg-white rounded-lg shadow-lg overflow-hidden">
           <div className="p-6 border-b border-gray-200">
-            <h1 className="text-2xl font-bold mb-2">{article.name}</h1>
+            <h1 className="text-2xl font-bold mb-2 text-danger">{article.name}</h1>
             <div className="flex gap-2 mb-4">
               <span className="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm">{article.category?.name}</span>
               <span className="px-3 py-1 border border-gray-300 text-gray-600 rounded-full text-sm">{article.subcategory?.name}</span>
             </div>
           </div>
           <div className="p-6 space-y-6 pt-0">
-            <h3 className="text-lg font-semibold bg-gray-100 rounded-lg p-2">Description</h3>
-            <p className=" p-10 space-y-6 ">{article.description}</p>
+            <h3 className="text-lg font-semibold text-white bg-success rounded-lg p-2">Description</h3>
+            <p className="p-10 space-y-6">{article.description}</p>
 
             {article.image && (
-  <div className="flex justify-center items-center my-6">
-   
-    {imageLoading && <Loading />}
-    <img
-      src={`${process.env.REACT_APP_API_BASE_URL}${article.image}`}
-      alt={article.name}
-      className={`rounded-lg  mx-auto block ${imageLoading ? 'hidden' : ''}`}
-      style={{
-        width: '200%', // Pour s'assurer que l'image occupe toute la largeur disponible
-        maxWidth: '250px', // Limite maximale pour l'image
-        height: 'auto', // Ajuste automatiquement la hauteur en fonction de la largeur
-        objectFit: 'cover',
-       
-      }}
-      loading="lazy"
-      onLoad={() => setImageLoading(false)}
-    />
-  </div>
-)}
-
-
+              <div className="flex justify-center items-center my-6">
+                {imageLoading && <Loading />}
+                <img
+                  src={`${process.env.REACT_APP_API_BASE_URL}${article.image}`}
+                  alt={article.name}
+                  className={`rounded-lg mx-auto block ${imageLoading ? 'hidden' : ''}`}
+                  style={{
+                    width: '200%', // Pour s'assurer que l'image occupe toute la largeur disponible
+                    maxWidth: '250px', // Limite maximale pour l'image
+                    height: 'auto', // Ajuste automatiquement la hauteur en fonction de la largeur
+                    objectFit: 'cover',
+                  }}
+                  loading="lazy"
+                  onLoad={() => setImageLoading(false)}
+                />
+              </div>
+            )}
 
             {article.video && (
               <div>
@@ -135,7 +161,7 @@ const ArticleDetail = () => {
 
             {article.fonctionnalite && (
               <div>
-                <h3 className="text-lg font-semibold bg-gray-100 rounded-lg p-2">Fonctionnalités</h3>
+                <h3 className="text-lg font-semibold text-white bg-success rounded-lg p-2">Fonctionnalités</h3>
                 <ul className="list-disc ml-5">
                   {(Array.isArray(article.fonctionnalite) ? article.fonctionnalite : article.fonctionnalite.split(',')).map((feature, index) => (
                     <li key={index} className="text-gray-700">{feature}</li>
@@ -155,16 +181,43 @@ const ArticleDetail = () => {
               <button
                 onClick={handleOrder}
                 disabled={isSubmitting}
-                className={`bg-green-500  px-4 py-2 rounded-lg ${isSubmitting ? 'text-green-500 cursor-not-allowed ' : ''}`}
+                className={`bg-danger text-white px-4 py-2 rounded-lg ${isSubmitting ? 'bg-success text-white cursor-not-allowed' : ''}`}
               >
-                {isSubmitting ? "Commande en cours..." : "Passer commande"}
+                {isSubmitting ? <><span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Loading...</> : " Passer commande"}
               </button>
             </div>
           </div>
         </div>
       </div>
       <Footer />
+
+      {/* Modal de notification */}
+      <OrderModal
+        show={modalState.show}
+        handleClose={() => setModalState({ ...modalState, show: false })}
+        title={modalState.title}
+        message={modalState.message}
+        variant={modalState.variant}
+      />
     </div>
+  );
+};
+
+const OrderModal = ({ show, handleClose, message, title, variant }) => {
+  const navigate = useNavigate();
+
+  return (
+    <Modal show={show} onHide={handleClose}>
+      <Modal.Header closeButton>
+        <Modal.Title>{title}</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>{message}</Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={() => navigate('/article')}>
+          Masquer
+        </Button>
+      </Modal.Footer>
+    </Modal>
   );
 };
 

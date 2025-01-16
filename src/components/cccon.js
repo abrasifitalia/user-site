@@ -95,7 +95,7 @@ const ArticlesList = () => {
   return (
     <div>
       <Navbar />
-      <div className="bg-light pt-5">
+      <div className="bg-light pt-5 pb-2">
         <div className="container">
           <div className="d-flex justify-content-center flex-wrap gap-3">
             {categories.map((category) => (
