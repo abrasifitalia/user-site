@@ -1,18 +1,5 @@
-@keyframes scroll {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-100%);
-    }
-  }
-  
-  .animate-scroll {
-    display: flex;
-    animation: scroll 15s linear infinite;
-  }
-  
-  .overflow-hidden {
-    overflow: hidden;
+/* Optional: Styling for smoother scrolling on webkit browsers */
+.scroll-container {
+    -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
   }
   

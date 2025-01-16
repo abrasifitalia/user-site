@@ -13,8 +13,8 @@ const Partner = () => {
         </div>
 
         {/* Scrolling Container */}
-        <div className="relative overflow-hidden">
-          <div className="flex items-center animate-scroll space-x-6 sm:space-x-8">
+        <div className="relative overflow-x-auto">
+          <div className="flex space-x-6 sm:space-x-8">
             {[
               "/assets/hg.png",
               "/assets/mixer.png",
