@@ -9,7 +9,8 @@ import Footer from './includes/footer';
 import Partner from './includes/partner';
 import BestSelling from './includes/best-selling';
 import CustomCarousel from './carousels/produit';
-import NewsBanner from './includes/news-banner';
+
+import CompanyLocations from './Home/location';
 
 
 const HomePage = () => {
@@ -31,15 +32,13 @@ const HomePage = () => {
       {/* Carousel Section */}
       <Carousel /> {/* Intégration du composant Carousel */}
 
-      {/* Featured Products */}
-    
-        
-        <CustomCarousel />
       
 
       {/* Partner */}
       <Partner />
-
+       
+        {/* Partner */}
+        <CompanyLocations />
       {/* Footer */}
       <Footer />
     </div>

@@ -176,14 +176,14 @@ const ArticleDetail = () => {
                 value={quantity}
                 onChange={(e) => setQuantity(e.target.value)}
                 min="1"
-                className="p-2 border border-gray-300 rounded-md"
+                className="p-2 border border-success text-danger text-lg font-semibold rounded-md"
               />
               <button
                 onClick={handleOrder}
                 disabled={isSubmitting}
-                className={`bg-danger text-white px-4 py-2 rounded-lg ${isSubmitting ? 'bg-success text-white cursor-not-allowed' : ''}`}
+                className={`bg-danger border border-danger text-white px-4 py-2 rounded-lg ${isSubmitting ? 'bg-success text-white cursor-not-allowed' : ''}`}
               >
-                {isSubmitting ? <><span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Loading...</> : " Passer commande"}
+                {isSubmitting ? <><span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Loading</> : " Demande de devis"}
               </button>
             </div>
           </div>
