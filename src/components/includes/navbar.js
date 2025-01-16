@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Menu, X, ShoppingBag, User, LogOut, Home, Phone, Package } from 'lucide-react';
 import NewsBanner from './news-banner';
+import '../styles/Animation.css';
 
 const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -28,19 +29,11 @@ const Navbar = () => {
     navigate('/'); // Redirect to home page
   };
 
-  const menuItems = isLoggedIn
-    ? [
-        { label: 'Accueil', icon: <Home size={20} />, to: '/' },
-        { label: 'Contact', icon: <Phone size={20} />, to: '/client/contact' },
-        { label: 'Nos Articles', icon: <Package size={20} />, to: '/article' },
-      ]
-    : [
-        { label: 'Accueil', icon: <Home size={20} />, to: '/' },
-        { label: 'Connexion', icon: <User size={20} />, to: '/login' },
-        { label: "S'inscrire", icon: <User size={20} />, to: '/register' },
-        { label: 'Contact', icon: <Phone size={20} />, to: '/client/contact' },
-        { label: 'Nos Articles', icon: <Package size={20} />, to: '/article' },
-      ];
+  const menuItems = [
+    { label: 'Accueil', icon: <Home size={20} className="text-danger" />, to: '/' },
+    { label: 'Nos Produits', icon: <Package size={20} className="text-danger" />, to: '/article' },
+    { label: 'Contact', icon: <Phone size={20} className="text-danger" />, to: '/client/contact' },
+  ];
 
   return (
     <div>
@@ -58,12 +51,24 @@ const Navbar = () => {
           <Link className="navbar-brand d-flex align-items-center" to="/">
             <img
               src="/assets/logo-v1.png"
-              height="50"
+              height="40"
               width="50"
               alt="Logo"
               className="d-inline-block"
             />
-            <span className="ms-2 text-primary fw-bold">Abrasif Italia</span>
+<div className="d-flex align-items-center">
+  <span className="ms-2 fw-bold">
+    <span className="text-success pulse-animation">
+      Abrasif
+    </span>
+    <span className="text-danger pulse-animation space-between" style={{ animationDelay: "0.5s" }}>
+      Italia
+    </span>
+  </span>
+</div>
+
+
+
           </Link>
           <button
             className="navbar-toggler"
@@ -79,19 +84,48 @@ const Navbar = () => {
             <div className="navbar-nav mx-auto">
               {isLoggedIn && clientName && (
                 <span className="navbar-text me-3 text-muted">
-                  Bonjour, <span className="font-semibold">{clientName}</span>
+                  Bonjour, <span className="font-semibold text-success animate-bounce">{clientName}</span>
                 </span>
               )}
               {menuItems.map((item) => (
-                <Link key={item.label} to={item.to} className="nav-link mx-2 text-dark">
+                <Link key={item.label} to={item.to} className="nav-link mx-2 text-dark fw-bold">
                   {item.icon}
                   <span className="ms-2">{item.label}</span>
                 </Link>
               ))}
+
+              {!isLoggedIn && (
+                <div className="nav-item dropdown">
+                  <a
+                    href="#"
+                    className="nav-link dropdown-toggle mx-2 text-dark"
+                    id="dropdownAccount"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    <User size={20} className="text-danger" />
+                    <span className="ms-2 fw-bold">Compte</span>
+                  </a>
+                  <ul className="dropdown-menu" aria-labelledby="dropdownAccount">
+                    <li>
+                      <Link to="/login" className="dropdown-item">
+                        Connexion
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/register" className="dropdown-item">
+                        S'inscrire
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              )}
+
               {isLoggedIn && (
                 <button onClick={handleLogout} className="btn btn-outline-danger mx-2">
                   <LogOut size={20} />
-                  <span className="ms-2">Déconnexion</span>
+                  <span className="ms-2 btn-danger ">Déconnexion</span>
                 </button>
               )}
             </div>

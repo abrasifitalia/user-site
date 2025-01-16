@@ -101,7 +101,7 @@ const ArticlesList = () => {
             {categories.map((category) => (
               <div key={category._id} className="dropdown position-relative">
                 <button
-                  className="btn btn-primary dropdown-toggle"
+                  className="btn btn-danger dropdown-toggle"
                   onClick={() => setSelectedCategory(category._id)}
                   id={`dropdown${category._id}`}
                 >
@@ -148,7 +148,7 @@ const ArticlesList = () => {
               </div>
             ))}
             <button
-              className="btn btn-secondary"
+              className="btn btn-success"
               onClick={showAllArticles}
             >
               Voir tous les articles
@@ -187,11 +187,11 @@ const ArticlesList = () => {
                       width: "100%",
                       height: "200px",
                       objectFit: "contain",
-                      backgroundColor: "#f0f0f0",
+                      backgroundColor: "rgba(144, 238, 144, 0.3)",
                     }}
                   />
                   <div className="card-body">
-                    <h5 className="card-title text-center text-lg font-bold rounded-lg bg-gray-100 p-2">{article.name}</h5>
+                    <h5 className="card-title text-success text-lg font-bold rounded-lg  p-2">{article.name}</h5>
                     <p className="card-text text-gray-600">
                       {article.description}
                     </p>
@@ -199,7 +199,7 @@ const ArticlesList = () => {
                   {clientId && (
                     <div className="card-footer">
                       <button
-                        className="btn btn-primary w-100"
+                        className="btn btn-danger w-100"
                         onClick={() => handleClick(article._id)}
                       >
                         Voir Détails
