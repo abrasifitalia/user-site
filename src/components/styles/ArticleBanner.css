@@ -1,0 +1,36 @@
+.article-banner-container {
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 10px;
+    background-color: #f9f9f9; /* Optional: Background color */
+    border: 1px solid #ddd; /* Optional: Border */
+    border-radius: 10px;
+  }
+  
+  .article-banner {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .article-banner-item {
+    text-align: center;
+    text-decoration: none;
+    color: #333;
+    flex: 0 0 auto; /* Prevent items from shrinking */
+  }
+  
+  .article-image {
+    width: 150px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+  }
+  
+  .article-name {
+    margin-top: 5px;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  

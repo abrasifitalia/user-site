@@ -1,44 +1,54 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { ShoppingCart, Search, Menu, Heart, Contact, Container } from 'lucide-react';
+import { ShoppingCart, Search, Menu, Heart, Contact } from 'lucide-react';
 import Carousel from './carousels/Carousel';
 import Produit from './carousels/produit'; // Assurez-vous d'importer le composant Carousel
 import '../components/Home.css';
 import Navbar from './includes/navbar';
 import Footer from './includes/footer';
 import Partner from './includes/partner';
-import BestSelling from './includes/best-selling';
-import CustomCarousel from './carousels/produit';
-
+import ArticleBanner from './includes/best-selling'; // Assurez-vous d'importer correctement ArticleBanner
 import CompanyLocations from './Home/location';
 
-
 const HomePage = () => {
-  const Style = {
+  const [articles, setArticles] = useState([]); // Declare articles state
 
-  };
+  // Fetch articles on component mount
+  useEffect(() => {
+    const fetchArticles = async () => {
+      try {
+        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/article/article`);
+        if (response.ok) {
+          const data = await response.json();
+          setArticles(data); // Set articles data
+        } else {
+          console.error('Error fetching articles:', response.statusText);
+        }
+      } catch (error) {
+        console.error('Error fetching articles:', error);
+      }
+    };
+
+    fetchArticles();
+  }, []);
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Container>
-       
-          
-       
-      </Container>
       <Navbar />
-     
-
-
-      {/* Carousel Section */}
-      <Carousel /> {/* Intégration du composant Carousel */}
-
       
+      <div className="container mx-auto p-2">
+        {/* Carousel Section */}
+        <Carousel />
 
-      {/* Partner */}
-      <Partner />
-       
-        {/* Partner */}
+        {/* Article Scrolling Banner */}
+        <ArticleBanner articles={articles} /> {/* Pass articles to ArticleBanner */}
+
+        {/* Partner Section */}
+        <Partner />
+
+        {/* Company Locations */}
         <CompanyLocations />
+      </div>
+
       {/* Footer */}
       <Footer />
     </div>

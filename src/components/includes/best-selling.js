@@ -1,59 +1,81 @@
-import React from 'react';
-import { Carousel } from 'react-bootstrap';
+import React, { useState } from 'react';
+import Loading from './loading';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-const productData = [
-  [
-    { name: 'Hyperlevi 430', image: '/assets/2.png' },
-    { name: 'i – 4 BOIS', image: '/assets/I4wood-1-1.jpg' },
-    { name: 'Hyperlevi 450', image: '/assets/HYPERLEVI-450-1.jpg' },
-  ],
-  [
-    { name: 'CHARIOT HÔTELLERIE KA441FB', image: '/assets/8.png' },
-    { name: 'CHARIOT DE MENAGE HTK718', image: '/assets/Capture décran 2024-12-02 120803.png' },
-    { name: 'CHARIOT DE MENAGE HCK715 c', image: '/assets/Capture décran 2024-12-02 122022.png' },
-  ],
-  [
-    { name: 'Hyper-sanser 430', image: '/assets/HYPER-SANDER-430-1.jpg' },
-    { name: 'Lion 430', image: '/assets/LION-430-1.jpg' },
-    { name: 'HyperLEvi en Bois', image: '/assets/HyperLEvi-Wooden.jpg' },
-  ],
-];
+const ArticleBanner = ({ articles, isLoading }) => {
+  const [scrollPosition, setScrollPosition] = useState(0);
 
-const BestSelling = () => {
+  const scroll = (direction) => {
+    const container = document.getElementById('article-scroll');
+    const scrollAmount = direction === 'left' ? -320 : 320;
+    container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    setScrollPosition(container.scrollLeft + scrollAmount);
+  };
+
   return (
-    <div className="bg-white py-16 shadow-lg rounded-lg">
-      <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">Best Selling Products</h2>
-      <Carousel interval={3000} className="carousel-fade">
-        {productData.map((productSet, index) => (
-          <Carousel.Item key={index}>
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-                {productSet.map((product, idx) => (
-                  <div
-                    key={idx}
-                    className="bg-white rounded-lg shadow-md overflow-hidden transition-transform transform hover:scale-105"
-                  >
-                    <div className="flex justify-center items-center" style={{ height: '300px', transition: 'transform 0.5s ease-in-out' }}>
-                      <img
-                        src={product.image}
-                        alt={product.name}
-                        className="h-full w-full object-cover rounded-lg shadow-md"
-                      />
-                    </div>
-                    <div className="p-4 border-t border-gray-200 transition-transform transform hover:-translate-y-2">
-                      <h4 className="text-lg font-semibold text-center text-gray-800 bg-white p-2 rounded shadow-md">
-                        {product.name}
-                      </h4>
-                    </div>
-                  </div>
-                ))}
+    <div className="relative max-w-7xl mx-auto px-4 py-8 pt-12">
+      <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Nos Produits </h2>
+      
+      {isLoading ? (
+        <div className="flex justify-center">
+          <Loading />
+        </div>
+      ) : (
+        <div className="relative group">
+          <button 
+            onClick={() => scroll('left')}
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            style={{transform: 'translate(-50%, -50%)'}}
+          >
+            <ChevronLeft className="w-6 h-6 text-gray-600" />
+          </button>
+
+          <div 
+            id="article-scroll"
+            className="flex gap-4 overflow-x-auto scroll-smooth scrollbar-hide pb-4"
+            style={{
+              scrollbarWidth: 'none',
+              msOverflowStyle: 'none',
+              WebkitOverflowScrolling: 'touch'
+            }}
+          >
+            {articles.map((article) => (
+             <div
+             key={article._id}
+             className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4"
+           >
+             <div className="card h-100 shadow-sm relative">
+               
+                <img
+                  src={`${process.env.REACT_APP_API_BASE_URL}${article.image}`}
+                  alt={article.name}
+                  className="card-img-top "
+                  style={{
+                    width: "100%",
+                    height: "200px",
+                    objectFit: "contain",
+                   
+                  }}
+                />
+                <h3 className="text-center text-white text-sm font-medium text-gray-900 truncate bg-success p-2 rounded-lg mb-0">
+                  {article.name}
+                </h3>
               </div>
             </div>
-          </Carousel.Item>
-        ))}
-      </Carousel>
+            ))}
+          </div>
+
+          <button 
+            onClick={() => scroll('right')}
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            style={{transform: 'translate(50%, -50%)'}}
+          >
+            <ChevronRight className="w-6 h-6 text-gray-600" />
+          </button>
+        </div>
+      )}
     </div>
   );
 };
 
-export default BestSelling;
+export default ArticleBanner;
