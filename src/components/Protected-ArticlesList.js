@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "./includes/navbar";
 import { useNavigate } from "react-router-dom";
 import Loading from "./includes/loading"; 
+import Helmet from 'react-helmet';
 
 const ArticlesList = () => {
   const [articles, setArticles] = useState([]);
@@ -50,7 +51,8 @@ const ArticlesList = () => {
 
   return (
     <div>
-      <Navbar />
+     
+      <Navbar pageTitle="Nos Produits" />
       <div className="min-h-screen flex">
         <aside className="w-64 bg-white shadow-lg p-4">
           <h3 className="text-lg font-semibold mb-4">Catégories</h3>

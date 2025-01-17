@@ -3,6 +3,7 @@ import Navbar from "./includes/navbar";
 import { useNavigate } from "react-router-dom";
 import Footer from "./includes/footer";
 import Loading from "./includes/loading"; 
+import Helmet from 'react-helmet';
 
 const ArticlesList = () => {
   const [articles, setArticles] = useState([]);
@@ -94,7 +95,8 @@ const ArticlesList = () => {
 
   return (
     <div>
-      <Navbar />
+     
+      <Navbar pageTitle="Nos Produits" />
       <div className="bg-light pt-5 pb-2">
         <div className="container">
           <div className="d-flex justify-content-center flex-wrap gap-3">

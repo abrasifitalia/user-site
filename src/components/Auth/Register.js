@@ -4,6 +4,7 @@ import Navbar from '../includes/navbar';
 import Footer from '../includes/footer';
 import { Link } from 'react-router-dom';
 import { FiUser, FiMail, FiLock, FiPhone } from 'react-icons/fi';
+import Helmet from 'react-helmet';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -54,7 +55,8 @@ const Register = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-blue-100">
-      <Navbar />
+  
+      <Navbar pageTitle="Inscription" />
       <div className="max-w-4xl mx-auto px-6 py-24 p-50 shadow-2xl">
         <h1 className="text-center text-4xl font-extrabold text-success mb-4">Inscription</h1>
         <p className="text-center text-danger mb-10">Créez votre compte client</p>

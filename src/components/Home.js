@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { ShoppingCart, Search, Menu, Heart, Contact } from 'lucide-react';
 import Carousel from './carousels/Carousel';
-import Produit from './carousels/produit'; // Assurez-vous d'importer le composant Carousel
+import Helmet from 'react-helmet'; // Import Helmet
+
 import '../components/Home.css';
 import Navbar from './includes/navbar';
 import Footer from './includes/footer';
@@ -33,14 +34,15 @@ const HomePage = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Navbar />
+    
+      <Navbar pageTitle="Accueil" />
       
       <div className="container mx-auto p-2">
         {/* Carousel Section */}
         <Carousel />
 
         {/* Article Scrolling Banner */}
-        <ArticleBanner articles={articles} /> {/* Pass articles to ArticleBanner */}
+        <ArticleBanner articles={articles} /> 
 
         {/* Partner Section */}
         <Partner />

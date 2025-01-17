@@ -3,12 +3,14 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Menu, X, ShoppingBag, User, LogOut, Home, Phone, Package } from 'lucide-react';
 import NewsBanner from './news-banner';
 import '../styles/Animation.css';
+import Helmet from 'react-helmet';
 
-const Navbar = () => {
+const Navbar = ({ pageTitle }) => { // Accept pageTitle as a prop
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [clientName, setClientName] = useState('');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const title = pageTitle || 'Abrasif Italia'; // Use pageTitle or default to 'Abrasif Italia'
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -37,6 +39,9 @@ const Navbar = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>{title} - Abrasif Italia</title>
+      </Helmet>
       {/* Fixed News Banner */}
       <div className="fixed-top ">
         <NewsBanner />
@@ -66,9 +71,6 @@ const Navbar = () => {
     </span>
   </span>
 </div>
-
-
-
           </Link>
           <button
             className="navbar-toggler"

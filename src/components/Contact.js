@@ -4,6 +4,7 @@ import Navbar from './includes/navbar';
 import Footer from './includes/footer';
 import { FiUser, FiMail, FiPhone, FiFileText, FiMessageCircle } from 'react-icons/fi';
 import CompanyLocations from './Home/location';
+import Helmet from 'react-helmet';
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -48,7 +49,8 @@ const ContactPage = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-blue-100">
-      <Navbar />
+       
+      <Navbar pageTitle="Contactez-nous" />
       <div className="max-w-4xl mx-auto px-6 py-24">
         <h1 className="text-center text-4xl font-extrabold text-success mb-4">Contactez-nous</h1>
         <p className="text-center text-danger  mb-10">Nous sommes là pour répondre à toutes vos questions.</p>
@@ -56,7 +58,7 @@ const ContactPage = () => {
           {success && <p className="text-green-500 text-center mb-6">{success}</p>}
           {error && <p className="text-red-500 text-center mb-6">{error}</p>}
           <form onSubmit={handleSubmit} className="space-y-8 p-4">
-            <div className="relative mb-6">
+            <div className="relative mb-8">
               <FiUser className="absolute left-4 top-1/2 -translate-y-1/2 text-danger pt-2" size={25} />
               <input
                 type="text"
@@ -69,7 +71,7 @@ const ContactPage = () => {
               />
             </div>
 
-            <div className="relative mb-6">
+            <div className="relative mb-8">
               <FiMail className="absolute left-4 top-1/2 -translate-y-1/2 text-danger pt-2" size={25} />
               <input
                 type="email"
@@ -82,7 +84,7 @@ const ContactPage = () => {
               />
             </div>
 
-            <div className="relative mb-6">
+              <div className="relative mb-8">
               <FiPhone className="absolute left-4 top-1/2 -translate-y-1/2 text-danger pt-2" size={25} />
               <input
                 type="tel"
@@ -95,7 +97,7 @@ const ContactPage = () => {
               />
             </div>
 
-            <div className="relative mb-6">
+            <div className="relative mb-8">
               <FiFileText className="absolute left-4 top-1/2 -translate-y-1/2 text-danger pt-2" size={25} />
               <input
                 type="text"

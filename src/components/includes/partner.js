@@ -3,7 +3,7 @@ import '../styles/Partner.css';
 
 const Partner = () => {
   return (
-    <div className="bg-white py-12 shadow-lg rounded-lg overflow-hidden">
+    <div className="bg-white py-8 my-4 shadow-lg rounded-lg overflow-hidden mb-12 pt-8"> {/* Increased padding top from pt-4 to pt-8 */}
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-8">
           <h3 className="text-3xl font-bold text-gray-800 mb-4">Nos Partenaires</h3>
@@ -19,9 +19,9 @@ const Partner = () => {
               "/assets/hg.png",
               "/assets/mixer.png",
               "/assets/uctem.png",
-              "/assets/Capture d'écran 2024-12-12 155506.png",
-              "/assets/hg.png",
-              "/assets/mixer.png",
+              "/assets/eurolux.png",
+              "/assets/ital-abrasivi.png",
+           
             ].map((src, index) => (
               <div
                 key={index}

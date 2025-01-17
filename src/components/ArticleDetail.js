@@ -7,6 +7,7 @@ import Footer from './includes/footer';
 import Loading from './includes/loading';
 import { Modal, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import Helmet from 'react-helmet';
 
 const ArticleDetail = () => {
   
@@ -116,7 +117,8 @@ const ArticleDetail = () => {
   // Rendu principal
   return (
     <div>
-      <Navbar />
+      <Navbar pageTitle={article?.name || 'Article'}/>
+     
       <div className="max-w-4xl mx-auto p-4">
         <div className="bg-white rounded-lg shadow-lg overflow-hidden">
           <div className="p-6 border-b border-gray-200">
@@ -170,7 +172,7 @@ const ArticleDetail = () => {
               </div>
             )}
 
-            <div className="mt-6 flex items-center gap-4">
+            <div className="mt-6 flex items-center gap-4 row">
               <input
                 type="number"
                 value={quantity}
