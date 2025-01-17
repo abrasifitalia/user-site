@@ -124,8 +124,8 @@ const ArticleDetail = () => {
           <div className="p-6 border-b border-gray-200">
             <h1 className="text-2xl font-bold mb-2 text-danger">{article.name}</h1>
             <div className="flex gap-2 mb-4">
-              <span className="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm">{article.category?.name}</span>
-              <span className="px-3 py-1 border border-gray-300 text-gray-600 rounded-full text-sm">{article.subcategory?.name}</span>
+              <span className="px-3 py-1 bg-success text-gray-800 rounded rounded-full text-sm text-white">{article.category?.name}</span>
+              <span className="px-3 py-1 border border-gray-300 text-success rounded rounded-full text-sm">{article.subcategory?.name}</span>
             </div>
           </div>
           <div className="p-6 space-y-6 pt-0">
@@ -178,7 +178,7 @@ const ArticleDetail = () => {
                 value={quantity}
                 onChange={(e) => setQuantity(e.target.value)}
                 min="1"
-                className="p-2 border border-success text-danger text-lg font-semibold rounded-md"
+                className="px-4 py-2 border border-success text-danger text-lg font-semibold rounded-lg"
               />
               <button
                 onClick={handleOrder}
