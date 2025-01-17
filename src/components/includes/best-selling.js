@@ -52,7 +52,7 @@ const ArticleBanner = ({ articles, isLoading }) => {
                         objectFit: "contain",
                       }}
                     />
-                    <h3 className="text-center text-white text-sm font-medium text-gray-900 truncate bg-success p-2 rounded-lg mb-0">
+                    <h3 className="text-center text-white text-sm font-medium text-gray-900 truncate bg-success p-2  mb-0">
                       {article.name}
                     </h3>
                   </div>

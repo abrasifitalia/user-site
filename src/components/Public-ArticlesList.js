@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "./includes/navbar";
 import { useNavigate } from "react-router-dom";
 import Footer from "./includes/footer";
-import Loading from "./includes/loading"; 
-import Helmet from 'react-helmet';
+import Loading from "./includes/loading";
 
 const ArticlesList = () => {
   const [articles, setArticles] = useState([]);
@@ -13,16 +12,12 @@ const ArticlesList = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedSubCategory, setSelectedSubCategory] = useState("");
   const [clientId, setClientId] = useState(null);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
     const id = localStorage.getItem("clientId");
     setClientId(id);
-    const token = localStorage.getItem('token');
-    if (token) {
-      setIsLoggedIn(true);
-    }
   }, []);
 
   useEffect(() => {
@@ -80,25 +75,41 @@ const ArticlesList = () => {
     navigate(`/articles/${articleId}`);
   };
 
-  const filteredArticles = articles.filter((article) => {
-    const matchesCategory = selectedCategory ? article.category === selectedCategory : true;
-    const matchesSubCategory = selectedSubCategory ? article.subcategory === selectedSubCategory : true;
-    return matchesCategory && matchesSubCategory;
-  });
-
   const showAllArticles = () => {
     setSelectedCategory("");
     setSelectedSubCategory("");
   };
 
-  if (loading) return <Loading/>
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value.toLowerCase());
+  };
+
+  const filteredArticles = articles.filter((article) => {
+    const matchesCategory = selectedCategory ? article.category === selectedCategory : true;
+    const matchesSubCategory = selectedSubCategory ? article.subcategory === selectedSubCategory : true;
+    const matchesSearch = article.name.toLowerCase().includes(searchTerm) || article.description.toLowerCase().includes(searchTerm);
+    return matchesCategory && matchesSubCategory && matchesSearch;
+  });
+
+  if (loading) return <Loading />
 
   return (
     <div>
-     
       <Navbar pageTitle="Nos Produits" />
+
+      
+   
+
       <div className="bg-light pt-5 pb-2">
         <div className="container">
+        <div className="search-banner text-center py-4">
+        <input
+          type="text"
+          placeholder="Rechercher des articles..."
+          className="form-control w-75 mx-auto  text-danger font-bold"
+          onChange={handleSearch}
+        />
+      </div>
           <div className="d-flex justify-content-center flex-wrap gap-3">
             {categories.map((category) => (
               <div key={category._id} className="dropdown position-relative">
@@ -111,7 +122,7 @@ const ArticlesList = () => {
                 </button>
                 {selectedCategory === category._id && (
                   <div
-                    className="dropdown-menu show shadow"
+                    className="dropdown-menu show shadow pt-2 mt-2"
                     aria-labelledby={`dropdown${category._id}`}
                     style={{
                       position: "absolute",
@@ -131,10 +142,10 @@ const ArticlesList = () => {
                         .map((subCat) => (
                           <button
                             key={subCat._id}
-                            className="dropdown-item"
+                            className="dropdown-item font-bold text-danger rounded rounded-lg  mx-1 "
                             onClick={() => {
                               setSelectedSubCategory(subCat._id);
-                              setSelectedCategory(null); // Close dropdown
+                              setSelectedCategory(""); // Close dropdown
                             }}
                           >
                             {subCat.name}
@@ -142,7 +153,7 @@ const ArticlesList = () => {
                         ))
                     ) : (
                       <div className="dropdown-item text-muted">
-                        Pas de sous-catégories disponibles
+                        Pas de sous-catégories 
                       </div>
                     )}
                   </div>
@@ -180,7 +191,6 @@ const ArticlesList = () => {
                 className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4"
               >
                 <div className="card h-100 shadow-sm relative">
-                  
                   <img
                     src={`${process.env.REACT_APP_API_BASE_URL}${article.image}`}
                     alt={article.name}
@@ -189,11 +199,10 @@ const ArticlesList = () => {
                       width: "100%",
                       height: "200px",
                       objectFit: "contain",
-                      backgroundColor: "rgba(144, 238, 144, 0.3)",
                     }}
                   />
                   <div className="card-body">
-                    <h5 className="card-title text-success text-lg font-bold rounded-lg  p-2">{article.name}</h5>
+                    <h5 className="card-title text-white bg-success text-lg rounded-lg p-2">{article.name}</h5>
                     <p className="card-text text-gray-600">
                       {article.description}
                     </p>
@@ -201,7 +210,7 @@ const ArticlesList = () => {
                   {clientId && (
                     <div className="card-footer">
                       <button
-                        className="btn btn-danger w-100"
+                        className="btn btn-danger w-100 font-semibold"
                         onClick={() => handleClick(article._id)}
                       >
                         Voir Détails
