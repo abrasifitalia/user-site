@@ -5,6 +5,8 @@ import Footer from "./includes/footer";
 import Loading from "./includes/loading";
 
 const ArticlesList = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [clientName, setClientName] = useState('');
   const [articles, setArticles] = useState([]);
   const [categories, setCategories] = useState([]);
   const [subCategories, setSubCategories] = useState([]);
@@ -18,6 +20,12 @@ const ArticlesList = () => {
   useEffect(() => {
     const id = localStorage.getItem("clientId");
     setClientId(id);
+    const token = localStorage.getItem('token');
+    const storedClientName = localStorage.getItem('clientName');
+    if (token && storedClientName) {
+      setIsLoggedIn(true);
+      setClientName(storedClientName);
+    }
   }, []);
 
   useEffect(() => {
@@ -221,21 +229,23 @@ const ArticlesList = () => {
                       {article.description}
                     </p>
                   </div>
-                  <div className="card-footer">
+                  {isLoggedIn && (
+                    <div className="card-footer">
+                       <button
+                        className="btn btn-danger w-100 font-semibold"
+                        onClick={() => handleClick(article._id)}
+                       >
+                        Voir Détails
+                      </button>
+                    </div>
+                  )}
+                  {!isLoggedIn && (
+                    <div className="card-footer">
                       <button
                         className="btn btn-danger w-100 font-semibold"
                         onClick={() => navigate(`/login`)}
                       >
                         Connectez-vous pour voir les détails
-                      </button>
-                    </div>
-                  {clientId && (
-                    <div className="card-footer">
-                      <button
-                        className="btn btn-danger w-100 font-semibold"
-                        onClick={() => handleClick(article._id)}
-                      >
-                        Voir Détails
                       </button>
                     </div>
                   )}
