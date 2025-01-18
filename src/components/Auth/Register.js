@@ -58,9 +58,9 @@ const Register = () => {
   
       <Navbar pageTitle="Inscription" />
       <div className="max-w-4xl mx-auto px-6 py-24 p-50 shadow-2xl">
-        <h1 className="text-center text-4xl font-extrabold text-success mb-4">Inscription</h1>
-        <p className="text-center text-danger mb-10">Créez votre compte client</p>
-        <div className="bg-gray-100 shadow-2xl rounded-lg p-10">
+        <h1 className="text-center text-4xl font-extrabold text-success ">Inscription</h1>
+        <p className="text-center text-danger mb-4">Créez votre compte client</p>
+        <div className="bg-gray-100 shadow-2xl rounded-lg mx-4">
         {error && <p className="text-danger text-center mb-6">{error}</p>}
           <form onSubmit={handleSubmit} className="space-y-8 p-4">
             <div className="relative mb-8">

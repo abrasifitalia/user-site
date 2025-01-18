@@ -3,6 +3,7 @@ import Navbar from "./includes/navbar";
 import { useNavigate } from "react-router-dom";
 import Footer from "./includes/footer";
 import Loading from "./includes/loading";
+import { Link } from "react-router-dom";
 
 const ArticlesList = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -126,7 +127,7 @@ const ArticlesList = () => {
                 </button>
                 {selectedCategory === category._id && (
                   <div
-                    className="dropdown-menu show shadow pt-2 mt-2"
+                    className="dropdown-menu show shadow my-2"
                     aria-labelledby={`dropdown${category._id}`}
                     style={{
                       position: "absolute",
@@ -146,7 +147,7 @@ const ArticlesList = () => {
                         .map((subCat) => (
                           <button
                             key={subCat._id}
-                            className="dropdown-item font-bold text-danger rounded rounded-lg  mx-1 "
+                            className="dropdown-item font-bold text-danger rounded rounded-lg active:bg-danger active:text-white "
                             onClick={() => {
                               setSelectedSubCategory(subCat._id);
                               setSelectedCategory(""); // Close dropdown
@@ -156,7 +157,7 @@ const ArticlesList = () => {
                           </button>
                         ))
                     ) : (
-                      <div className="dropdown-item text-muted">
+                      <div className="dropdown-item text-muted text-center">
                         Pas de sous-catégories 
                       </div>
                     )}
@@ -178,10 +179,15 @@ const ArticlesList = () => {
        
         <div className="row">
           {filteredArticles.length === 0 ? (
-            <div className="col-12 text-center">
-              <h3 className="text-xl font-semibold text-gray-600">
-              De nouveaux articles seront bientôt disponibles.
-              </h3>
+            <div className="col-12 text-center py-5">
+                    <h3 className="text-xl font-semibold text-gray-600">
+                    De nouveaux articles seront bientôt disponibles.  <br/> <Link to="/client/contact" className="text-danger">Contacter-nous</Link> pour plus d'informations
+                    </h3>
+                <img src='/assets/logo-v1.png' alt='logo' className="w-25" />
+                  
+                 
+                      
+                  
               
             </div>
           ) : (
@@ -191,35 +197,35 @@ const ArticlesList = () => {
                 className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4"
               >
                 <div className="card h-100 shadow-sm relative" style={{ position: "relative" }}>
-  <img
-    src={`${process.env.REACT_APP_API_BASE_URL}${article.image}`}
-    alt={article.name}
-    className="card-img-top"
-    style={{
-      width: "100%",
-      height: "200px",
-      objectFit: "contain",
-    }}
-  />
-  {/* Disponible Tag */}
-  <span
-    className="disponible-tag"
-    style={{
-      position: "absolute",
-      top: "10px",
-      right: "10px",
-      backgroundColor: "#dc3545", // Red background
-      color: "#fff", // White text
-      padding: "5px 10px",
-      borderRadius: "20px",
-      fontSize: "0.7rem",
-      fontWeight: "bold",
-      zIndex: "1", // Ensures it appears on top of the image
-      boxShadow: "0 2px 5px rgba(0, 0, 0, 0.2)", // Adds a subtle shadow
-    }}
-  >
-    Disponible
-  </span>
+                          <img
+                            src={`${process.env.REACT_APP_API_BASE_URL}${article.image}`}
+                            alt={article.name}
+                            className="card-img-top"
+                            style={{
+                              width: "100%",
+                              height: "200px",
+                              objectFit: "contain",
+                            }}
+                          />
+                          {/* Disponible Tag */}
+                          <span
+                            className="disponible-tag"
+                            style={{
+                              position: "absolute",
+                              top: "10px",
+                              right: "10px",
+                              backgroundColor: "#dc3545", // Red background
+                              color: "#fff", // White text
+                              padding: "5px 10px",
+                              borderRadius: "20px",
+                              fontSize: "0.7rem",
+                              fontWeight: "bold",
+                              zIndex: "1", // Ensures it appears on top of the image
+                              boxShadow: "0 2px 5px rgba(0, 0, 0, 0.2)", // Adds a subtle shadow
+                            }}
+                          >
+                            Disponible
+                          </span>
 
 
                    
