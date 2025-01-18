@@ -96,24 +96,20 @@ const ArticlesList = () => {
   return (
     <div>
       <Navbar pageTitle="Nos Produits" />
-
-      
-   
-
-      <div className="bg-light pt-5 pb-2">
-        <div className="container">
-        <div className="search-banner text-center py-4">
-        <input
+      <div className="bg-light pt-2 pb-2">
+        <div className="container ">
+          <div className="search-banner text-center py-4">
+          <input
           type="text"
           placeholder="Rechercher des articles..."
           className="form-control w-75 mx-auto  text-danger font-bold"
           onChange={handleSearch}
-        />
-      </div>
-          <div className="d-flex justify-content-center flex-wrap gap-3">
-            {categories.map((category) => (
-              <div key={category._id} className="dropdown position-relative">
-                <button
+         />
+         </div>
+            <div className="d-flex justify-content-center flex-wrap gap-3">
+              {categories.map((category) => (
+               <div key={category._id} className="dropdown position-relative">
+                 <button
                   className="btn btn-danger dropdown-toggle"
                   onClick={() => setSelectedCategory(category._id)}
                   id={`dropdown${category._id}`}
@@ -167,22 +163,18 @@ const ArticlesList = () => {
               Voir tous les articles
             </button>
           </div>
-        </div>
-      </div>
+         </div>
+       </div>
 
-      <div className="container py-5">
-        <h2 className="text-center text-2xl font-bold mb-6">
-          Liste des Articles
-        </h2>
+      <div className="container py-4">
+       
         <div className="row">
           {filteredArticles.length === 0 ? (
             <div className="col-12 text-center">
               <h3 className="text-xl font-semibold text-gray-600">
-                Coming Soon!
+              De nouveaux articles seront bientôt disponibles.
               </h3>
-              <p className="text-gray-500">
-                De nouveaux articles seront bientôt disponibles.
-              </p>
+              
             </div>
           ) : (
             filteredArticles.map((article) => (
@@ -190,17 +182,39 @@ const ArticlesList = () => {
                 key={article._id}
                 className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4"
               >
-                <div className="card h-100 shadow-sm relative">
-                  <img
-                    src={`${process.env.REACT_APP_API_BASE_URL}${article.image}`}
-                    alt={article.name}
-                    className="card-img-top"
-                    style={{
-                      width: "100%",
-                      height: "200px",
-                      objectFit: "contain",
-                    }}
-                  />
+                <div className="card h-100 shadow-sm relative" style={{ position: "relative" }}>
+  <img
+    src={`${process.env.REACT_APP_API_BASE_URL}${article.image}`}
+    alt={article.name}
+    className="card-img-top"
+    style={{
+      width: "100%",
+      height: "200px",
+      objectFit: "contain",
+    }}
+  />
+  {/* Disponible Tag */}
+  <span
+    className="disponible-tag"
+    style={{
+      position: "absolute",
+      top: "10px",
+      right: "10px",
+      backgroundColor: "#dc3545", // Red background
+      color: "#fff", // White text
+      padding: "5px 10px",
+      borderRadius: "20px",
+      fontSize: "0.7rem",
+      fontWeight: "bold",
+      zIndex: "1", // Ensures it appears on top of the image
+      boxShadow: "0 2px 5px rgba(0, 0, 0, 0.2)", // Adds a subtle shadow
+    }}
+  >
+    Disponible
+  </span>
+
+
+                   
                   <div className="card-body">
                     <h5 className="card-title text-white bg-success text-lg rounded-lg p-2">{article.name}</h5>
                     <p className="card-text text-gray-600">
