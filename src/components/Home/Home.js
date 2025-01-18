@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { ShoppingCart, Search, Menu, Heart, Contact } from 'lucide-react';
-import Carousel from './carousels/Carousel';
+import Carousel from '../carousels/Carousel';
 import Helmet from 'react-helmet'; // Import Helmet
 
-import '../components/Home.css';
-import Navbar from './includes/navbar';
-import Footer from './includes/footer';
-import Partner from './includes/partner';
-import ArticleBanner from './includes/best-selling'; // Assurez-vous d'importer correctement ArticleBanner
-import CompanyLocations from './Home/location';
+import '../styles/Home.css';
+import Navbar from '../includes/navbar';
+import Footer from '../includes/footer';
+import Partner from './partner';
+import ArticleBanner from './best-selling'; // Assurez-vous d'importer correctement ArticleBanner
+import CompanyLocations from './location';
 
 const HomePage = () => {
   const [articles, setArticles] = useState([]); // Declare articles state
@@ -37,7 +37,7 @@ const HomePage = () => {
     
       <Navbar pageTitle="Accueil" />
       
-      <div className="container mx-auto p-2">
+      <div className="container mx-auto ">
         {/* Carousel Section */}
         <Carousel />
 

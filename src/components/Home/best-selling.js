@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Loading from './loading';
+import Loading from '../includes/loading';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const ArticleBanner = ({ articles, isLoading }) => {
@@ -13,8 +13,8 @@ const ArticleBanner = ({ articles, isLoading }) => {
   };
 
   return (
-    <div className="relative max-w-7xl mx-auto px-4 py-8 pt-12"> {/* Adjusted pt-12 to pt-8 */}
-      <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Nos Produits </h2>
+    <div className="bg-white py-8 my-4 shadow-lg rounded-lg overflow-hidden mb-12 pt-8"> 
+      <h2 className="text-2xl font-bold text-danger text-center  m-4 ">Nos Produits haut de gamme </h2>
       
       {isLoading ? (
         <div className="flex justify-center">
@@ -35,7 +35,7 @@ const ArticleBanner = ({ articles, isLoading }) => {
             id="article-scroll"
             className="relative overflow-x-auto"
           >
-            <div className="flex gap-4 pb-4">
+            <div className="flex gap-4  mx-4">
               {articles.map((article) => (
                 <div
                   key={article._id}
@@ -45,11 +45,12 @@ const ArticleBanner = ({ articles, isLoading }) => {
                     <img
                       src={`${process.env.REACT_APP_API_BASE_URL}${article.image}`}
                       alt={article.name}
-                      className="card-img-top"
+                      className="card-img-top bg-gray-100"
                       style={{
                         width: "100%",
                         height: "200px",
                         objectFit: "contain",
+                        
                       }}
                     />
                     <h3 className="text-center text-white text-sm font-medium text-gray-900 truncate bg-success p-2  mb-0">

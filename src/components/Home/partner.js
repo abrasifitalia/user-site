@@ -4,12 +4,8 @@ import '../styles/Partner.css';
 const Partner = () => {
   return (
     <div className="bg-white py-8 my-4 shadow-lg rounded-lg overflow-hidden mb-12 pt-8"> {/* Increased padding top from pt-4 to pt-8 */}
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="text-center mb-8">
-          <h3 className="text-3xl font-bold text-gray-800 mb-4">Nos Partenaires</h3>
-          <p className="text-gray-500 mb-6">
-            Découvrez nos marques de qualité qui nous accompagnent.
-          </p>
+        <div className="text-center ">
+          <h3 className="text-2xl font-bold text-danger text-center  m-4 ">Nos Partenaires</h3>
         </div>
 
         {/* Scrolling Container */}
@@ -37,7 +33,7 @@ const Partner = () => {
             ))}
           </div>
         </div>
-      </div>
+     
     </div>
   );
 };

@@ -109,14 +109,14 @@ const Navbar = ({ pageTitle }) => { // Accept pageTitle as a prop
                     <User size={20} className="text-danger" />
                     <span className="ms-2 fw-bold">Compte</span>
                   </a>
-                  <ul className="dropdown-menu" aria-labelledby="dropdownAccount">
+                  <ul className="dropdown-menu p-2" aria-labelledby="dropdownAccount">
                     <li>
-                      <Link to="/login" className="dropdown-item">
+                      <Link to="/login" className="dropdown-item bg-danger text-white  rounded rounded-lg mb-2">
                         Connexion
                       </Link>
                     </li>
                     <li>
-                      <Link to="/register" className="dropdown-item">
+                      <Link to="/register" className="dropdown-item bg-danger text-white  rounded rounded-lg mb-2">
                         S'inscrire
                       </Link>
                     </li>

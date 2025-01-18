@@ -1,27 +1,25 @@
 import React from "react";
+import {  FiPhone } from 'react-icons/fi';
 
 const CompanyLocation = () => {
   return (
-    <div className="bg-white items-center">
-      <h2 className="text-3xl lg:text-4xl font-bold text-danger mb-8 text-center p-30">
+    <div className="bg-white py-8 my-4 shadow-lg rounded-lg overflow-hidden mb-12 pt-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <h2 className="text-3xl lg:text-4xl font-bold text-danger m-4 text-center">
          Nos Emplacements
       </h2>
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* First Location */}
-        <div className="bg-white rounded-lg shadow-md p-6 items-center">
-          <h4 className="text-xl font-semibold text-green-600 mb-4">Ariana</h4>
-          <p className="text-gray-700 mb-2">
-            <strong>Adresse:</strong> Croisement La Soukra
-          </p>
+        <div className="bg-gray-100 rounded-lg shadow-md p-6 items-center m-2">
+          <h4 className="text-xl font-bold text-green-600 mb-4 text-center">Ariana <span className="text-danger">|</span> la Soukra</h4>
+        
           {[
-            { label: "Téléphone", number: "+216 55 888 111" },
-            { label: "Téléphone 2", number: "+216 20 235 829" },
-            { label: "Téléphone 3", number: "+216 94 615 025" },
-            { label: "Téléphone 4", number: "+216 22 107 207" },
+            {  number: "+216 55 888 111" },
+            {  number: "+216 20 235 829" },
+            {  number: "+216 94 615 025" },
+            {  number: "+216 22 107 207" },
           ].map((phone, index) => (
-            <p className="text-white mb-4 bg-success p-2 rounded-lg" key={index}>
-              <strong>{phone.label} :</strong>{" "}
+            <p className="text-white mb-4 bg-success p-2 rounded-lg mx-auto shadow-lg" key={index}>
+              <FiPhone className="m-2 " />
               <a
                 href={`tel:${phone.number.replace(/\s/g, '')}`}
                 className="text-white hover:text-green-800 transition-colors"
@@ -43,17 +41,15 @@ const CompanyLocation = () => {
         </div>
 
         {/* Second Location */}
-        <div className="bg-white  p-6">
-          <h4 className="text-xl font-semibold text-green-600 mb-4">Sousse</h4>
-          <p className="text-gray-700 mb-2">
-            <strong>Adresse:</strong> Bouhssina, Cité Boukhzar
-          </p>
+        <div className="bg-gray-100 rounded-lg shadow-md p-6 items-center m-2">
+            <h4 className="text-xl font-bold  mb-4 text-center">Sousse <span className="text-danger">|</span> Bouhssina</h4>
+          
           {[
-            { label: "Téléphone 1", number: "+216 58 982 743" },
-            { label: "Téléphone 2", number: "+216 55 334 131" },
+            {  number: "+216 58 982 743" },
+            {  number: "+216 55 334 131" },
           ].map((phone, index) => (
-            <p className="text-white mb-4 bg-success p-2 rounded-lg" key={index}>
-              <strong>{phone.label} :</strong>{" "}
+            <p className="text-white mb-4 bg-success p-2 rounded-lg mx-auto shadow-lg" key={index}> 
+              <FiPhone className="m-2 " />
               <a
                 href={`tel:${phone.number.replace(/\s/g, '')}`}
                 className="text-white hover:text-green-800 transition-colors"
