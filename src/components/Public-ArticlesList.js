@@ -221,6 +221,14 @@ const ArticlesList = () => {
                       {article.description}
                     </p>
                   </div>
+                  <div className="card-footer">
+                      <button
+                        className="btn btn-danger w-100 font-semibold"
+                        onClick={() => navigate(`/login`)}
+                      >
+                        Connectez-vous pour voir les détails
+                      </button>
+                    </div>
                   {clientId && (
                     <div className="card-footer">
                       <button
