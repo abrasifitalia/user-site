@@ -211,11 +211,11 @@ const OrderModal = ({ show, handleClose, message, title, variant }) => {
   return (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>{title}</Modal.Title>
+        <Modal.Title className='text-danger '>{title}</Modal.Title>
       </Modal.Header>
-      <Modal.Body>{message}</Modal.Body>
+      <Modal.Body className='font-semibold'>{message}</Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={() => navigate('/article')}>
+        <Button variant="secondary" className='bg-danger text-white' onClick={() => navigate('/article')}>
           Masquer
         </Button>
       </Modal.Footer>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ShoppingCart, Search, Menu, Heart, Contact } from 'lucide-react';
-import Carousel from '../carousels/Carousel';
-import Helmet from 'react-helmet'; // Import Helmet
+import Carousel from './Carousel';
+
 
 import '../styles/Home.css';
 import Navbar from '../includes/navbar';
