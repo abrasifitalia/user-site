@@ -28,7 +28,7 @@ const App = () => {
           />
           <Route 
             path="/articles/:id" 
-            element={<PrivateRoute element={<ArticleDetail />} />} 
+            element={<ArticleDetail />} 
           />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />

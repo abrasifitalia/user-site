@@ -238,7 +238,18 @@ const ArticlesList = () => {
                       {article.description.split('.').slice(0, 1).join('.')}
                     </p>
                   </div>
-                  {isLoggedIn ? (
+                  <div className="card-footer">
+                      <button
+                        className="btn btn-danger w-100 font-semibold"
+                        onClick={() => handleClick(article._id)}
+                      >
+                        Voir Détails
+                      </button>
+                    </div>
+                  
+               {/*   old code
+               
+               {isLoggedIn ? (
                     <div className="card-footer">
                       <button
                         className="btn btn-danger w-100 font-semibold"
@@ -257,6 +268,7 @@ const ArticlesList = () => {
                       </button>
                     </div>
                   )}
+*/}
                 </div>
               </div>
             ))

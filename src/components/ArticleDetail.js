@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { Loader2 } from 'lucide-react';
 import Navbar from './includes/navbar';
 import Footer from './includes/footer';
 import Loading from './includes/loading';
-import { Modal, Button } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
-import Helmet from 'react-helmet';
 import OrderModal from './includes/Modal';
 import { Link } from 'react-router-dom';
 
@@ -64,13 +60,8 @@ const ArticleDetail = () => {
 
         const clientId = localStorage.getItem('clientId');
         if (!clientId) {
-            setModalState({
-                show: true,
-                title: "Avertissement",
-                message: "Vous devez être connecté pour passer une commande.",
-                variant: "warning",
-                route: "article"
-            });
+            // Navigate to login if not logged in
+            window.location.href = '/login';
             return;
         }
 
@@ -81,7 +72,7 @@ const ArticleDetail = () => {
 
         setIsSubmitting(true);
         try {
-            const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/order/order`, orderData);
+            await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/order/order`, orderData);
             setModalState({
                 show: true,
                 title: "Succès",
@@ -121,21 +112,28 @@ const ArticleDetail = () => {
         <div>
             <Navbar pageTitle={article?.name || 'Article'} />
 
-            <div className="max-w-4xl    ">
+            <div className="max-w-4xl">
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden p-1 m-2 my-4">
                     <div className="p-6 border-b border-gray-200">
                         <h1 className="text-2xl font-bold mb-2 text-danger">{article.name}</h1>
                         <div className="flex gap-2 mb-2">
-                            <span className="px-3 py-1 bg-success text-gray-800 rounded rounded-full text-sm text-white">{article.category?.name}</span>
-                            <span className="px-3 py-1 border border-gray-300 text-success rounded rounded-full text-sm">{article.subcategory?.name}</span>
+                            <span className="px-3 py-1 bg-success text-gray-800 rounded-full text-sm text-white">{article.category?.name}</span>
+                            <span className="px-3 py-1 border border-gray-300 text-success rounded-full text-sm">{article.subcategory?.name}</span>
                         </div>
-                       <p className='mx-10 text-center font-semibold text-danger mb-0 bg-gray-50 p-2 rounded-lg shadow-sm  bg-body-tertiary border border-danger'>
-                           <Link to={`/articles/${article._id}`} target="_blank" className='text-danger link-underline link-underline-opacity-0'>Télécharger la fiche technique</Link>
-                       </p>  
+                        <p className='mx-10 text-center font-semibold text-danger mb-0 bg-gray-50 p-2 rounded-lg shadow-sm border border-danger'>
+                            <Link to={`/articles/${article._id}`} target="_blank" className='text-danger link-underline link-underline-opacity-0'>Télécharger la fiche technique</Link>
+                        </p>  
                     </div>
                     <div className="p-6 space-y-6 pt-0">
                         <h3 className="text-lg font-semibold text-white bg-success rounded-lg p-2">Description</h3>
-                        <p className="p-10 space-y-6">{article.description}</p>
+                        <p className="text-gray-700 leading-relaxed whitespace-pre-wrap font-semibold">
+                            {article.description.split('\n').map((line, index) => (
+                                <span key={index}>
+                                    {line}
+                                    <br />
+                                </span>
+                            ))}
+                        </p>
 
                         {article.image && (
                             <div className="flex justify-center items-center my-6">
@@ -145,9 +143,9 @@ const ArticleDetail = () => {
                                     alt={article.name}
                                     className={`rounded-lg mx-auto block ${imageLoading ? 'hidden' : ''}`}
                                     style={{
-                                        width: '200%', // Ensure the image occupies the full width available
-                                        maxWidth: '250px', // Maximum limit for the image
-                                        height: 'auto', // Automatically adjust height based on width
+                                        width: '200%',
+                                        maxWidth: '250px',
+                                        height: 'auto',
                                         objectFit: 'cover',
                                     }}
                                     loading="lazy"
@@ -165,13 +163,14 @@ const ArticleDetail = () => {
                                 </video>
                             </div>
                         )}
-
                         {article.fonctionnalite && (
                             <div>
                                 <h3 className="text-lg font-semibold text-white bg-success rounded-lg p-2">Fonctionnalités</h3>
-                                <ul className="list-disc ml-5">
-                                    {(Array.isArray(article.fonctionnalite) ? article.fonctionnalite : article.fonctionnalite.split(',')).map((feature, index) => (
-                                        <li key={index} className="text-gray-700">{feature}</li>
+                                <ul className="list-none space-y-4">
+                                    {(Array.isArray(article.fonctionnalite) ? article.fonctionnalite : article.fonctionnalite.split('\r\n')).map((feature, index) => (
+                                        <li key={index} className="flex items-start gap-2">
+                                            <span className="text-gray-700 font-semibold">{feature.trim()}</span>
+                                        </li>
                                     ))}
                                 </ul>
                             </div>
