@@ -122,7 +122,7 @@ const ArticleDetail = () => {
                         </div>
                         {article.ficheTechnique && (
                         <p className='mx-10 text-center font-semibold text-danger mb-0 bg-gray-50 p-2 rounded-lg shadow-sm border border-danger'>
-                            <Link to={`${process.env.REACT_APP_API_BASE_URL}${article.ficheTechnique}`} target="_blank" className='text-danger link-underline link-underline-opacity-0'>Télécharger la fiche technique</Link>
+                           <Link to={`${process.env.REACT_APP_API_BASE_URL}${article.ficheTechnique}`} download className='text-danger link-underline link-underline-opacity-0'>Télécharger la fiche technique</Link>
                         </p>  
                         )}
                     </div>
