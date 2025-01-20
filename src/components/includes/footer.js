@@ -27,7 +27,7 @@ const Footer = () => {
         <div>
           <h4 className="text-lg font-semibold mb-4">Téléphone</h4>
           <ul className="space-y-2 text-gray-400">
-            <li>+216 2023 5829</li>
+            <li><a href="https://wa.me/21620235829 no" className="text-gray-400 link-underline link-underline-opacity-0">+216 2023 5829</a></li>
             <li>+216 5898 2743</li>
             <li>+216 5588 8111</li>
           </ul>

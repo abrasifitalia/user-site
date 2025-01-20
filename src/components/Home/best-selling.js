@@ -1,15 +1,21 @@
 import React, { useState } from 'react';
 import Loading from '../includes/loading';
+import { useNavigate } from "react-router-dom";
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+
 
 const ArticleBanner = ({ articles, isLoading }) => {
   const [scrollPosition, setScrollPosition] = useState(0);
-
+  const navigate = useNavigate();
   const scroll = (direction) => {
     const container = document.getElementById('article-scroll');
     const scrollAmount = direction === 'left' ? -320 : 320;
     container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     setScrollPosition(container.scrollLeft + scrollAmount);
+  };
+
+  const handleClick = (articleId) => {
+    navigate(`/articles/${articleId}`);
   };
 
   return (
@@ -50,8 +56,8 @@ const ArticleBanner = ({ articles, isLoading }) => {
                         width: "100%",
                         height: "200px",
                         objectFit: "contain",
-                        
                       }}
+                      onClick={() => handleClick(article._id)}
                     />
                     <h3 className="text-center text-white text-sm font-medium text-gray-900 truncate bg-success p-2  mb-0">
                       {article.name}

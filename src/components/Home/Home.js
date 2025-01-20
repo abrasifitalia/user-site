@@ -9,6 +9,7 @@ import Footer from '../includes/footer';
 import Partner from './partner';
 import ArticleBanner from './best-selling'; // Assurez-vous d'importer correctement ArticleBanner
 import CompanyLocations from './location';
+import WhatsappToggle from '../includes/whatsapp-toggle';
 
 const HomePage = () => {
   const [articles, setArticles] = useState([]); // Declare articles state
@@ -49,8 +50,9 @@ const HomePage = () => {
 
         {/* Company Locations */}
         <CompanyLocations />
+        
       </div>
-
+      <WhatsappToggle />
       {/* Footer */}
       <Footer />
     </div>

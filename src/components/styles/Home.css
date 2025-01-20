@@ -363,3 +363,8 @@ a:hover {
 a:visited {
   color: rgb(9, 8, 8);
 }
+.fixed {
+  position: fixed;
+  bottom: 16px; /* For bottom-4 */
+  right: 16px;  /* For right-4 */
+}
