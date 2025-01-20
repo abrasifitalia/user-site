@@ -6,6 +6,7 @@ import Loading from "./includes/loading";
 import { Link } from "react-router-dom";
 
 const ArticlesList = () => {
+  // State variables
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [clientName, setClientName] = useState('');
   const [articles, setArticles] = useState([]);
@@ -18,6 +19,7 @@ const ArticlesList = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
 
+  // Effect to check client login status and retrieve client ID
   useEffect(() => {
     const id = localStorage.getItem("clientId");
     setClientId(id);
@@ -29,6 +31,7 @@ const ArticlesList = () => {
     }
   }, []);
 
+  // Effect to fetch articles, categories, and subcategories
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -51,6 +54,7 @@ const ArticlesList = () => {
     fetchData();
   }, []);
 
+  // Function to add a view for an article
   const addView = async (articleId) => {
     if (!clientId) {
       console.error("Client non identifié");
@@ -79,20 +83,24 @@ const ArticlesList = () => {
     }
   };
 
+  // Function to handle article click
   const handleClick = (articleId) => {
     addView(articleId);
     navigate(`/articles/${articleId}`);
   };
 
+  // Function to reset selected categories
   const showAllArticles = () => {
     setSelectedCategory("");
     setSelectedSubCategory("");
   };
 
+  // Function to handle search input
   const handleSearch = (e) => {
     setSearchTerm(e.target.value.toLowerCase());
   };
 
+  // Filter articles based on selected category, subcategory, and search term
   const filteredArticles = articles.filter((article) => {
     const matchesCategory = selectedCategory ? article.category === selectedCategory : true;
     const matchesSubCategory = selectedSubCategory ? article.subcategory === selectedSubCategory : true;
@@ -100,6 +108,7 @@ const ArticlesList = () => {
     return matchesCategory && matchesSubCategory && matchesSearch;
   });
 
+  // Show loading indicator while data is being fetched
   if (loading) return <Loading />
 
   return (
@@ -108,17 +117,17 @@ const ArticlesList = () => {
       <div className="bg-light pt-2 pb-2">
         <div className="container ">
           <div className="search-banner text-center py-4">
-          <input
-          type="text"
-          placeholder="Rechercher des articles..."
-          className="form-control w-75 mx-auto  text-danger font-bold"
-          onChange={handleSearch}
-         />
-         </div>
-            <div className="d-flex justify-content-center flex-wrap gap-3">
-              {categories.map((category) => (
-               <div key={category._id} className="dropdown position-relative">
-                 <button
+            <input
+              type="text"
+              placeholder="Rechercher des articles..."
+              className="form-control w-75 mx-auto text-danger font-bold"
+              onChange={handleSearch}
+            />
+          </div>
+          <div className="d-flex justify-content-center flex-wrap gap-3">
+            {categories.map((category) => (
+              <div key={category._id} className="dropdown position-relative">
+                <button
                   className="btn btn-danger dropdown-toggle"
                   onClick={() => setSelectedCategory(category._id)}
                   id={`dropdown${category._id}`}
@@ -147,7 +156,7 @@ const ArticlesList = () => {
                         .map((subCat) => (
                           <button
                             key={subCat._id}
-                            className="dropdown-item font-bold text-danger rounded rounded-lg active:bg-danger active:text-white "
+                            className="dropdown-item font-bold text-danger rounded rounded-lg active:bg-danger active:text-white"
                             onClick={() => {
                               setSelectedSubCategory(subCat._id);
                               setSelectedCategory(""); // Close dropdown
@@ -172,23 +181,18 @@ const ArticlesList = () => {
               Voir tous les articles
             </button>
           </div>
-         </div>
-       </div>
+        </div>
+      </div>
 
       <div className="container py-4">
-       
         <div className="row">
           {filteredArticles.length === 0 ? (
             <div className="col-12 text-center py-5">
-                    <h3 className="text-xl font-semibold text-gray-600">
-                    De nouveaux articles seront bientôt disponibles.  <br/> <Link to="/client/contact" className="text-danger">Contacter-nous</Link> pour plus d'informations
-                    </h3>
-                <img src='/assets/logo-v1.png' alt='logo' className="w-25" />
-                  
-                 
-                      
-                  
-              
+              <h3 className="text-xl font-semibold text-gray-600">
+                De nouveaux articles seront bientôt disponibles.  <br/> 
+                <Link to="/client/contact" className="text-danger">Contacter-nous</Link> pour plus d'informations
+              </h3>
+              <img src='/assets/logo-v1.png' alt='logo' className="w-25" />
             </div>
           ) : (
             filteredArticles.map((article) => (
@@ -197,55 +201,53 @@ const ArticlesList = () => {
                 className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4"
               >
                 <div className="card h-100 shadow-sm relative" style={{ position: "relative" }}>
-                          <img
-                            src={`${process.env.REACT_APP_API_BASE_URL}${article.image}`}
-                            alt={article.name}
-                            className="card-img-top"
-                            style={{
-                              width: "100%",
-                              height: "200px",
-                              objectFit: "contain",
-                            }}
-                          />
-                          {/* Disponible Tag */}
-                          <span
-                            className="disponible-tag"
-                            style={{
-                              position: "absolute",
-                              top: "10px",
-                              right: "10px",
-                              backgroundColor: "#dc3545", // Red background
-                              color: "#fff", // White text
-                              padding: "5px 10px",
-                              borderRadius: "20px",
-                              fontSize: "0.7rem",
-                              fontWeight: "bold",
-                              zIndex: "1", // Ensures it appears on top of the image
-                              boxShadow: "0 2px 5px rgba(0, 0, 0, 0.2)", // Adds a subtle shadow
-                            }}
-                          >
-                            Disponible
-                          </span>
+                  <img
+                    src={`${process.env.REACT_APP_API_BASE_URL}${article.image}`}
+                    alt={article.name}
+                    className="card-img-top"
+                    style={{
+                      width: "100%",
+                      height: "200px",
+                      objectFit: "contain",
+                    }}
+                  />
+                  {/* Disponible Tag */}
+                  <span
+                    className="disponible-tag"
+                    style={{
+                      position: "absolute",
+                      top: "10px",
+                      right: "10px",
+                      backgroundColor: "#dc3545", // Red background
+                      color: "#fff", // White text
+                      padding: "5px 10px",
+                      borderRadius: "20px",
+                      fontSize: "0.7rem",
+                      fontWeight: "bold",
+                      zIndex: "1", // Ensures it appears on top of the image
+                      boxShadow: "0 2px 5px rgba(0, 0, 0, 0.2)", // Adds a subtle shadow
+                    }}
+                  >
+                    Disponible
+                  </span>
 
-
-                   
                   <div className="card-body">
                     <h5 className="card-title text-white bg-success text-lg rounded-lg p-2">{article.name}</h5>
                     <p className="card-text text-gray-600">
-                      {article.description}
+                      
+                      {article.description.split('.').slice(0, 1).join('.')}
                     </p>
                   </div>
-                  {isLoggedIn && (
+                  {isLoggedIn ? (
                     <div className="card-footer">
-                       <button
+                      <button
                         className="btn btn-danger w-100 font-semibold"
                         onClick={() => handleClick(article._id)}
-                       >
+                      >
                         Voir Détails
                       </button>
                     </div>
-                  )}
-                  {!isLoggedIn && (
+                  ) : (
                     <div className="card-footer">
                       <button
                         className="btn btn-danger w-100 font-semibold"
@@ -265,6 +267,5 @@ const ArticlesList = () => {
     </div>
   );
 };
-
 
 export default ArticlesList;
