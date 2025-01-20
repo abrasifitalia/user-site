@@ -120,9 +120,11 @@ const ArticleDetail = () => {
                             <span className="px-3 py-1 bg-success text-gray-800 rounded-full text-sm text-white">{article.category?.name}</span>
                             <span className="px-3 py-1 border border-gray-300 text-success rounded-full text-sm">{article.subcategory?.name}</span>
                         </div>
+                        {article.ficheTechnique && (
                         <p className='mx-10 text-center font-semibold text-danger mb-0 bg-gray-50 p-2 rounded-lg shadow-sm border border-danger'>
-                            <Link to={`/articles/${article._id}`} target="_blank" className='text-danger link-underline link-underline-opacity-0'>Télécharger la fiche technique</Link>
+                            <Link to={`${process.env.REACT_APP_API_BASE_URL}${article.ficheTechnique}`} target="_blank" className='text-danger link-underline link-underline-opacity-0'>Télécharger la fiche technique</Link>
                         </p>  
+                        )}
                     </div>
                     <div className="p-6 space-y-6 pt-0">
                         <h3 className="text-lg font-semibold text-white bg-success rounded-lg p-2">Description</h3>
