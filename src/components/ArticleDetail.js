@@ -6,6 +6,7 @@ import Footer from './includes/footer';
 import Loading from './includes/loading';
 import OrderModal from './includes/Modal';
 import { Link } from 'react-router-dom';
+import ShareFeatures from './includes/share';
 
 const ArticleDetail = () => {
     const { id } = useParams();
@@ -115,11 +116,18 @@ const ArticleDetail = () => {
             <div className="max-w-4xl">
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden p-1 m-2 my-4">
                     <div className="p-6 border-b border-gray-200">
-                        <h1 className="text-2xl font-bold mb-2 text-danger">{article.name}</h1>
-                        <div className="flex gap-2 mb-2">
-                            <span className="px-3 py-1 bg-success text-gray-800 rounded-full text-sm text-white">{article.category?.name}</span>
-                            <span className="px-3 py-1 border border-gray-300 text-success rounded-full text-sm">{article.subcategory?.name}</span>
+                    <div className='col d-flex justify-content-between'>
+                         <div className='row '>
+                         <h1 className="text-xl font-bold text-danger py-2">{article.name}</h1>
+                         <div className="flex gap-2 ">
+                            <span className="text-gray-700 font-semibold">{article.category?.name} |</span>
+                            <span className="text-gray-700 font-semibold">{article.subcategory?.name}</span>
                         </div>
+                         </div>
+                        
+                          <ShareFeatures link={`https://abrasifitalia.com/articles/${article._id}`} />
+                        </div>
+                        
                         {article.ficheTechnique && (
                         <p className='mx-10 text-center font-semibold text-danger mb-0 bg-gray-50 p-2 rounded-lg shadow-sm border border-danger'>
                            <Link to={`${process.env.REACT_APP_API_BASE_URL}${article.ficheTechnique}`} download className='text-danger link-underline link-underline-opacity-0'>Télécharger la fiche technique</Link>
