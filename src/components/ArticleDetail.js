@@ -120,8 +120,8 @@ const ArticleDetail = () => {
                          <div className='row '>
                          <h1 className="text-xl font-bold text-danger py-2">{article.name}</h1>
                          <div className="flex gap-2 ">
-                            <span className="text-gray-700 font-semibold">{article.category?.name} |</span>
-                            <span className="text-gray-700 font-semibold">{article.subcategory?.name}</span>
+                            <span className="text-gray-700 text-sm font-semibold">{article.category?.name} |</span>
+                            <span className="text-gray-700 text-sm font-semibold">{article.subcategory?.name}</span>
                         </div>
                          </div>
                         

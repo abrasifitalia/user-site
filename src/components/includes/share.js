@@ -3,9 +3,12 @@ import { FacebookShareButton, TwitterShareButton, WhatsappShareButton, FacebookI
 
 const ShareFeatures = ({ link }) => {
     return (
-       <div className='row ' >
-        <p className='text-gray-700 text-sm text-center font-semibold mb-1'>Partager sur</p>
-        <div className='share-buttons  d-flex gap-2 bg-white p-2 rounded-lg shadow-sm border border-gray-300 justify-content-center'>
+       
+        <div className='row'>
+            
+        
+        <div className='share-buttons  d-flex gap-2  p-2   justify-content-center'>
+           
             <FacebookShareButton url={link}>
                 <FacebookIcon size={32} round={true} />
             </FacebookShareButton>
@@ -16,7 +19,9 @@ const ShareFeatures = ({ link }) => {
                 <WhatsappIcon size={32} round={true} />
             </WhatsappShareButton>
         </div>
+        <p className='text-gray-700 text-sm text-center font-semibold'>Partager sur</p>
         </div>
+        
     );
 };
 
