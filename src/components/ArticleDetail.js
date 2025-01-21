@@ -116,14 +116,14 @@ const ArticleDetail = () => {
             <div className="max-w-4xl">
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden p-1 m-2 my-4">
                     <div className="p-6 border-b border-gray-200">
-                    <div className='col d-flex justify-content-between'>
+                      <div className='col d-flex justify-content-between'>
                          <div className='row '>
-                         <h1 className="text-xl font-bold text-danger py-2">{article.name}</h1>
-                         <div className="flex gap-2 ">
-                            <span className="text-gray-700 text-sm font-semibold">{article.category?.name} |</span>
-                            <span className="text-gray-700 text-sm font-semibold">{article.subcategory?.name}</span>
-                        </div>
-                         </div>
+                             <h1 className="text-xl font-bold text-danger py-2">{article.name}</h1>
+                                <div className="flex gap-2  ">
+                                  <span className="text-gray-700 text-sm font-semibold">{article.category?.name} |</span>
+                                  <span className="text-gray-700 text-sm font-semibold">{article.subcategory?.name}</span>
+                                </div>
+                           </div>
                         
                           <ShareFeatures link={`https://abrasifitalia.com/articles/${article._id}`} />
                         </div>
@@ -133,7 +133,7 @@ const ArticleDetail = () => {
                            <Link to={`${process.env.REACT_APP_API_BASE_URL}${article.ficheTechnique}`} download className='text-danger link-underline link-underline-opacity-0'>Télécharger la fiche technique</Link>
                         </p>  
                         )}
-                    </div>
+                      </div>
                     <div className="p-6 space-y-6 pt-0">
                         <h3 className="text-lg font-semibold text-white bg-success rounded-lg p-2">Description</h3>
                         <p className="text-gray-700 leading-relaxed whitespace-pre-wrap font-semibold">

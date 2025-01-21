@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Footer from "./includes/footer";
 import Loading from "./includes/loading";
 import { Link } from "react-router-dom";
+import './styles/Animation.css'
 
 const ArticlesList = () => {
   // State variables
@@ -213,17 +214,17 @@ const ArticlesList = () => {
                   />
                   {/* Disponible Tag */}
                   <span
-                    className="disponible-tag"
+                    className="disponible-tag opacity-82 pulse-animation "
                     style={{
                       position: "absolute",
                       top: "10px",
                       right: "10px",
                       backgroundColor: "#dc3545", // Red background
                       color: "#fff", // White text
-                      padding: "5px 10px",
+                      padding: "5px 6px",
                       borderRadius: "20px",
-                      fontSize: "0.7rem",
-                      fontWeight: "bold",
+                      fontSize: "0.6rem",
+                      
                       zIndex: "1", // Ensures it appears on top of the image
                       boxShadow: "0 2px 5px rgba(0, 0, 0, 0.2)", // Adds a subtle shadow
                     }}
@@ -232,10 +233,9 @@ const ArticlesList = () => {
                   </span>
 
                   <div className="card-body">
-                    <h5 className="card-title text-white bg-success text-lg rounded-lg p-2">{article.name}</h5>
-                    <p className="card-text text-gray-600">
-                      
-                      {article.description.split('.').slice(0, 1).join('.')}
+                    <h6 className="card-title text-xl text-white bg-success text-lg rounded-lg p-2">{article.name}</h6>
+                    <p className="card-text text-gray-600  text-sm truncate-lines-3">
+                       {article.description}
                     </p>
                   </div>
                   <div className="card-footer">

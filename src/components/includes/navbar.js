@@ -89,7 +89,7 @@ const Navbar = ({ pageTitle }) => { // Accept pageTitle as a prop
           <div className={`collapse navbar-collapse ${isMobileMenuOpen ? 'show' : ''}`} id="navbarNav">
             <div className="navbar-nav mx-auto">
               {isLoggedIn && clientName && ( // Display greeting if logged in
-                <span className="navbar-text me-3 text-muted">
+                <span className="navbar-text mx-4 my-2 p-2 text-muted ">
                   Bonjour, <span className="font-semibold text-success animate-bounce">{clientName}</span>
                 </span>
               )}
