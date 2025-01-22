@@ -187,21 +187,39 @@ const ArticleDetail = () => {
                             </div>
                         )}
 
-                        <div className="mt-6 flex items-center gap-4 row">
-                            <input
-                                type="number"
-                                value={quantity}
-                                onChange={(e) => setQuantity(e.target.value)}
-                                min="1"
-                                className="px-4 py-2 border border-success text-danger text-lg font-semibold rounded-lg"
-                            />
-                            <button
-                                onClick={handleOrder}
-                                disabled={isSubmitting}
-                                className={`bg-danger border border-danger text-white px-4 py-2 rounded-lg ${isSubmitting ? 'bg-success text-white cursor-not-allowed' : ''}`}
-                            >
-                                {isSubmitting ? <><span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Loading</> : " Demande de devis"}
-                            </button>
+                        <div className="d-flex justify-content-center align-items-center">
+                          
+                        <button
+  onClick={handleOrder}
+  disabled={isSubmitting}
+  className={`bg-danger border border-danger text-white font-semibold px-4 py-2 rounded-lg d-flex justify-content-center align-items-center gap-3 ${isSubmitting ? 'bg-success text-white cursor-not-allowed' : ''}`}
+  style={{ minWidth: '300px' }}
+>
+  {isSubmitting ? (
+    <>
+      <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+      Loading
+    </>
+  ) : (
+    <>
+      Demande de devis :
+      <div className="d-flex align-items-center gap-2">
+        <input
+          type="number"
+          value={quantity}
+          onChange={(e) => setQuantity(e.target.value)}
+          min="1"
+          max="10"
+          className="form-control text-center font-semibold rounded-lg"
+          style={{ width: '70px', padding: '2px 5px', fontSize: '1rem' }}
+          onClick={(e) => e.stopPropagation()} // Prevents triggering the button's click event
+        />
+        <span className="text-lg font-semibold">pcs</span>
+      </div>
+    </>
+  )}
+</button>
+
                         </div>
                     </div>
                           
