@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "./includes/navbar";
+import Navbar from "../includes/navbar";
 import { useNavigate } from "react-router-dom";
-import Footer from "./includes/footer";
-import Loading from "./includes/loading";
+import Footer from "../includes/footer";
+import Loading from "../includes/loading";
 import { Link } from "react-router-dom";
-import './styles/Animation.css'
+import '../styles/Animation.css'
 
 const ArticlesList = () => {
   // State variables
@@ -41,17 +41,25 @@ const ArticlesList = () => {
           fetch(`${process.env.REACT_APP_API_BASE_URL}/api/category/categories`),
           fetch(`${process.env.REACT_APP_API_BASE_URL}/api/subcategory/subcategory`),
         ]);
-
-        setArticles(await articlesRes.json());
-        setCategories(await categoriesRes.json());
-        setSubCategories(await subCategoriesRes.json());
+    
+        const articlesData = await articlesRes.json();
+        const categoriesData = await categoriesRes.json();
+        const subCategoriesData = await subCategoriesRes.json();
+    
+        console.log("Fetched Articles:", articlesData);
+        console.log("Fetched Categories:", categoriesData);
+        console.log("Fetched SubCategories:", subCategoriesData);
+    
+        setArticles(articlesData);
+        setCategories(categoriesData);
+        setSubCategories(subCategoriesData);
       } catch (error) {
         console.error("Erreur lors de la récupération des données :", error);
       } finally {
         setLoading(false);
       }
     };
-
+    
     fetchData();
   }, []);
 
@@ -103,12 +111,12 @@ const ArticlesList = () => {
 
   // Filter articles based on selected category, subcategory, and search term
   const filteredArticles = articles.filter((article) => {
-    const matchesCategory = selectedCategory ? article.category === selectedCategory : true;
-    const matchesSubCategory = selectedSubCategory ? article.subcategory === selectedSubCategory : true;
+    const matchesCategory = selectedCategory ? article.category?._id === selectedCategory : true; // Ensure category comparison is correct
+    const matchesSubCategory = selectedSubCategory ? article.subcategory?._id === selectedSubCategory : true; // Ensure subcategory comparison is correct
     const matchesSearch = article.name.toLowerCase().includes(searchTerm) || article.description.toLowerCase().includes(searchTerm);
     return matchesCategory && matchesSubCategory && matchesSearch;
   });
-
+  
   // Show loading indicator while data is being fetched
   if (loading) return <Loading />
 
@@ -200,6 +208,7 @@ const ArticlesList = () => {
               <div
                 key={article._id}
                 className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4"
+                onClick={() => handleClick(article._id)}
               >
                 <div className="card h-100 shadow-sm relative" style={{ position: "relative" }}>
                   <img
@@ -238,37 +247,6 @@ const ArticlesList = () => {
                        {article.description}
                     </p>
                   </div>
-                  <div className="card-footer">
-                      <button
-                        className="btn btn-danger w-100 font-semibold"
-                        onClick={() => handleClick(article._id)}
-                      >
-                        Voir Détails
-                      </button>
-                    </div>
-                  
-               {/*   old code
-               
-               {isLoggedIn ? (
-                    <div className="card-footer">
-                      <button
-                        className="btn btn-danger w-100 font-semibold"
-                        onClick={() => handleClick(article._id)}
-                      >
-                        Voir Détails
-                      </button>
-                    </div>
-                  ) : (
-                    <div className="card-footer">
-                      <button
-                        className="btn btn-danger w-100 font-semibold"
-                        onClick={() => navigate(`/login`)}
-                      >
-                        Connectez-vous pour voir les détails
-                      </button>
-                    </div>
-                  )}
-*/}
                 </div>
               </div>
             ))

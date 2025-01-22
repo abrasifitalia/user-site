@@ -2,4 +2,7 @@
 .scroll-container {
     -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
   }
+.carousel-container .react-multi-carousel-item {
+    padding: 10px; /* Adds space between carousel items */
+  }
   

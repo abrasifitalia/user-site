@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import Navbar from './includes/navbar';
-import Footer from './includes/footer';
-import Loading from './includes/loading';
-import OrderModal from './includes/Modal';
+import Navbar from '../includes/navbar';
+import Footer from '../includes/footer';
+import Loading from '../includes/loading';
+import OrderModal from '../includes/Modal';
 import { Link } from 'react-router-dom';
-import ShareFeatures from './includes/share';
+import ShareFeatures from '../includes/share';
+import SimilarProducts from './similair-products';
 
 const ArticleDetail = () => {
     const { id } = useParams();
@@ -203,6 +204,8 @@ const ArticleDetail = () => {
                             </button>
                         </div>
                     </div>
+                          
+                        
                 </div>
             </div>
             <Footer />

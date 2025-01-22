@@ -5,9 +5,9 @@ const CompanyLocation = () => {
   return (
     <div className="bg-white py-8 my-4 shadow-lg rounded-lg overflow-hidden mb-12 pt-8">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-      <h2 className="text-3xl lg:text-4xl font-bold text-danger m-4 text-center">
+      <h3 className="text-2xl font-bold text-danger text-center m-4">
          Nos Emplacements
-      </h2>
+      </h3>
         {/* First Location */}
         <div className="bg-gray-100 rounded-lg shadow-md p-6 items-center m-2">
           <h4 className="text-xl font-bold text-green-600 mb-4 text-center">Ariana <span className="text-danger">|</span> la Soukra</h4>

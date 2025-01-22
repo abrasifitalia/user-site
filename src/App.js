@@ -4,11 +4,11 @@ import CookieConsent from "react-cookie-consent"; // Import du package
 import Home from './components/Home/Home';
 import Contact from './components/Contact';
 import ArticlesList from './components/Protected-ArticlesList';
-import ArticleDetail from './components/ArticleDetail';
+import ArticleDetail from './components/products/ArticleDetail';
 import Login from './components/Auth/Login';
 import Register from './components/Auth/Register';
 import Order from './components/Order';
-import Articleliste from './components/Public-ArticlesList';
+import Articleliste from './components/products/Public-ArticlesList';
 import PrivateRoute from './components/PrivateRoute';  
 import { AuthProvider } from './context/AuthContext'; 
 
@@ -28,7 +28,7 @@ const App = () => {
           />
           <Route 
             path="/articles/:id" 
-            element={<ArticleDetail />} 
+            element={<ArticleDetail  />} 
           />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
