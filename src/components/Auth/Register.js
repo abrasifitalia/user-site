@@ -136,12 +136,12 @@ const Register = () => {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-success text-white border border-success hover:bg-blue-600 font-semibold py-4 px-8 rounded-lg transition-colors duration-200 text-lg"
+              className="w-full bg-success text-white border border-success hover:bg-blue-600 font-semibold py-2 rounded-lg transition-colors duration-200 text-lg"
             >
               {isLoading ? <><span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Loading</> : "S'inscrire"}
             </button>
           </form>
-          <p className="text-center text-danger ">Vous avez déjà un compte ? <Link to="/login" className="text-success">Connectez-vous</Link></p>
+          <p className="text-center text-danger py-4 ">Vous avez déjà un compte ? <Link to="/login" className="text-success ">Connectez-vous</Link></p>
         </div>
       </div>
       <Footer />

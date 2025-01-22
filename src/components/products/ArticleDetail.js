@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from '../includes/navbar';
 import Footer from '../includes/footer';
@@ -10,6 +10,7 @@ import ShareFeatures from '../includes/share';
 import SimilarProducts from './similair-products';
 
 const ArticleDetail = () => {
+    const navigate = useNavigate();
     const { id } = useParams();
     const [article, setArticle] = useState(null);
     const [error, setError] = useState(null);
@@ -63,8 +64,9 @@ const ArticleDetail = () => {
         const clientId = localStorage.getItem('clientId');
         if (!clientId) {
             // Navigate to login if not logged in
-            window.location.href = '/login';
-            return;
+            const redirectPath = `/articles/${article._id}`;
+            navigate(`/login?redirectPath=${encodeURIComponent(redirectPath)}`);
+            
         }
 
         const orderData = {
