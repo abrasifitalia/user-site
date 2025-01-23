@@ -53,7 +53,7 @@ const Login = () => {
         const redirectPath = redirectPathFromQuery || data.redirectPath || '/article';
         navigate(redirectPath);
       } else {
-        setError(data.message || 'Une erreur est survenue');
+       
         setModalVisible(true); // Show modal on error
       }
     } catch (err) {

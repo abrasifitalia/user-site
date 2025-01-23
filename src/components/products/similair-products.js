@@ -43,8 +43,8 @@ const SimilarProducts = ({ categoryId, subCategoryId }) => {
   if (fetchError) return <div className="text-danger text-center">Error: {fetchError}</div>;
 
   return (
-    <div className="container my-4 bg-gray-50 rounded-lg p-4">
-      <h2 className="text-center text-xl font-medium text-success pb-2">Produits Similaires</h2>
+    <div className="container  bg-gray-50 rounded-lg p-4">
+      <h2 className="text-center text-xl font-bold text-success pb-2">Produits Similaires</h2>
       <div className="row">
         {similarProducts.length > 0 ? (
           similarProducts.map((product) => (

@@ -63,10 +63,8 @@ const ArticleDetail = () => {
 
         const clientId = localStorage.getItem('clientId');
         if (!clientId) {
-            // Navigate to login if not logged in
             const redirectPath = `/articles/${article._id}`;
             navigate(`/login?redirectPath=${encodeURIComponent(redirectPath)}`);
-            
         }
 
         const orderData = {
@@ -127,19 +125,19 @@ const ArticleDetail = () => {
                                   <span className="text-gray-700 text-sm font-semibold">{article.subcategory?.name}</span>
                                 </div>
                            </div>
-                        
                           <ShareFeatures link={`https://abrasifitalia.com/articles/${article._id}`} />
                         </div>
-                        
                         {article.ficheTechnique && (
-                        <p className='mx-10 text-center font-semibold text-danger mb-0 bg-gray-50 p-2 rounded-lg shadow-sm border border-danger'>
-                           <Link to={`${process.env.REACT_APP_API_BASE_URL}${article.ficheTechnique}`} download className='text-danger link-underline link-underline-opacity-0'>Télécharger la fiche technique</Link>
-                        </p>  
+                     
+                           <Link to={`${process.env.REACT_APP_API_BASE_URL}${article.ficheTechnique}`} download className='text-danger link-underline link-underline-opacity-0'>
+                              <p className='mx-10 text-center font-semibold text-danger mb-0 bg-gray-50 p-2 rounded-lg shadow-sm border border-danger'> Télécharger la fiche technique </p>  
+                              </Link>
+                     
                         )}
                       </div>
                     <div className="p-6 space-y-6 pt-0">
                         <h3 className="text-lg font-semibold text-white bg-success rounded-lg p-2">Description</h3>
-                        <p className="text-gray-700 leading-relaxed whitespace-pre-wrap font-semibold">
+                        <p className="text-gray-700 leading-relaxed whitespace-pre-wrap font-semibold mx-4">
                             {article.description.split('\n').map((line, index) => (
                                 <span key={index}>
                                     {line}
@@ -190,47 +188,42 @@ const ArticleDetail = () => {
                         )}
 
                         <div className="d-flex justify-content-center align-items-center">
-                          
                         <button
-  onClick={handleOrder}
-  disabled={isSubmitting}
-  className={`bg-danger border border-danger text-white font-semibold px-4 py-2 rounded-lg d-flex justify-content-center align-items-center gap-3 ${isSubmitting ? 'bg-success text-white cursor-not-allowed' : ''}`}
-  style={{ minWidth: '300px' }}
->
-  {isSubmitting ? (
-    <>
-      <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
-      Loading
-    </>
-  ) : (
-    <>
-      Demande de devis :
-      <div className="d-flex align-items-center gap-2">
-        <input
-          type="number"
-          value={quantity}
-          onChange={(e) => setQuantity(e.target.value)}
-          min="1"
-          max="10"
-          className="form-control text-center font-semibold rounded-lg"
-          style={{ width: '70px', padding: '2px 5px', fontSize: '1rem' }}
-          onClick={(e) => e.stopPropagation()} // Prevents triggering the button's click event
-        />
-        <span className="text-lg font-semibold">pcs</span>
-      </div>
-    </>
-  )}
-</button>
-
+                            onClick={handleOrder}
+                            disabled={isSubmitting}
+                            className={`bg-danger border border-danger text-white font-semibold px-4 py-2 rounded-lg d-flex justify-content-center align-items-center gap-3 ${isSubmitting ? 'bg-success text-white cursor-not-allowed' : ''}`}
+                            style={{ minWidth: '300px' }}
+                        >
+                            {isSubmitting ? (
+                                <>
+                                    <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                                    Loading
+                                </>
+                            ) : (
+                                <>
+                                    Demande de devis :
+                                    <div className="d-flex align-items-center gap-2">
+                                        <input
+                                            type="number"
+                                            value={quantity}
+                                            onChange={(e) => setQuantity(e.target.value)}
+                                            min="1"
+                                            max="10"
+                                            className="form-control text-center text-xl rounded-lg font-bold"
+                                            style={{ width: '70px', padding: '2px 8px', fontSize: '1rem' }}
+                                            onClick={(e) => e.stopPropagation()} // Prevents triggering the button's click event
+                                        />
+                                        <span className="text-lg font-semibold">pcs</span>
+                                    </div>
+                                </>
+                            )}
+                        </button>
                         </div>
                     </div>
                     <SimilarProducts categoryId={article.category?._id} subCategoryId={article.subcategory?._id} />      
-                        
                 </div>
             </div>
             <Footer />
-
-            {/* Notification modal */}
             <OrderModal
                 show={modalState.show}
                 handleClose={() => setModalState({ ...modalState, show: false })}

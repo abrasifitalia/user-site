@@ -4,9 +4,12 @@ import Navbar from '../includes/navbar';
 import Footer from '../includes/footer';
 import { Link } from 'react-router-dom';
 import { FiUser, FiMail, FiLock, FiPhone } from 'react-icons/fi';
-import Helmet from 'react-helmet';
+
+import Modal from '../includes/Modal'; // Import the Modal component
+
 
 const Register = () => {
+  const [modalVisible, setModalVisible] = useState(false); // State to control modal visibility
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -44,10 +47,10 @@ const Register = () => {
       if (response.ok) {
         navigate('/login');
       } else {
-        setError(data.message || 'Une erreur est survenue');
+        setModalVisible(true)
       }
     } catch (err) {
-      setError('Erreur de connexion au serveur');
+      setModalVisible(true)
     } finally {
       setIsLoading(false);
     }
@@ -145,6 +148,14 @@ const Register = () => {
         </div>
       </div>
       <Footer />
+      <Modal 
+        show={modalVisible} 
+        handleClose={() => setModalVisible(false)} 
+        title="problème de creation de compte" 
+        message={error} 
+        variant="danger" 
+        route="register"
+      />
     </div>
   );
 };
