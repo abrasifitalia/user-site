@@ -111,8 +111,8 @@ const ArticlesList = () => {
 
   // Filter articles based on selected category, subcategory, and search term
   const filteredArticles = articles.filter((article) => {
-    const matchesCategory = selectedCategory ? article.category?._id === selectedCategory : true; // Ensure category comparison is correct
-    const matchesSubCategory = selectedSubCategory ? article.subcategory?._id === selectedSubCategory : true; // Ensure subcategory comparison is correct
+    const matchesCategory = selectedCategory ? article.category === selectedCategory : true;
+    const matchesSubCategory = selectedSubCategory ? article.subcategory === selectedSubCategory : true;
     const matchesSearch = article.name.toLowerCase().includes(searchTerm) || article.description.toLowerCase().includes(searchTerm);
     return matchesCategory && matchesSubCategory && matchesSearch;
   });
