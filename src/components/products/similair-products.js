@@ -32,6 +32,7 @@ const SimilarProducts = ({ categoryId, subCategoryId }) => {
 
   const handleProductClick = (productId) => {
     navigate(`/articles/${productId}`);
+    window.scrollTo(0, 0);
   };
 
   if (isLoading)
@@ -50,9 +51,9 @@ const SimilarProducts = ({ categoryId, subCategoryId }) => {
             <div
               key={product._id}
               className="col-md-3 mb-4"
-              onClick={() => handleProductClick(product._id)}
+              
             >
-              <div className="card h-100 border-2 border-danger">
+              <div className="card h-100 border-2 border-danger" onClick={() => handleProductClick(product._id)}>
                 <img
                   src={`${process.env.REACT_APP_API_BASE_URL}${product.image}`}
                   alt={product.name}

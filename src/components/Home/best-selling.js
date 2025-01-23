@@ -51,12 +51,12 @@ const ArticleBanner = ({ articles, isLoading }) => {
 
         >
           {articles.map((article) => (
-            <div key={article._id} className="p-2">
-              <div className="card h-100 shadow-sm relative">
+            <div key={article._id} className="p-2 ">
+              <div className="card h-100 shadow-sm relative border border-white">
                 <img
                   src={`${process.env.REACT_APP_API_BASE_URL}${article.image}`}
                   alt={article.name}
-                  className="card-img-top bg-gray-100"
+                  className="card-img-top bg-white"
                   style={{
                     width: "100%",
                     height: "200px",
