@@ -1,71 +1,73 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import Loading from "../includes/loading";
 
 const SimilarProducts = ({ categoryId, subCategoryId }) => {
+  const { id: currentArticleId } = useParams(); // Dynamically get the current article ID
   const [similarProducts, setSimilarProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [fetchError, setFetchError] = useState(null);
+  const navigate = useNavigate();
 
-  const fetchSimilarProductsBySubcategory = async (subCategory) => {
+  const fetchSimilarProducts = async () => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/article/subcategory/${subCategory}`);
-      if (!response.ok) {
-        throw new Error("Failed to fetch similar products by subcategory");
-      }
-      return await response.json();
+      const response = await fetch(
+        `${process.env.REACT_APP_API_BASE_URL}/api/article/category/${categoryId}/subcategory/${subCategoryId}`
+      );
+      if (!response.ok) throw new Error("Failed to fetch similar products");
+      const data = await response.json();
+
+      // Exclude the current article dynamically
+      setSimilarProducts(data.filter(product => product._id !== currentArticleId));
     } catch (err) {
       setFetchError(err.message);
-      return [];
-    }
-  };
-
-  const fetchSimilarProductsByCategory = async (category) => {
-    try {
-      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/article/category/${category}`);
-      if (!response.ok) {
-        throw new Error("Failed to fetch similar products by category");
-      }
-      return await response.json();
-    } catch (err) {
-      setFetchError(err.message);
-      return [];
+    } finally {
+      setIsLoading(false);
     }
   };
 
   useEffect(() => {
-    const getSimilarProducts = async () => {
-      // First, try to fetch based on subcategory
-      
-      let products = await fetchSimilarProductsBySubcategory(subCategoryId);
-      
-      // If no products found, try fetching based on main category
-      if (products.length === 0) {
-        products = await fetchSimilarProductsByCategory(categoryId); // Fetch based on category
-      }
+    fetchSimilarProducts();
+  }, [categoryId, subCategoryId, currentArticleId]); // Trigger re-fetch on changes
 
-      setSimilarProducts(products);
-      setIsLoading(false);
-    };
+  const handleProductClick = (productId) => {
+    navigate(`/articles/${productId}`);
+  };
 
-    getSimilarProducts();
-  }, [categoryId, subCategoryId]);
+  if (isLoading)
+    return (
+     <Loading /> 
+    );
 
-  if (isLoading) return <div>Loading...</div>;
-  if (fetchError) return <div>Error: {fetchError}</div>;
+  if (fetchError) return <div className="text-danger text-center">Error: {fetchError}</div>;
 
   return (
-    <div className="similar-products">
-      <h2>Similar Products</h2>
-      <div className="product-list">
-        {similarProducts.map(product => (
-          <div key={product._id} className="product-item"> {/* Assuming product has _id */}
-            <img 
-              src={`${process.env.REACT_APP_API_BASE_URL}${product.image}`} 
-              alt={product.name}
-              className="product-image"
-            />
-            <h3>{product.name}</h3>
-          </div>
-        ))}
+    <div className="container my-4 bg-gray-50 rounded-lg p-4">
+      <h2 className="text-center text-xl font-medium text-success pb-2">Produits Similaires</h2>
+      <div className="row">
+        {similarProducts.length > 0 ? (
+          similarProducts.map((product) => (
+            <div
+              key={product._id}
+              className="col-md-3 mb-4"
+              onClick={() => handleProductClick(product._id)}
+            >
+              <div className="card h-100 border-2 border-danger">
+                <img
+                  src={`${process.env.REACT_APP_API_BASE_URL}${product.image}`}
+                  alt={product.name}
+                  className="card-img-top"
+                  style={{ height: '200px', objectFit: 'contain' }}
+                />
+                <div className="card-body text-center">
+                  <h5 className="card-title text-sm font-medium text-white truncate bg-success rounded-lg p-2 mb-0">{product.name}</h5>
+                </div>
+              </div>
+            </div>
+          ))
+        ) : (
+          <p className="text-center">Aucun produit similaire trouvé pour le moment</p>
+        )}
       </div>
     </div>
   );

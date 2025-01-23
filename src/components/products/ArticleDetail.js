@@ -116,7 +116,7 @@ const ArticleDetail = () => {
         <div>
             <Navbar pageTitle={article?.name || 'Article'} />
 
-            <div className="max-w-4xl">
+            <div className="max-w-4xl" id="article-detail">
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden p-1 m-2 my-4">
                     <div className="p-6 border-b border-gray-200">
                       <div className='col d-flex justify-content-between'>
@@ -224,7 +224,7 @@ const ArticleDetail = () => {
 
                         </div>
                     </div>
-                          
+                    <SimilarProducts categoryId={article.category?._id} subCategoryId={article.subcategory?._id} />      
                         
                 </div>
             </div>
