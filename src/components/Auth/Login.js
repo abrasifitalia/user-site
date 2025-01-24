@@ -107,9 +107,7 @@ const Login = () => {
                                 label="Se souvenir de moi" 
                                 className="text-success"
                             />
-                            <Link to="/forgot-password" className="auth-link">
-                                Mot de passe oublié ?
-                            </Link>
+                           
                         </div>
 
                         <Button 
