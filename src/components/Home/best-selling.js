@@ -3,13 +3,16 @@ import Loading from '../includes/loading';
 import { useNavigate } from "react-router-dom";
 import Carousel from 'react-multi-carousel'; // Import Carousel from react-multi-carousel
 import 'react-multi-carousel/lib/styles.css'; // Import the default styles for the carousel
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-const ArticleBanner = ({ articles, isLoading }) => {
+
+const ArticleBanner = ({ articles, isLoading, categories, subCategories }) => {
   const navigate = useNavigate();
 
-  const handleClick = (articleId) => {
-    navigate(`/articles/${articleId}`);
+  const handleClick = (article) => {
+    const categoryName = categories.find(cat => cat._id === article.category)?.name || 'undefined';
+    const subcategoryName = subCategories.find(subCat => subCat._id === article.subcategory)?.name || 'undefined';
+    navigate(`/articles/${categoryName}/${subcategoryName}/${article._id}`);
   };
+  
 
   // Define responsive breakpoints for the carousel
   const responsive = {
@@ -47,8 +50,7 @@ const ArticleBanner = ({ articles, isLoading }) => {
           autoPlaySpeed={3000} // Set auto-scroll speed
           keyBoardControl={true} // Enable keyboard navigation
           containerClass="carousel-container"
-          removeArrowOnDeviceType={["tablet", "mobile" , "desktop"]} // Remove arrows for smaller devices
-
+          removeArrowOnDeviceType={["tablet", "mobile", "desktop"]} // Remove arrows for smaller devices
         >
           {articles.map((article) => (
             <div key={article._id} className="p-2 ">
@@ -62,7 +64,7 @@ const ArticleBanner = ({ articles, isLoading }) => {
                     height: "200px",
                     objectFit: "contain",
                   }}
-                  onClick={() => handleClick(article._id)}
+                  onClick={() => handleClick(article)}
                 />
                 <h3 className="text-center text-white text-sm font-medium text-gray-900 truncate bg-success p-2 mb-0">
                   {article.name}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';  
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';  
 import CookieConsent from "react-cookie-consent"; // Import du package
 import Home from './components/Home/Home';
 import Contact from './components/Contact';
@@ -14,20 +14,19 @@ import { AuthProvider } from './context/AuthContext';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import PageNotFound from './components/includes/page_not-found';
 
 const App = () => {
   return (
     <AuthProvider>
       <Router>
         <Routes>
+          
           <Route path="/" element={<Home />} />
           <Route path="/client/contact" element={<Contact />} />
+          
           <Route 
-            path="/articles" 
-            element={<PrivateRoute element={<ArticlesList />} />} 
-          />
-          <Route 
-            path="/articles/:id" 
+            path="/articles/:category/:subcategory/:id" 
             element={<ArticleDetail  />} 
           />
           <Route path="/login" element={<Login />} />
@@ -36,7 +35,9 @@ const App = () => {
             path="/order" 
             element={<PrivateRoute element={<Order />} />} 
           />
-          <Route path="/article" element={<Articleliste />} />
+          <Route path="/articles" element={<Articleliste />} />
+          <Route path="*" element={<PageNotFound />} />
+          
         </Routes>
 
         {/* Bannière de consentement aux cookies */}

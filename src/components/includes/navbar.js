@@ -37,7 +37,7 @@ const Navbar = ({ pageTitle }) => { // Accept pageTitle as a prop
   // Menu items for navigation
   const menuItems = [
     { label: 'Accueil', icon: <Home size={20} className="text-danger" />, to: '/' },
-    { label: 'Nos Produits', icon: <Package size={20} className="text-danger" />, to: '/article' },
+    { label: 'Nos Produits', icon: <Package size={20} className="text-danger" />, to: '/articles' },
     { label: 'Contact', icon: <Phone size={20} className="text-danger" />, to: '/client/contact' },
   ];
 

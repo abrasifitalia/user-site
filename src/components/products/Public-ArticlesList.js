@@ -4,10 +4,10 @@ import { useNavigate } from "react-router-dom";
 import Footer from "../includes/footer";
 import Loading from "../includes/loading";
 import { Link } from "react-router-dom";
-import '../styles/Animation.css'
+import '../styles/Animation.css';
+import { fetchData } from "../functions/product_data";
 
 const ArticlesList = () => {
-  // State variables
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [clientName, setClientName] = useState('');
   const [articles, setArticles] = useState([]);
@@ -20,7 +20,6 @@ const ArticlesList = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
 
-  // Effect to check client login status and retrieve client ID
   useEffect(() => {
     const id = localStorage.getItem("clientId");
     setClientId(id);
@@ -32,43 +31,12 @@ const ArticlesList = () => {
     }
   }, []);
 
-  // Effect to fetch articles, categories, and subcategories
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [articlesRes, categoriesRes, subCategoriesRes] = await Promise.all([
-          fetch(`${process.env.REACT_APP_API_BASE_URL}/api/article/article`),
-          fetch(`${process.env.REACT_APP_API_BASE_URL}/api/category/categories`),
-          fetch(`${process.env.REACT_APP_API_BASE_URL}/api/subcategory/subcategory`),
-        ]);
-    
-        const articlesData = await articlesRes.json();
-        const categoriesData = await categoriesRes.json();
-        const subCategoriesData = await subCategoriesRes.json();
-    
-        console.log("Fetched Articles:", articlesData);
-        console.log("Fetched Categories:", categoriesData);
-        console.log("Fetched SubCategories:", subCategoriesData);
-    
-        setArticles(articlesData);
-        setCategories(categoriesData);
-        setSubCategories(subCategoriesData);
-      } catch (error) {
-        console.error("Erreur lors de la récupération des données :", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    
-    fetchData();
+    fetchData(setArticles, setCategories, setSubCategories, setLoading);
   }, []);
 
-  // Function to add a view for an article
   const addView = async (articleId) => {
-    if (!clientId) {
-      console.error("Client non identifié");
-      return;
-    }
+    if (!clientId) return;
     try {
       const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/view/view`, {
         method: 'POST',
@@ -80,44 +48,38 @@ const ArticlesList = () => {
           articleId: articleId,
         }),
       });
-
       if (response.ok) {
-        const data = await response.json();
-        console.log('Vue ajoutée:', data);
-      } else {
-        console.error('Erreur lors de l\'ajout de la vue:', response.statusText);
+        await response.json();
       }
     } catch (error) {
       console.error('Erreur:', error);
     }
   };
 
-  // Function to handle article click
-  const handleClick = (articleId) => {
-    addView(articleId);
-    navigate(`/articles/${articleId}`);
+  const handleClick = (article) => {
+    addView(article._id);
+    const categoryName = categories.find(cat => cat._id === article.category)?.name || 'undefined';
+    const subcategoryName = subCategories.find(subCat => subCat._id === article.subcategory)?.name || 'undefined';
+    navigate(`/articles/${categoryName}/${subcategoryName}/${article._id}`);
+    window.scrollTo(0, 0);
   };
 
-  // Function to reset selected categories
   const showAllArticles = () => {
     setSelectedCategory("");
     setSelectedSubCategory("");
   };
 
-  // Function to handle search input
   const handleSearch = (e) => {
     setSearchTerm(e.target.value.toLowerCase());
   };
 
-  // Filter articles based on selected category, subcategory, and search term
   const filteredArticles = articles.filter((article) => {
     const matchesCategory = selectedCategory ? article.category === selectedCategory : true;
     const matchesSubCategory = selectedSubCategory ? article.subcategory === selectedSubCategory : true;
     const matchesSearch = article.name.toLowerCase().includes(searchTerm) || article.description.toLowerCase().includes(searchTerm);
     return matchesCategory && matchesSubCategory && matchesSearch;
   });
-  
-  // Show loading indicator while data is being fetched
+
   if (loading) return <Loading />
 
   return (
@@ -168,7 +130,7 @@ const ArticlesList = () => {
                             className="dropdown-item font-bold text-danger rounded rounded-lg active:bg-danger active:text-white"
                             onClick={() => {
                               setSelectedSubCategory(subCat._id);
-                              setSelectedCategory(""); // Close dropdown
+                              setSelectedCategory("");
                             }}
                           >
                             {subCat.name}
@@ -208,7 +170,7 @@ const ArticlesList = () => {
               <div
                 key={article._id}
                 className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4"
-                onClick={() => handleClick(article._id)}
+                onClick={() => handleClick(article)}
               >
                 <div className="card h-100 shadow-sm relative" style={{ position: "relative" }}>
                   <img
@@ -221,21 +183,19 @@ const ArticlesList = () => {
                       objectFit: "contain",
                     }}
                   />
-                  {/* Disponible Tag */}
                   <span
                     className="disponible-tag opacity-82 pulse-animation "
                     style={{
                       position: "absolute",
                       top: "10px",
                       right: "10px",
-                      backgroundColor: "#dc3545", // Red background
-                      color: "#fff", // White text
+                      backgroundColor: "#dc3545",
+                      color: "#fff",
                       padding: "5px 6px",
                       borderRadius: "20px",
                       fontSize: "0.6rem",
-                      
-                      zIndex: "1", // Ensures it appears on top of the image
-                      boxShadow: "0 2px 5px rgba(0, 0, 0, 0.2)", // Adds a subtle shadow
+                      zIndex: "1",
+                      boxShadow: "0 2px 5px rgba(0, 0, 0, 0.2)",
                     }}
                   >
                     Disponible

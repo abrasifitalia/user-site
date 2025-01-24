@@ -1,37 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Loading from "../includes/loading";
+import { fetchSimilarProducts } from "../functions/product_data";
 
 const SimilarProducts = ({ categoryId, subCategoryId }) => {
   const { id: currentArticleId } = useParams(); // Dynamically get the current article ID
   const [similarProducts, setSimilarProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [fetchError, setFetchError] = useState(null);
+  const [categoryName, setCategoryName] = useState('');
+  const [subcategoryName, setSubcategoryName] = useState('');
+
+
   const navigate = useNavigate();
 
-  const fetchSimilarProducts = async () => {
-    try {
-      const response = await fetch(
-        `${process.env.REACT_APP_API_BASE_URL}/api/article/category/${categoryId}/subcategory/${subCategoryId}`
-      );
-      if (!response.ok) throw new Error("Failed to fetch similar products");
-      const data = await response.json();
-
-      // Exclude the current article dynamically
-      setSimilarProducts(data.filter(product => product._id !== currentArticleId));
-    } catch (err) {
-      setFetchError(err.message);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
   useEffect(() => {
-    fetchSimilarProducts();
-  }, [categoryId, subCategoryId, currentArticleId]); // Trigger re-fetch on changes
+    fetchSimilarProducts(categoryId, subCategoryId, currentArticleId, setSimilarProducts, setIsLoading, setFetchError, setCategoryName, setSubcategoryName);
+  }, [categoryId, subCategoryId, currentArticleId]); 
 
-  const handleProductClick = (productId) => {
-    navigate(`/articles/${productId}`);
+  const handleProductClick = (productId, categoryName, subcategoryName) => {
+    navigate(`/articles/${categoryName}/${subcategoryName}/${productId}`);
     window.scrollTo(0, 0);
   };
 
@@ -53,7 +41,7 @@ const SimilarProducts = ({ categoryId, subCategoryId }) => {
               className="col-md-3 mb-4"
               
             >
-              <div className="card h-100 border-2 border-danger" onClick={() => handleProductClick(product._id)}>
+              <div className="card h-100 border-2 border-danger" onClick={() => handleProductClick(product._id, categoryName, subcategoryName)}>
                 <img
                   src={`${process.env.REACT_APP_API_BASE_URL}${product.image}`}
                   alt={product.name}

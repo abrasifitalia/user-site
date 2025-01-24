@@ -10,27 +10,18 @@ import Partner from './partner';
 import ArticleBanner from './best-selling'; // Assurez-vous d'importer correctement ArticleBanner
 import CompanyLocations from './location';
 import WhatsappToggle from '../includes/whatsapp-toggle';
+import { fetchData } from '../functions/product_data';
+
 
 const HomePage = () => {
   const [articles, setArticles] = useState([]); // Declare articles state
+  const [categories, setCategories] = useState([]);
+  const [subCategories, setSubCategories] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   // Fetch articles on component mount
   useEffect(() => {
-    const fetchArticles = async () => {
-      try {
-        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/article/article`);
-        if (response.ok) {
-          const data = await response.json();
-          setArticles(data); // Set articles data
-        } else {
-          console.error('Error fetching articles:', response.statusText);
-        }
-      } catch (error) {
-        console.error('Error fetching articles:', error);
-      }
-    };
-
-    fetchArticles();
+    fetchData(setArticles, setCategories, setSubCategories, setLoading);
   }, []);
 
   return (
@@ -43,7 +34,7 @@ const HomePage = () => {
         <Carousel />
 
         {/* Article Scrolling Banner */}
-        <ArticleBanner articles={articles} /> 
+        <ArticleBanner articles={articles} categories={categories} subCategories={subCategories} /> 
 
         {/* Partner Section */}
         <Partner />
