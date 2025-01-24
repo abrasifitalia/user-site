@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Container, Form, Button } from 'react-bootstrap';
 import Navbar from '../includes/navbar';
 import Footer from '../includes/footer';
 import { Link } from 'react-router-dom';
 import { FiUser, FiMail, FiLock, FiPhone } from 'react-icons/fi';
-
-import Modal from '../includes/Modal'; // Import the Modal component
-
+import Modal from '../includes/Modal';
+import '../styles/auth.css';
 
 const Register = () => {
-  const [modalVisible, setModalVisible] = useState(false); // State to control modal visibility
+  const [modalVisible, setModalVisible] = useState(false);
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -36,9 +36,7 @@ const Register = () => {
     try {
       const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/client/client/register`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
 
@@ -47,111 +45,168 @@ const Register = () => {
       if (response.ok) {
         navigate('/login');
       } else {
-        setModalVisible(true)
+        setError(data.message || "Erreur lors de la création du compte");
+        setModalVisible(true);
       }
     } catch (err) {
-      setModalVisible(true)
+      setError("Erreur de connexion au serveur");
+      setModalVisible(true);
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-blue-100">
-  
-      <Navbar pageTitle="Inscription" description="Créez votre compte client pour accéder à nos produits et services." />
-      <div className="max-w-4xl mx-auto px-6 py-24 p-50 shadow-2xl">
-        <h1 className="text-center text-4xl font-extrabold text-success ">Inscription</h1>
-        <p className="text-center text-danger mb-4">Créez votre compte client</p>
-        <div className="bg-gray-100 shadow-2xl rounded-lg mx-4">
-        {error && <p className="text-danger text-center mb-6">{error}</p>}
-          <form onSubmit={handleSubmit} className="space-y-8 p-4">
-            <div className="relative mb-8">
-              <FiUser className="absolute left-4 top-1/2 -translate-y-1/2 text-danger pt-2 p-1" size={25} />
-              <input
-                type="text"
-                name="firstName"
-                id="firstName"
-                placeholder="Votre prénom"
-                value={formData.firstName}
-                onChange={handleChange}
-                className="p-3 w-full pl-12 py-4 text-danger font-semibold border border-danger rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors bg-gray-50"
-                required
-              />
-            </div>
+    <div className="min-vh-100 bg-light">
+      <Navbar 
+        pageTitle="Inscription" 
+        description="Créez votre compte client pour accéder à nos produits et services." 
+      />
 
-            <div className="relative mb-8">
-              <FiUser className="absolute left-4 top-1/2 -translate-y-1/2 text-danger pt-2 p-1" size={25} />
-              <input
-                type="text"
-                name="lastName"
-                id="lastName"
-                placeholder="Votre nom"
-                value={formData.lastName}
-                onChange={handleChange}
-                className="p-3 w-full pl-12 py-4 text-danger font-semibold border border-danger rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors bg-gray-50"
-                required
-              />
-            </div>
+      <Container className="auth-container">
+        <div className="auth-card">
+          <h1 className="auth-title text-center">Inscription</h1>
+          <p className="auth-subtitle text-center">Créez votre compte client</p>
+          <Form onSubmit={handleSubmit}>
+  <Form.Group className="mb-4 position-relative">
+    <FiUser className="auth-input-icon" />
+    <Form.Control
+      type="text"
+      name="firstName"
+      placeholder="Prénom"
+      className="auth-form-control"
+      value={formData.firstName}
+      onChange={handleChange}
+      required
+    />
+  </Form.Group>
 
-            <div className="relative mb-8">
-              <FiPhone className="absolute left-4 top-1/2 -translate-y-1/2 text-danger pt-2 p-1" size={25} />
-              <input
-                type="text"
-                name="phone"
-                id="phone"
-                placeholder="Votre téléphone"
-                value={formData.phone}
-                onChange={handleChange}
-                className="p-3 w-full pl-12 py-4 text-danger font-semibold border border-danger rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors bg-gray-50"
-                required
-              />
-            </div>
+  <Form.Group className="mb-4 position-relative">
+    <FiUser className="auth-input-icon" />
+    <Form.Control
+      type="text"
+      name="lastName"
+      placeholder="Nom"
+      className="auth-form-control"
+      value={formData.lastName}
+      onChange={handleChange}
+      required
+    />
+  </Form.Group>
 
-            <div className="relative mb-8">
-              <FiMail className="absolute left-4 top-1/2 -translate-y-1/2 text-danger pt-2 p-1" size={25} />
-              <input
-                type="email"
-                name="email"
-                id="email"
-                placeholder="Votre email"
-                value={formData.email}
-                onChange={handleChange}
-                className="p-3 w-full pl-12 py-4 text-danger font-semibold border border-danger rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors bg-gray-50"
-                required
-              />
-            </div>
+  <Form.Group className="mb-4 position-relative">
+  <div className="auth-input-icon-container">
+    <FiPhone className="auth-input-icon" />
+  </div>
+  <Form.Control
+    type="tel"
+    name="phone"
+    placeholder="+216 XX XXX XXX"
+    className="auth-form-control ps-5" // Ajout de padding à gauche
+    value={formData.phone}
+    onChange={(e) => {
+      const input = e.target.value;
+      const cleaned = input.replace(/\D/g, ''); // Supprime tout sauf les chiffres
+      
+      // Garde le +216 fixe
+      const prefix = '+216';
+      let numbers = cleaned.startsWith('216') ? cleaned.slice(3) : cleaned;
+      
+      // Limite à 8 chiffres après le préfixe
+      numbers = numbers.substring(0, 8);
+      
+      // Formatage avec espacements
+      let formatted = prefix;
+      if (numbers.length > 0) {
+        formatted += ` ${numbers.slice(0, 2)}`;
+        if (numbers.length > 2) formatted += ` ${numbers.slice(2, 5)}`;
+        if (numbers.length > 5) formatted += ` ${numbers.slice(5, 8)}`;
+      }
 
-              <div className="relative mb-8">
-              <FiLock className="absolute left-4 top-1/2 -translate-y-1/2 text-danger pt-2 p-1" size={25} />
-              <input
-                type="password"
-                name="password"
-                id="password"
-                placeholder="Votre mot de passe"
-                value={formData.password}
-                onChange={handleChange}
-                className="p-3 w-full pl-12 py-4 text-danger font-semibold border border-danger rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors bg-gray-50"
-                required
-              />
-            </div>
+      setFormData({
+        ...formData,
+        phone: formatted,
+        phoneError: numbers.length === 8 ? null : 'Numéro incomplet'
+      });
+    }}
+    onKeyDown={(e) => {
+      // Permet la suppression arrière
+      if (e.key === 'Backspace') {
+        const current = formData.phone.replace(/\D/g, '');
+        const newValue = current.slice(0, -1);
+        setFormData({
+          ...formData,
+          phone: '+216' + (newValue.length > 3 ? newValue.slice(3) : ''),
+          phoneError: null
+        });
+      }
+    }}
+    pattern="^\+216\s?\d{2}\s?\d{3}\s?\d{3}$"
+    required
+  />
+  {formData.phoneError && (
+    <Form.Text className="text-danger mt-1 d-block">
+      {formData.phoneError}
+    </Form.Text>
+  )}
+</Form.Group>
 
-            <button
-              type="submit"
+  <Form.Group className="mb-4 position-relative">
+    <FiMail className="auth-input-icon" />
+    <Form.Control
+      type="email"
+      name="email"
+      placeholder="Adresse email"
+      className="auth-form-control"
+      value={formData.email}
+      onChange={handleChange}
+      required
+    />
+  </Form.Group>
+
+  <Form.Group className="mb-4 position-relative">
+    <FiLock className="auth-input-icon" />
+    <Form.Control
+      type="password"
+      name="password"
+      placeholder="Mot de passe"
+      className="auth-form-control"
+      value={formData.password}
+      onChange={handleChange}
+      required
+    />
+  </Form.Group>
+
+            <Button 
+              type="submit" 
+              className="auth-btn w-100"
               disabled={isLoading}
-              className="w-full bg-success text-white border border-success hover:bg-blue-600 font-semibold py-2 rounded-lg transition-colors duration-200 text-lg"
             >
-              {isLoading ? <><span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Loading</> : "S'inscrire"}
-            </button>
-          </form>
-          <p className="text-center text-danger py-4 ">Vous avez déjà un compte ? <Link to="/login" className="text-success ">Connectez-vous</Link></p>
+              {isLoading ? (
+                <>
+                  <span className="spinner-border spinner-border-sm me-2" />
+                  Inscription...
+                </>
+              ) : (
+                "S'inscrire"
+              )}
+            </Button>
+          </Form>
+
+          <p className="text-center mt-4 text-muted">
+            Vous avez déjà un compte ?{' '}
+            <Link to="/login" className="auth-link">
+              Connectez-vous
+            </Link>
+          </p>
         </div>
-      </div>
+      </Container>
+
       <Footer />
       <Modal 
         show={modalVisible} 
         handleClose={() => setModalVisible(false)} 
-        title="problème de creation de compte" 
+        title="Problème de création de compte" 
         message={error} 
         variant="danger" 
         route="register"
