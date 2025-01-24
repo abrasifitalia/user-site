@@ -1,25 +1,34 @@
 import React from 'react';
-import { FacebookShareButton, TwitterShareButton, WhatsappShareButton, FacebookIcon, TwitterIcon, WhatsappIcon } from 'react-share';
+import { FacebookShareButton,TelegramShareButton, TwitterShareButton, WhatsappShareButton, EmailShareButton,  FacebookIcon, TelegramIcon, TwitterIcon, WhatsappIcon, EmailIcon } from 'react-share';
+import '../styles/share.css';
 
 const ShareFeatures = ({ link }) => {
     return (
        
        
             
-        
-        <div className='share-buttons  d-flex gap-2  p-2 justify-content-center opacity-75 '>
+        <div className='row bg-gray-50 rounded-lg m-2 py-1'>
+        <div className='share-buttons   '>
            
             <FacebookShareButton url={link}>
-                <FacebookIcon size={32} round={true} />
+                <FacebookIcon size={24  } round={true} />
             </FacebookShareButton>
+            <TelegramShareButton url={link}>
+                <TelegramIcon size={24} round={true} />
+            </TelegramShareButton>
             <TwitterShareButton url={link}>
-                <TwitterIcon size={32} round={true} />
+                <TwitterIcon size={24} round={true} />
             </TwitterShareButton>
             <WhatsappShareButton url={link}>
-                <WhatsappIcon size={32} round={true} />
+                <WhatsappIcon size={24} round={true} />
             </WhatsappShareButton>
+            <EmailShareButton url={link}>
+                <EmailIcon size={24} round={true} />
+            </EmailShareButton>
         </div>
-     
+       
+        <span className='partager'>Partager</span>
+        </div>
         
     );
 };
