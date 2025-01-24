@@ -5,7 +5,7 @@ import NewsBanner from './news-banner'; // Importing NewsBanner component
 import '../styles/Animation.css'; // Importing CSS for animations
 import Helmet from 'react-helmet'; // Importing Helmet for managing document head
 
-const Navbar = ({ pageTitle }) => { // Accept pageTitle as a prop
+const Navbar = ({ pageTitle , description }) => { // Accept pageTitle as a prop
   // State variables for managing login status and client name
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [clientName, setClientName] = useState('');
@@ -44,7 +44,8 @@ const Navbar = ({ pageTitle }) => { // Accept pageTitle as a prop
   return (
     <div>
       <Helmet>
-        <title>{title} - Abrasif Italia</title> {/* Set page title */}
+        <title>{title} - Abrasif Italia</title> 
+        <meta name="description" content={description} />
       </Helmet>
       {/* Fixed News Banner */}
       <div className="fixed-top ">

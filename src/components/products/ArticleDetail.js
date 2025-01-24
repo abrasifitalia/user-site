@@ -96,7 +96,7 @@ const ArticleDetail = () => {
 
   return (
     <div>
-      <Navbar pageTitle={article?.name || 'Article'} />
+      <Navbar pageTitle={article?.name || 'Article'} description={`Découvrez l'article ${article?.name} - Abrasif Italia`} />
       <div className="max-w-4xl" id="article-detail">
         <div className="bg-white rounded-lg shadow-lg overflow-hidden p-1 m-2 my-4">
           <div className="p-6 border-b border-gray-200">
@@ -108,7 +108,7 @@ const ArticleDetail = () => {
                   <span className="text-gray-700 text-sm font-semibold">{article.subcategory?.name}</span>
                 </div>
               </div>
-              <ShareFeatures link={`https://abrasifitalia.com/articles/${article._id}`} />
+              <ShareFeatures link={`https://abrasifitalia.com/articles/${article.category?.name}/${article.subcategory?.name}/${article._id}`} />
             </div>
             {article.ficheTechnique && (
               <Link to={`${process.env.REACT_APP_API_BASE_URL}${article.ficheTechnique}`} download className='text-danger link-underline link-underline-opacity-0'>

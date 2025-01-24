@@ -53,7 +53,7 @@ const ContactPage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-blue-100">
        
-      <Navbar pageTitle="Contactez-nous" />
+      <Navbar pageTitle="Contactez-nous" description="Contactez-nous pour toute question ou demande d'informations." />
       <div className="max-w-4xl mx-auto px-6 py-24">
         <h1 className="text-center text-4xl font-extrabold text-success ">Contactez-nous</h1>
         <p className="text-center text-danger  mb-4">Nous sommes là pour répondre à toutes vos questions.</p>

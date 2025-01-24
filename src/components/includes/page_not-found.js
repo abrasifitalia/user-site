@@ -6,7 +6,7 @@ import Footer from "./footer";
 const PageNotFound = () => {
   return (
     <div>
-      <Navbar pageTitle={"Page non trouvée"} />
+      <Navbar pageTitle={"Page non trouvée"} description="La page que vous cherchez n'existe pas. Vous pouvez contacter notre équipe pour obtenir de l'aide." />
       <div className="col-12 text-center py-5">
         <h3 className="text-xl font-semibold text-gray-600">
           Page non trouvée  <br/> 

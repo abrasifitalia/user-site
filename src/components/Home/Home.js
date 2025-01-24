@@ -27,7 +27,7 @@ const HomePage = () => {
   return (
     <div className="min-h-screen bg-gray-50">
     
-      <Navbar pageTitle="Accueil" />
+      <Navbar pageTitle="Accueil" description="Bienvenue sur Abrasif Italia, votre source de produits abrasifs de qualité supérieure." />
       
       <div className="container mx-auto ">
         {/* Carousel Section */}

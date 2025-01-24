@@ -52,7 +52,7 @@ const ArticlesList = () => {
   return (
     <div>
      
-      <Navbar pageTitle="Nos Produits" />
+      <Navbar pageTitle="Nos Produits" description="Découvrez nos produits abrasifs de qualité supérieure, conçus pour répondre à toutes vos besoins en matière de nettoyage et de polissage." />
       <div className="min-h-screen flex">
         <aside className="w-64 bg-white shadow-lg p-4">
           <h3 className="text-lg font-semibold mb-4">Catégories</h3>

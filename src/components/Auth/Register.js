@@ -59,7 +59,7 @@ const Register = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-blue-100">
   
-      <Navbar pageTitle="Inscription" />
+      <Navbar pageTitle="Inscription" description="Créez votre compte client pour accéder à nos produits et services." />
       <div className="max-w-4xl mx-auto px-6 py-24 p-50 shadow-2xl">
         <h1 className="text-center text-4xl font-extrabold text-success ">Inscription</h1>
         <p className="text-center text-danger mb-4">Créez votre compte client</p>

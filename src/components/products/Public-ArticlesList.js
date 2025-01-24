@@ -84,7 +84,7 @@ const ArticlesList = () => {
 
   return (
     <div>
-      <Navbar pageTitle="Nos Produits" />
+      <Navbar pageTitle="Nos Produits" description="Découvrez nos produits abrasifs de qualité supérieure, conçus pour répondre à toutes vos besoins en matière de nettoyage et de polissage." />
       <div className="bg-light pt-2 pb-2">
         <div className="container ">
           <div className="search-banner text-center py-4">

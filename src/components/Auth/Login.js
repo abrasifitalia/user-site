@@ -66,7 +66,7 @@ const Login = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-blue-100">
-      <Navbar pageTitle="Connexion" />
+      <Navbar pageTitle="Connexion" description="Connectez-vous à votre compte client pour accéder à nos produits et services." />
       <div className="max-w-4xl mx-auto px-6 py-24 shadow-2xl">
         <h1 className="text-center text-4xl font-extrabold text-success">Connexion</h1>
         <p className="text-center text-danger mb-4">Bienvenue cher client</p>
