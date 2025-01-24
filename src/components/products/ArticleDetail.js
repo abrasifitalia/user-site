@@ -98,7 +98,8 @@ const ArticleDetail = () => {
     <div>
       <Navbar pageTitle={article?.name || 'Article'} 
       description={`Découvrez l'article ${article?.name} - Abrasif Italia`}
-      ImgUrl={`${process.env.REACT_APP_API_BASE_URL}${article.image}`} />
+      ImgUrl={`${process.env.REACT_APP_API_BASE_URL}${article.image}`}
+      keywords={`${article.category?.name} ${article.subcategory?.name} ${article.name}`} />
       <div className="max-w-4xl" id="article-detail">
         <div className="bg-white rounded-lg shadow-lg overflow-hidden p-1 m-2 my-4">
           <div className="p-6 border-b border-gray-200">
