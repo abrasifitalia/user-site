@@ -7,7 +7,7 @@ const ShareFeatures = ({ link }) => {
        
        
             
-        <div className='row bg-gray-50 rounded-lg m-2 py-1'>
+        
         <div className='share-buttons   '>
            
             <FacebookShareButton url={link}>
@@ -27,8 +27,8 @@ const ShareFeatures = ({ link }) => {
             </EmailShareButton>
         </div>
        
-        <span className='partager'>Partager</span>
-        </div>
+        
+        
         
     );
 };
