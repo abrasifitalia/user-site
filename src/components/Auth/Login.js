@@ -140,9 +140,8 @@ const Login = () => {
                 show={modalVisible} 
                 handleClose={() => setModalVisible(false)} 
                 title="Problème de connexion" 
-                message={error} 
+                message="Merci de vérifier vos informations de connexion" 
                 variant="danger" 
-                route="login"
             />
         </div>
     );

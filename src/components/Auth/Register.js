@@ -207,9 +207,8 @@ const Register = () => {
         show={modalVisible} 
         handleClose={() => setModalVisible(false)} 
         title="Problème de création de compte" 
-        message={error} 
+        message="Merci de vérifier vos informations de création de compte" 
         variant="danger" 
-        route="register"
       />
     </div>
   );

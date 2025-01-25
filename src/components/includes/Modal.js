@@ -2,7 +2,7 @@ import { Modal, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { FiCheckCircle, FiAlertCircle, FiX } from 'react-icons/fi';
 
-const OrderModal = ({ show, handleClose, message, title, variant = 'danger', route }) => {
+const OrderModal = ({ show, handleClose, message, title, variant = 'danger' }) => {
   const navigate = useNavigate();
   
   // Configuration des variants
@@ -61,7 +61,7 @@ const OrderModal = ({ show, handleClose, message, title, variant = 'danger', rou
       <Modal.Footer className="border-0 justify-content-center pb-4">
         <Button 
           variant={variant} 
-          onClick={() => navigate(`/${route}`)}
+          onClick={() => handleClose()}
           className={`${currentVariant.buttonClass} px-5 py-2 rounded-pill`}
         >
           Fermer

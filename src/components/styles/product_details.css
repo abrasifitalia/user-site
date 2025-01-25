@@ -1,0 +1,162 @@
+/* product_details.css */
+.article-detail-page {
+    background-color: #f9fafb;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .article-detail-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+  
+  .article-header {
+    text-align: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .article-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 0.5rem;
+  }
+  
+  .article-category {
+    font-size: 0.9rem;
+    color: #6b7280;
+    margin-bottom: 1rem;
+  }
+  
+  .article-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 1.5rem;
+  }
+  
+  .article-image-section {
+    text-align: center;
+  }
+  
+  .article-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .article-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .article-description {
+    font-size: 1rem;
+    color: #4b5563;
+    line-height: 1.6;
+  }
+  
+  .download-link {
+    display: block;
+    text-align: center;
+    padding: 0.75rem;
+    background-color: #f3f4f6;
+    color: #dc3545;
+    font-weight: 600;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .download-link:hover {
+    background-color: #e5e7eb;
+  }
+  
+  .article-video {
+    margin-top: 2rem;
+  }
+  
+  .video-player {
+    width: 100%;
+    border-radius: 8px;
+  }
+  
+  .article-features {
+    margin-top: 2rem;
+  }
+  
+  .features-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .feature-item {
+    font-size: 1rem;
+    color: #4b5563;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .feature-item:last-child {
+    border-bottom: none;
+  }
+  
+  .order-section {
+    text-align: center;
+    margin-top: 2rem;
+  }
+  
+  .order-button {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .order-button.loading {
+    background-color: #28a745;
+    cursor: not-allowed;
+  }
+  
+  .order-button:hover {
+    background-color: #c82333;
+  }
+  
+  .quantity-input {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .quantity-field {
+    width: 60px;
+    padding: 0.5rem;
+    text-align: center;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+  
+  .quantity-label {
+    font-size: 1rem;
+    color: #1f2937;
+  }
+  
+  .error-message {
+    text-align: center;
+    font-size: 1rem;
+    color: #dc3545;
+    margin: 2rem 0;
+  }
