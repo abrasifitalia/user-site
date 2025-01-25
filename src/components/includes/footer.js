@@ -40,10 +40,11 @@ const Footer = () => {
         <div>
           <h4 className="text-lg font-semibold mb-4">Réseaux sociaux</h4>
           <ul className="space-y-2 text-gray-400">
-             <li><CiInstagram className="text-success text-2xl "/> <a href="https://www.instagram.com/abrasif_italia_klindex/" className="text-gray-400 link-underline link-underline-opacity-0"> <span className="font-bold text-gray-400">Abrasif Italia Klindex</span></a></li>
-             <li><CiMail className="text-success text-2xl font-bold"/> <a href="mailto:abrasif.italia3@gmail.com" className="text-gray-400 link-underline link-underline-opacity-0"> <span className="font-bold text-gray-400">Email: abrasif.italia@gmail.com</span></a></li>
-            <li><CiMail className="text-success text-2xl font-bold"/> <a href="mailto:abrasif.italia3@gmail.com" className="text-gray-400 link-underline link-underline-opacity-0"> <span className="font-bold text-gray-400">Email: directeur@abrasifitalia.com</span></a></li>
+            <li><CiInstagram className="text-success text-2xl "/> <a href="https://www.instagram.com/abrasif_italia_klindex/" className="text-gray-400 link-underline link-underline-opacity-0"> <span className="font-bold text-gray-400">Abrasif Italia Klindex</span></a></li>
             <li><CiFacebook className="text-success text-2xl font-bold"/> <a href="https://www.facebook.com/people/Abrasif-Italia-Klindex/100057219229918/" className="text-gray-400 link-underline link-underline-opacity-0"> <span className="font-bold text-gray-400">Facebook: Abrasif Italia Klindex</span></a></li>
+            <li><CiMail className="text-success text-2xl font-bold"/> <a href="mailto:abrasif.italia3@gmail.com" className="text-gray-400 link-underline link-underline-opacity-0"> <span className="font-bold text-gray-400"> abrasif.italia@gmail.com</span></a></li>
+            <li><CiMail className="text-success text-2xl font-bold"/> <a href="mailto:abrasif.italia3@gmail.com" className="text-gray-400 link-underline link-underline-opacity-0"> <span className="font-bold text-gray-400"> directeur@abrasifitalia.com</span></a></li>
+            
           </ul>
         </div>
       </div>
