@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../includes/navbar";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import Footer from "../includes/footer";
 import Loading from "../includes/loading";
-import { Link } from "react-router-dom";
 import '../styles/Animation.css';
+import '../styles/our_products.css'; 
 import { fetchData } from "../functions/product_data";
 
 const ArticlesList = () => {
@@ -40,17 +40,10 @@ const ArticlesList = () => {
     try {
       const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/view/view`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          clientId: clientId,
-          articleId: articleId,
-        }),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ clientId, articleId }),
       });
-      if (response.ok) {
-        await response.json();
-      }
+      if (response.ok) await response.json();
     } catch (error) {
       console.error('Erreur:', error);
     }
@@ -80,16 +73,17 @@ const ArticlesList = () => {
     return matchesCategory && matchesSubCategory && matchesSearch;
   });
 
-  if (loading) return <Loading />
+  if (loading) return <Loading />;
 
   return (
     <div>
-      <Navbar pageTitle="Nos Produits"
-       description="Découvrez nos produits abrasifs de qualité supérieure, conçus pour répondre à toutes vos besoins en matière de nettoyage et de polissage."
-       keywords="produits abrasifs, produits de nettoyage, produits de polissage, produits industriels, produits professionnels, produits abrasifs professionnels, produits de nettoyage professionnels, produits de polissage professionnels, produits abrasifs tunisie, produits de nettoyage tunisie, produits de polissage tunisie, produits industriels tunisie, produits professionnels tunisie, produits abrasifs professionnels tunisie, produits de nettoyage professionnels tunisie, produits de polissage professionnels tunisie, produits abrasifs professionnels tunisie, produits de nettoyage professionnels tunisie, produits de polissage professionnels tunisie, produits abrasifs professionnels tunisie, produits de nettoyage professionnels tunisie, produits de polissage professionnels tunisie"
-        />
-      <div className="bg-light pt-2 pb-2">
-        <div className="container ">
+      <Navbar 
+        pageTitle="Nos Produits"
+        description="Découvrez nos produits abrasifs de qualité supérieure, conçus pour répondre à toutes vos besoins en matière de nettoyage et de polissage."
+        keywords="produits abrasifs, produits de nettoyage, produits de polissage, produits industriels, produits professionnels, produits abrasifs professionnels, produits de nettoyage professionnels, produits de polissage professionnels, produits abrasifs tunisie, produits de nettoyage tunisie, produits de polissage tunisie, produits industriels tunisie, produits professionnels tunisie, produits abrasifs professionnels tunisie, produits de nettoyage professionnels tunisie, produits de polissage professionnels tunisie, produits abrasifs professionnels tunisie, produits de nettoyage professionnels tunisie, produits de polissage professionnels tunisie, produits abrasifs professionnels tunisie, produits de nettoyage professionnels tunisie, produits de polissage professionnels tunisie"
+      />
+      <div className="filter-banner">
+        <div className="container">
           <div className="search-banner text-center py-4">
             <input
               type="text"
@@ -98,7 +92,7 @@ const ArticlesList = () => {
               onChange={handleSearch}
             />
           </div>
-          <div className="d-flex justify-content-center flex-wrap gap-3">
+          <div className="category-buttons">
             {categories.map((category) => (
               <div key={category._id} className="dropdown position-relative">
                 <button
@@ -109,49 +103,28 @@ const ArticlesList = () => {
                   {category.name}
                 </button>
                 {selectedCategory === category._id && (
-                  <div
-                    className="dropdown-menu show shadow my-2"
-                    aria-labelledby={`dropdown${category._id}`}
-                    style={{
-                      position: "absolute",
-                      top: "100%",
-                      zIndex: 1000,
-                      display: "block",
-                    }}
-                  >
-                    {subCategories.filter(
-                      (subCat) => subCat.categoryId?._id === selectedCategory
-                    ).length > 0 ? (
-                      subCategories
-                        .filter(
-                          (subCat) =>
-                            subCat.categoryId?._id === selectedCategory
-                        )
-                        .map((subCat) => (
-                          <button
-                            key={subCat._id}
-                            className="dropdown-item font-bold text-danger rounded rounded-lg active:bg-danger active:text-white"
-                            onClick={() => {
-                              setSelectedSubCategory(subCat._id);
-                              setSelectedCategory("");
-                            }}
-                          >
-                            {subCat.name}
-                          </button>
-                        ))
+                  <div className="dropdown-menu show shadow my-2" aria-labelledby={`dropdown${category._id}`}>
+                    {subCategories.filter(subCat => subCat.categoryId?._id === selectedCategory).length > 0 ? (
+                      subCategories.filter(subCat => subCat.categoryId?._id === selectedCategory).map((subCat) => (
+                        <button
+                          key={subCat._id}
+                          className="dropdown-item font-bold text-danger rounded rounded-lg active:bg-danger active:text-white"
+                          onClick={() => {
+                            setSelectedSubCategory(subCat._id);
+                            setSelectedCategory("");
+                          }}
+                        >
+                          {subCat.name}
+                        </button>
+                      ))
                     ) : (
-                      <div className="dropdown-item text-muted text-center">
-                        Pas de sous-catégories 
-                      </div>
+                      <div className="dropdown-item text-muted text-center">Pas de sous-catégories</div>
                     )}
                   </div>
                 )}
               </div>
             ))}
-            <button
-              className="btn btn-success"
-              onClick={showAllArticles}
-            >
+            <button className="btn btn-success" onClick={showAllArticles}>
               Voir tous les articles
             </button>
           </div>
@@ -163,36 +136,19 @@ const ArticlesList = () => {
           {filteredArticles.length === 0 ? (
             <div className="col-12 text-center py-5">
               <h3 className="text-xl font-semibold text-gray-600">
-                De nouveaux articles seront bientôt disponibles.  <br/> 
+                De nouveaux articles seront bientôt disponibles. <br />
                 <Link to="/client/contact" className="text-danger">Contacter-nous</Link> pour plus d'informations
               </h3>
               <img src='/assets/logo-v1.png' alt='logo' className="w-25" />
             </div>
           ) : (
             filteredArticles.map((article) => (
-              <div
-                key={article._id}
-                className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4"
-                onClick={() => handleClick(article)}
-              >
-                <div className="card h-100 shadow-sm relative" style={{ position: "relative" }}>
-                  <img
-                    src={`${process.env.REACT_APP_API_BASE_URL}${article.image}`}
-                    alt={article.name}
-                    className="card-img-top"
-                    style={{
-                      width: "100%",
-                      height: "200px",
-                      objectFit: "contain",
-                    }}
-                  />
-                 
-
+              <div key={article._id} className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4" onClick={() => handleClick(article)}>
+                <div className="card h-100 shadow-sm relative">
+                  <img src={`${process.env.REACT_APP_API_BASE_URL}${article.image}`} alt={article.name} className="card-img-top" />
                   <div className="card-body">
-                    <h6 className="card-title text-xl text-white bg-success text-lg rounded-lg p-2">{article.name}</h6>
-                    <p className="card-text text-gray-600  text-sm truncate-lines-3">
-                       {article.description}
-                    </p>
+                    <h6 className="card-title">{article.name}</h6>
+                    <p className="card-text truncate-lines-3">{article.description}</p>
                   </div>
                 </div>
               </div>
