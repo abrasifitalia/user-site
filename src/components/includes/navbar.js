@@ -53,14 +53,12 @@ const Navbar = ({ pageTitle , description , ImgUrl , keywords , ProductUrl }) =>
         <meta name="keywords" content={keywords || "abrasifs tunisie, polissage tunisie, Klindex tunisie, équipement industriel tunisie, produits abrasifs professionnels, matériel de polissage, fournitures industrielles, ponceuse, disques abrasifs, pâte à polir, showroom Ariana, showroom Sousse, showroom L'Aouina"} />
       </Helmet>
       {/* Fixed News Banner */}
-      <div className="fixed-top ">
-        <NewsBanner /> {/* Display news banner */}
-      </div>
+      <div style={{ position: 'fixed', width: '100%', zIndex: 1030 }}>
+        
 
       {/* Navbar */}
       <nav
-        className="navbar navbar-expand-lg navbar-light bg-light shadow-sm"
-        style={{ position: 'fixed', top: '40px', width: '100%', zIndex: 1030 }} // Fixed position for navbar
+        className="navbar navbar-expand-lg navbar-light bg-light shadow-sm" 
       >
         <div className="container">
           <Link className="navbar-brand d-flex align-items-center" to="/">
@@ -106,7 +104,7 @@ const Navbar = ({ pageTitle , description , ImgUrl , keywords , ProductUrl }) =>
                 </Link>
               ))}
 
-              {!isLoggedIn && ( // Show account dropdown if not logged in
+             {/* {!isLoggedIn && ( // Show account dropdown if not logged in
                 <div className="nav-item dropdown">
                   <a
                     href="#"
@@ -132,7 +130,7 @@ const Navbar = ({ pageTitle , description , ImgUrl , keywords , ProductUrl }) =>
                     </li>
                   </ul>
                 </div>
-              )}
+              )} */}
 
               {isLoggedIn && ( // Show logout button if logged in
                 <button onClick={handleLogout} className="btn btn-outline-danger mx-2">
@@ -144,9 +142,9 @@ const Navbar = ({ pageTitle , description , ImgUrl , keywords , ProductUrl }) =>
           </div>
         </div>
       </nav>
-
+</div>
       {/* Content Padding */}
-      <div style={{ paddingTop: '90px' }}></div> {/* Padding for content below navbar */}
+      <div style={{ paddingTop: '75px' }}></div> {/* Padding for content below navbar */}
     </div>
   );
 };

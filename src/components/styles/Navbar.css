@@ -1,0 +1,185 @@
+/* Navbar.css */
+.navbar {
+  background-color: #ffffff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 1rem 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.logo {
+  height: 40px;
+  width: 50px;
+  margin-right: 10px;
+}
+
+.brand-name {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.brand-part-1 {
+  color: #28a745; /* Green */
+}
+
+.brand-part-2 {
+  color: #dc3545; /* Red */
+}
+
+.navbar-toggler {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #dc3545; /* Red */
+}
+
+.nav-icon {
+  color: #dc3545; /* Red */
+}
+
+.welcome-message {
+  color: #6c757d;
+  margin-right: 1rem;
+}
+
+.client-name {
+  color: #28a745; /* Green */
+  font-weight: bold;
+}
+
+.account-flyout {
+  position: relative;
+}
+
+.account-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #333;
+  font-weight: 500;
+}
+
+.account-icon {
+  color: #28a745; /* Green */
+}
+
+.chevron {
+  transition: transform 0.3s ease;
+}
+
+.account-flyout:hover .chevron {
+  transform: rotate(180deg);
+}
+
+.flyout-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  z-index: 1000;
+}
+
+.flyout-item {
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  color: #333;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.flyout-item:hover {
+  background-color: #f8f9fa;
+}
+
+.logout-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #dc3545; /* Red */
+  font-weight: 500;
+}
+
+.logout-icon {
+  color: #dc3545; /* Red */
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .navbar-toggler {
+    display: block;
+  }
+
+  .navbar-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+  }
+
+  .navbar-links.open {
+    display: flex;
+  }
+
+  .account-flyout {
+    width: 100%;
+  }
+
+  .flyout-menu {
+    position: static;
+    box-shadow: none;
+  }
+}
