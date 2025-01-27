@@ -186,23 +186,7 @@ const ArticlesList = () => {
                       objectFit: "contain",
                     }}
                   />
-                  <span
-                    className="disponible-tag opacity-82 pulse-animation "
-                    style={{
-                      position: "absolute",
-                      top: "10px",
-                      right: "10px",
-                      backgroundColor: "#dc3545",
-                      color: "#fff",
-                      padding: "5px 6px",
-                      borderRadius: "20px",
-                      fontSize: "0.6rem",
-                      zIndex: "1",
-                      boxShadow: "0 2px 5px rgba(0, 0, 0, 0.2)",
-                    }}
-                  >
-                    Disponible
-                  </span>
+                 
 
                   <div className="card-body">
                     <h6 className="card-title text-xl text-white bg-success text-lg rounded-lg p-2">{article.name}</h6>

@@ -2,14 +2,14 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';  
 import CookieConsent from "react-cookie-consent"; // Import du package
 import Home from './components/Home/Home';
-import Contact from './components/Contact';
-import ArticlesList from './components/Protected-ArticlesList';
+import Contact from './components/Home/Contact';
+
 import ArticleDetail from './components/products/ArticleDetail';
 import Login from './components/Auth/Login';
 import Register from './components/Auth/Register';
-import Order from './components/Order';
+
 import Articleliste from './components/products/Public-ArticlesList';
-import PrivateRoute from './components/PrivateRoute';  
+
 import { AuthProvider } from './context/AuthContext'; 
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -23,7 +23,7 @@ const App = () => {
         <Routes>
           
           <Route path="/" element={<Home />} />
-          <Route path="/client/contact" element={<Contact />} />
+          <Route path="/contact-us" element={<Contact />} />
           
           <Route 
             path="/articles/:category/:subcategory/:id" 
@@ -31,10 +31,6 @@ const App = () => {
           />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route 
-            path="/order" 
-            element={<PrivateRoute element={<Order />} />} 
-          />
           <Route path="/articles" element={<Articleliste />} />
           <Route path="*" element={<PageNotFound />} />
           

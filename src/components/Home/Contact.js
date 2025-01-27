@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import Navbar from './includes/navbar';
-import Footer from './includes/footer';
+import Navbar from '../includes/navbar';
+import Footer from '../includes/footer';
 import { FiUser, FiMail, FiPhone, FiFileText, FiMessageCircle } from 'react-icons/fi';
-import OrderModal from './includes/Modal'; // Import the shared modal
-import './styles/contact.css'; // Import the new CSS file
+import OrderModal from '../includes/Modal'; // Import the shared modal
+import '../styles/contact.css'; // Import the new CSS file
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({

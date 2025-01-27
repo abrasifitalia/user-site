@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import Navbar from '../includes/navbar';
 import Footer from '../includes/footer';
 import Loading from '../includes/loading';
@@ -9,6 +8,9 @@ import ShareFeatures from '../includes/share';
 import SimilarProducts from './similair-products';
 import { fetchArticleById } from '../functions/product_data';
 import '../styles/product_details.css';
+import { handleOrder } from '../functions/make_order';
+import { MdOutlineZoomIn } from "react-icons/md";
+import { FaFileDownload } from "react-icons/fa";
 
 const ArticleDetail = () => {
   const navigate = useNavigate();
@@ -24,6 +26,7 @@ const ArticleDetail = () => {
     message: '',
     variant: ''
   });
+  const [isZoomed, setIsZoomed] = useState(false); // State for zoomed image modal
 
   useEffect(() => {
     if (!id) {
@@ -34,53 +37,17 @@ const ArticleDetail = () => {
     fetchArticleById(id, setArticle, setLoading, setError);
   }, [id]);
 
-  const handleOrder = async () => {
-    if (quantity <= 0) {
-      setModalState({
-        show: true,
-        title: "Problème",
-        message: "La quantité doit être supérieure à 0.",
-        variant: "danger",
-        route: "article"
-      });
-      return;
-    }
-
+  const makeOrder = async (article_id, article_quantity, category, subCategory) => {
     const clientId = localStorage.getItem('clientId');
-    if (!clientId) {
-      const redirectPath = `/articles/${article._id}`;
-      navigate(`/login?redirectPath=${encodeURIComponent(redirectPath)}`);
-    }
-
-    const orderData = {
-      clientId,
-      items: [{ articleId: article._id, quantity: parseInt(quantity, 10) }],
-    };
-
-    setIsSubmitting(true);
-    try {
-      await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/order/order`, orderData);
-      setModalState({
-        show: true,
-        title: "Succès",
-        message: "Demande de devis envoyée avec succès ! Nous vous contacterons dans les plus brefs délais.",
-        variant: "success",
-      });
-    } catch (error) {
-      console.error("Erreur lors de la commande :", error.response?.data || error.message);
-      setModalState({
-        show: true,
-        title: "Erreur",
-        message: "Un problème est survenue lors de l'envoi de la demande de devis. Veuillez réessayer plus tard.",
-        variant: "danger",
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
+    await handleOrder(clientId, article_id, article_quantity, category, subCategory, setIsSubmitting, navigate, setModalState);
   };
 
   const handleInputClick = (e) => {
     e.stopPropagation(); // Stop event propagation
+  };
+
+  const handleZoom = () => {
+    setIsZoomed(!isZoomed); // Toggle zoom modal
   };
 
   if (loading) return <Loading />;
@@ -93,6 +60,7 @@ const ArticleDetail = () => {
         description={`Découvrez l'article ${article?.name} - Abrasif Italia`}
         ImgUrl={`${process.env.REACT_APP_API_BASE_URL}${article.image}`}
         keywords={`${article.category?.name} ${article.subcategory?.name} ${article.name}`}
+        ProductUrl={`https://abrasifitalia.com/articles/${article.category?.name}/${article.subcategory?.name}/${article._id}`}
       />
       <div className="article-detail-container">
         <div className="article-header">
@@ -106,12 +74,17 @@ const ArticleDetail = () => {
         </div>
         <div className="article-content">
           <div className="article-image-section">
-            <img
-              src={`${process.env.REACT_APP_API_BASE_URL}${article.image}`}
-              alt={article.name}
-              className="article-image"
-              loading="lazy"
-            />
+            <div className="image-wrapper">
+              <img
+                src={`${process.env.REACT_APP_API_BASE_URL}${article.image}`}
+                alt={article.name}
+                className="article-image"
+                loading="lazy"
+              />
+              <button onClick={handleZoom} className="zoom-button">
+                <MdOutlineZoomIn aria-hidden="true" title="Zoom in" className='text-xl' ></MdOutlineZoomIn>
+              </button>
+            </div>
           </div>
           <div className="article-info">
             <div className="article-description">
@@ -131,7 +104,7 @@ const ArticleDetail = () => {
                 download
                 className="download-link"
               >
-                Télécharger la fiche technique
+                <FaFileDownload className='text-xl' ></FaFileDownload> Télécharger la fiche technique
               </a>
             )}
             {article.video && (
@@ -149,7 +122,7 @@ const ArticleDetail = () => {
                 <ul className="features-list">
                   {(Array.isArray(article.fonctionnalite) ? article.fonctionnalite : article.fonctionnalite.split('\r\n')).map((feature, index) => (
                     <li key={index} className="feature-item">
-                      <span>{feature.trim()}</span>
+                      <i className="fas fa-check-circle"></i> <span>{feature.trim()}</span>
                     </li>
                   ))}
                 </ul>
@@ -157,18 +130,18 @@ const ArticleDetail = () => {
             )}
             <div className="order-section">
               <button
-                onClick={handleOrder}
+                onClick={() => makeOrder(article._id, quantity, article.category?.name, article.subcategory?.name)}
                 disabled={isSubmitting}
                 className={`order-button ${isSubmitting ? 'loading' : ''}`}
               >
                 {isSubmitting ? (
                   <>
                     <span className="spinner"></span>
-                    Loading
+                    Chargement...
                   </>
                 ) : (
                   <>
-                    Demande de devis :
+                    <i className="fas fa-file-alt"></i> Demande de devis
                     <div className="quantity-input">
                       <input
                         type="number"
@@ -177,7 +150,7 @@ const ArticleDetail = () => {
                         min="1"
                         max="10"
                         className="quantity-field"
-                        onClick={handleInputClick} // Add this line
+                        onClick={handleInputClick}
                       />
                       <span className="quantity-label">pcs</span>
                     </div>
@@ -198,6 +171,18 @@ const ArticleDetail = () => {
         variant={modalState.variant}
         route={modalState.route}
       />
+      {/* Zoom Modal */}
+      {isZoomed && (
+        <div className="zoom-modal" onClick={handleZoom}>
+          <div className="zoom-modal-content">
+            <img
+              src={`${process.env.REACT_APP_API_BASE_URL}${article.image}`}
+              alt={article.name}
+              className="zoomed-image"
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

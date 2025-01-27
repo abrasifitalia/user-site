@@ -5,7 +5,7 @@ import NewsBanner from './news-banner'; // Importing NewsBanner component
 import '../styles/Animation.css'; // Importing CSS for animations
 import Helmet from 'react-helmet'; // Importing Helmet for managing document head
 
-const Navbar = ({ pageTitle , description , ImgUrl , keywords }) => { // Accept pageTitle as a prop
+const Navbar = ({ pageTitle , description , ImgUrl , keywords , ProductUrl }) => { // Accept pageTitle as a prop
   // State variables for managing login status and client name
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [clientName, setClientName] = useState('');
@@ -38,16 +38,18 @@ const Navbar = ({ pageTitle , description , ImgUrl , keywords }) => { // Accept 
   const menuItems = [
     { label: 'Accueil', icon: <Home size={20} className="text-danger" />, to: '/' },
     { label: 'Nos Produits', icon: <Package size={20} className="text-danger" />, to: '/articles' },
-    { label: 'Contact', icon: <Phone size={20} className="text-danger" />, to: '/client/contact' },
+    { label: 'Contact', icon: <Phone size={20} className="text-danger" />, to: '/contact-us' },
   ];
 
   return (
     <div>
       <Helmet>
         <title>{title} - Abrasif Italia</title> 
-        <meta name="description" content={description} />
-        <meta property="og:image" content={ImgUrl || "/assets/logo-v1.png"} />
-        <meta property="og:image:alt" content={`Abrasif Italia - ${title}`} />
+        <meta name="og:title" content={title || "Abrasif Italia"} />
+        <meta name="og:description" content={description || "Découvrez Abrasivi Italia, leader des produits abrasifs et équipements de polissage en Tunisie. Large gamme de produits professionnels, prix compétitifs, livraison rapide. Fournisseur officiel Klindex avec showrooms à Ariana, Sousse et L'Aouina. Contactez-nous pour un devis gratuit! "}  />
+        <meta name="og:image" content={ImgUrl || "/assets/logo-v1.png"} />
+        <meta name="og:url" content={ProductUrl ||`https://abrasifitalia.com`} />
+        <meta name="og:image:alt" content={`Abrasif Italia - ${title}`} />
         <meta name="keywords" content={keywords || "abrasifs tunisie, polissage tunisie, Klindex tunisie, équipement industriel tunisie, produits abrasifs professionnels, matériel de polissage, fournitures industrielles, ponceuse, disques abrasifs, pâte à polir, showroom Ariana, showroom Sousse, showroom L'Aouina"} />
       </Helmet>
       {/* Fixed News Banner */}
