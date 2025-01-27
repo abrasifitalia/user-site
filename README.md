@@ -1,17 +1,14 @@
-# Abrasif Italia
-# Start Generation Here
 ![Abrasif Italia Logo](https://abrasifitalia.com/assets/logo-v1.png)
 
 Abrasif Italia is a web application designed to showcase and sell abrasive products and equipment. The platform allows users to browse products, view detailed information, and request quotes for their desired items.
+
+
 
 ## Table of Contents
 
 - [Features](#features)
 - [Technologies Used](#technologies-used)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
+
 
 ## Features
 
@@ -31,6 +28,8 @@ Abrasif Italia is a web application designed to showcase and sell abrasive produ
   - React Icons for icons
   - Bootstrap for styling
   - CSS for custom styles
+  - **Material-UI**: A popular React UI framework for faster and easier web development with a set of pre-designed components.
+  - **Responsive Design**: Ensures the application is mobile-friendly and adapts to various screen sizes.
 
 - **Backend**: 
   - Node.js (Express)
