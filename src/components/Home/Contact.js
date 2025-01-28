@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import Navbar from '../includes/navbar';
 import Footer from '../includes/footer';
 import { FiUser, FiMail, FiPhone, FiFileText, FiMessageCircle } from 'react-icons/fi';
 import OrderModal from '../includes/Modal'; // Import the shared modal
 import '../styles/contact.css'; // Import the new CSS file
+import NavbarComponent from '../includes/navbar';
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -56,7 +56,7 @@ const ContactPage = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-blue-100">
-      <Navbar pageTitle="Contactez-nous" description="Contactez-nous pour toute question ou demande d'informations." />
+      <NavbarComponent pageTitle="Contactez-nous" description="Contactez-nous pour toute question ou demande d'informations." />
       <div className="contact-container">
         <div className="contact-card">
           <h1 className="contact-title">Contactez-nous</h1>

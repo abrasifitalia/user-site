@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import Navbar from '../includes/navbar';
 import Footer from '../includes/footer';
 import Loading from '../includes/loading';
 import OrderModal from '../includes/Modal';
@@ -11,6 +10,7 @@ import '../styles/product_details.css';
 import { handleOrder } from '../functions/make_order';
 import { MdOutlineZoomIn } from "react-icons/md";
 import { FaFileDownload } from "react-icons/fa";
+import NavbarComponent from '../includes/navbar';
 
 const ArticleDetail = () => {
   const navigate = useNavigate();
@@ -55,7 +55,7 @@ const ArticleDetail = () => {
 
   return (
     <div className="article-detail-page">
-      <Navbar
+      <NavbarComponent
         pageTitle={article?.name || 'Article'}
         description={`Découvrez l'article ${article?.name} - Abrasif Italia`}
         ImgUrl={`${process.env.REACT_APP_API_BASE_URL}${article.image}`}

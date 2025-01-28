@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../includes/navbar";
 import { useNavigate, Link } from "react-router-dom";
 import Footer from "../includes/footer";
 import Loading from "../includes/loading";
 import '../styles/Animation.css';
 import '../styles/our_products.css'; 
 import { fetchData } from "../functions/product_data";
+import NavbarComponent from "../includes/navbar";
 
 const ArticlesList = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -77,59 +77,76 @@ const ArticlesList = () => {
 
   return (
     <div>
-      <Navbar 
+      <NavbarComponent 
         pageTitle="Nos Produits"
         description="Découvrez nos produits abrasifs de qualité supérieure, conçus pour répondre à toutes vos besoins en matière de nettoyage et de polissage."
         keywords="produits abrasifs, produits de nettoyage, produits de polissage, produits industriels, produits professionnels, produits abrasifs professionnels, produits de nettoyage professionnels, produits de polissage professionnels, produits abrasifs tunisie, produits de nettoyage tunisie, produits de polissage tunisie, produits industriels tunisie, produits professionnels tunisie, produits abrasifs professionnels tunisie, produits de nettoyage professionnels tunisie, produits de polissage professionnels tunisie, produits abrasifs professionnels tunisie, produits de nettoyage professionnels tunisie, produits de polissage professionnels tunisie, produits abrasifs professionnels tunisie, produits de nettoyage professionnels tunisie, produits de polissage professionnels tunisie"
       />
-      <div className="filter-banner ">
-        <div className="container">
-          <div className="search-banner text-center py-4">
+      
+      <div className="filter-banner bg-white shadow-sm py-4">
+  <     div className="container">
+          {/* Search Bar */}
+          <div className="search-banner text-center mb-2">
             <input
               type="text"
-              placeholder="Rechercher des articles..."
-              className="form-control w-75 mx-auto text-danger font-bold"
+              placeholder="hyper grinder , chariot , nettoyage , polissage , etc..."
+              className="form-control w-75 mx-auto border-danger border-2 font-bold "
               onChange={handleSearch}
+              style={{ height: '50px', fontSize: '1.1rem' }}
             />
           </div>
-          <div className="category-buttons">
-            {categories.map((category) => (
-              <div key={category._id} className="dropdown position-relative">
-                <button
-                  className="btn btn-danger dropdown-toggle"
-                  onClick={() => setSelectedCategory(category._id)}
-                  id={`dropdown${category._id}`}
-                >
-                  {category.name}
-                </button>
-                {selectedCategory === category._id && (
-                  <div className="dropdown-menu show shadow my-2" aria-labelledby={`dropdown${category._id}`}>
-                    {subCategories.filter(subCat => subCat.categoryId?._id === selectedCategory).length > 0 ? (
-                      subCategories.filter(subCat => subCat.categoryId?._id === selectedCategory).map((subCat) => (
-                        <button
-                          key={subCat._id}
-                          className="dropdown-item font-bold text-danger rounded rounded-lg active:bg-danger active:text-white"
-                          onClick={() => {
-                            setSelectedSubCategory(subCat._id);
-                            setSelectedCategory("");
-                          }}
-                        >
-                          {subCat.name}
-                        </button>
-                      ))
-                    ) : (
-                      <div className="dropdown-item text-muted text-center">Pas de sous-catégories</div>
-                    )}
-                  </div>
-                )}
-              </div>
-            ))}
-            <button className="btn btn-success" onClick={showAllArticles}>
-              Voir tous les articles
-            </button>
-          </div>
+
+    {/* Category Buttons */}
+    <div className="category-buttons d-flex flex-wrap justify-content-center gap-3">
+      {categories.map((category) => (
+        <div key={category._id} className="dropdown">
+          <button
+            className="btn btn-outline-danger dropdown-toggle rounded-pill px-4 fw-bold border-2"
+            onClick={() => setSelectedCategory(category._id)}
+            id={`dropdown${category._id}`}
+          >
+            {category.name}
+          </button>
+          {selectedCategory === category._id && (
+            <div
+              className="dropdown-menu show shadow mt-2 p-3"
+              aria-labelledby={`dropdown${category._id}`}
+              style={{ minWidth: '200px', border: 'none' }}
+            >
+              {subCategories.filter(subCat => subCat.categoryId?._id === selectedCategory).length > 0 ? (
+                subCategories
+                  .filter(subCat => subCat.categoryId?._id === selectedCategory)
+                  .map((subCat) => (
+                    <button
+                      key={subCat._id}
+                      className="dropdown-item fw-bold text-danger rounded mb-2"
+                      onClick={() => {
+                        setSelectedSubCategory(subCat._id);
+                        setSelectedCategory("");
+                      }}
+                      style={{ transition: 'all 0.3s ease' }}
+                    >
+                      {subCat.name}
+                    </button>
+                  ))
+              ) : (
+                <div className="dropdown-item text-muted text-center">Pas de sous-catégories</div>
+              )}
+            </div>
+          )}
         </div>
-      </div>
+      ))}
+
+      {/* Show All Articles Button */}
+      <button
+        className="btn btn-success rounded-pill px-4 fw-bold"
+        onClick={showAllArticles}
+      >
+        Voir tous les articles
+      </button>
+    </div>
+  </div>
+</div>
 
       <div className="container py-4">
         <div className="row">

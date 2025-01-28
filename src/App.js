@@ -15,6 +15,7 @@ import { AuthProvider } from './context/AuthContext';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import PageNotFound from './components/includes/page_not-found';
+import { CookieController } from './components/utils/cookie';
 
 const App = () => {
   return (
@@ -22,7 +23,7 @@ const App = () => {
       <Router>
         <Routes>
           
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home  />}   />
           <Route path="/contact-us" element={<Contact />} />
           
           <Route 
@@ -33,21 +34,8 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/articles" element={<Articleliste />} />
           <Route path="*" element={<PageNotFound />} />
-          
         </Routes>
-
-        {/* Bannière de consentement aux cookies */}
-        <CookieConsent
-          location="bottom"
-          buttonText="J'accepte"
-          cookieName="userConsent"
-          style={{ background: "#dc3545", color: "#ffffff" }}
-          buttonStyle={{ color: "#198754", fontSize: "13px" }}
-          expires={365}
-        >
-          Ce site utilise des cookies pour améliorer l'expérience utilisateur.{" "}
-          <a href="/" style={{ color: "#ffd700" }}>En savoir plus</a>.
-        </CookieConsent>
+        <CookieController />
       </Router>
     </AuthProvider>
   );
