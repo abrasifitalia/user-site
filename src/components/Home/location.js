@@ -13,8 +13,8 @@ const CompanyLocation = () => {
           <h4 className="text-xl font-bold text-green-600 mb-4 text-center">Ariana <span className="text-danger">|</span> la Soukra</h4>
         
           {[
-            {  number: "+216 55 888 111" },
             {  number: "+216 20 235 829" },
+            {  number: "+216 55 888 111" },
             {  number: "+216 94 615 025" },
             {  number: "+216 22 107 207" },
           ].map((phone, index) => (
@@ -22,7 +22,7 @@ const CompanyLocation = () => {
               <FiPhone className="m-2 " />
               <a
                 href={`tel:${phone.number.replace(/\s/g, '')}`}
-                className="text-white hover:text-green-800 transition-colors"
+                className="text-white hover:text-green-800 transition-colors link-offset-2 link-underline link-underline-opacity-0"
               >
                 {phone.number}
               </a>
@@ -45,6 +45,7 @@ const CompanyLocation = () => {
             <h4 className="text-xl font-bold  mb-4 text-center">Sousse <span className="text-danger">|</span> Bouhssina</h4>
           
           {[
+            {  number: "+216 20 235 829" },
             {  number: "+216 58 982 743" },
             {  number: "+216 55 334 131" },
           ].map((phone, index) => (
@@ -52,7 +53,7 @@ const CompanyLocation = () => {
               <FiPhone className="m-2 " />
               <a
                 href={`tel:${phone.number.replace(/\s/g, '')}`}
-                className="text-white hover:text-green-800 transition-colors"
+                className="text-white hover:text-green-800 transition-colors link-offset-2 link-underline link-underline-opacity-0"
               >
                 {phone.number}
               </a>

@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Footer from "./footer";
-import NavbarComponent from "./navbar";
-import SEO from "../utils/seo";
+import Footer from "../includes/footer";
+import NavbarComponent from "../includes/navbar";
+import SEO from "./seo";
 
 const PageNotFound = () => {
   return (
@@ -18,7 +18,7 @@ const PageNotFound = () => {
       <div className="col-12 text-center py-5">
         <h3 className="text-xl font-semibold text-gray-600">
           Page non trouvée  <br/> 
-          <Link to="/client/contact" className="text-danger">Contacter-nous</Link> si tu rencontre un problème
+          <Link to="/contact-us" className="text-danger">Contacter-nous</Link> si tu rencontre un problème
         </h3>
         <img src='/assets/logo-v1.png' alt='logo' className="w-25" />
       </div>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Footer from '../includes/footer';
-import Loading from '../includes/loading';
+import Loading from '../utils/loading';
 import OrderModal from '../includes/Modal';
 import ShareFeatures from '../includes/share';
 import SimilarProducts from './similair-products';

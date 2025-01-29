@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import Footer from "../includes/footer";
-import Loading from "../includes/loading";
 import '../styles/Animation.css';
 import '../styles/our_products.css'; 
 import { fetchData } from "../functions/product_data";
 import NavbarComponent from "../includes/navbar";
 import SEO from "../utils/seo";
+import Loading from "../utils/loading";
 
 const ArticlesList = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);

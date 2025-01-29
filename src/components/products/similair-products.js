@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Loading from "../includes/loading";
+import Loading from "../utils/loading";
 import { fetchSimilarProducts } from "../functions/product_data";
 import '../styles/similar_products.css';
 import { softScroll } from "../utils/soft_scroll";

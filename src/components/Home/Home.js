@@ -7,11 +7,10 @@ import Footer from '../includes/footer';
 import Partner from './partner';
 import ArticleBanner from './best-selling'; // Assurez-vous d'importer correctement ArticleBanner
 import CompanyLocations from './location';
-import WhatsappToggle from '../includes/whatsapp-toggle';
 import { fetchData } from '../functions/product_data';
-import { softScroll } from '../utils/soft_scroll';
 import NavbarComponent from '../includes/navbar';
 import SEO from '../utils/seo';
+import WhatsappToggle from '../utils/whatsapp-toggle';
 
 
 const HomePage = () => {

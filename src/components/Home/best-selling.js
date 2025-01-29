@@ -1,8 +1,8 @@
 import React from 'react';
-import Loading from '../includes/loading';
 import { useNavigate } from "react-router-dom";
 import Carousel from 'react-multi-carousel'; // Import Carousel from react-multi-carousel
 import 'react-multi-carousel/lib/styles.css'; // Import the default styles for the carousel
+import Loading from '../utils/loading';
 
 const ArticleBanner = ({ articles, isLoading, categories, subCategories }) => {
   const navigate = useNavigate();

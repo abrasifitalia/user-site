@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';  
-import CookieConsent from "react-cookie-consent"; // Import du package
+
 import Home from './components/Home/Home';
 import Contact from './components/Home/Contact';
 
@@ -14,8 +14,8 @@ import { AuthProvider } from './context/AuthContext';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import PageNotFound from './components/includes/page_not-found';
 import { CookieController } from './components/utils/cookie';
+import PageNotFound from './components/utils/page_not-found';
 
 const App = () => {
   return (
