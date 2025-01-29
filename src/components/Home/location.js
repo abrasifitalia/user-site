@@ -18,10 +18,12 @@ const CompanyLocation = () => {
             {  number: "+216 94 615 025" },
             {  number: "+216 22 107 207" },
           ].map((phone, index) => (
-            <p className="text-white mb-4 bg-success p-2 rounded-lg mx-auto shadow-lg" key={index}>
+            <p className="text-white mb-4 bg-success p-2 rounded-lg mx-auto shadow-lg" key={index} onClick={() => {
+              window.open(`tel:${phone.number.replace(/\s/g, '')}`, '_blank');
+            }}>
               <FiPhone className="m-2 " />
               <a
-                href={`tel:${phone.number.replace(/\s/g, '')}`}
+                
                 className="text-white hover:text-green-800 transition-colors link-offset-2 link-underline link-underline-opacity-0"
               >
                 {phone.number}
@@ -49,10 +51,12 @@ const CompanyLocation = () => {
             {  number: "+216 58 982 743" },
             {  number: "+216 55 334 131" },
           ].map((phone, index) => (
-            <p className="text-white mb-4 bg-success p-2 rounded-lg mx-auto shadow-lg" key={index}> 
+            <p className="text-white mb-4 bg-success p-2 rounded-lg mx-auto shadow-lg" key={index} onClick={() => {
+              window.open(`tel:${phone.number.replace(/\s/g, '')}`, '_blank');
+            }}> 
               <FiPhone className="m-2 " />
               <a
-                href={`tel:${phone.number.replace(/\s/g, '')}`}
+        
                 className="text-white hover:text-green-800 transition-colors link-offset-2 link-underline link-underline-opacity-0"
               >
                 {phone.number}
