@@ -1,5 +1,21 @@
 User-agent: *
-Allow: /
-Disallow: /admin
-Disallow: /api
-Sitemap: https://abrasifitalia.com/sitemap.xml
+Allow: /$
+Allow: /articles/
+Allow: /contact-us/
+Disallow: /login/
+Disallow: /register/
+Disallow: /*.pdf$
+Disallow: /*.docx$
+Disallow: /*.xlsx$
+Disallow: /?*
+Disallow: /*?*
+
+Crawl-delay: 10
+
+# Preferred domain
+Host: https://www.abrasifitalia.com
+
+# Sitemaps
+Sitemap: https://www.abrasifitalia.com/sitemap.xml
+
+
