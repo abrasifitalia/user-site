@@ -22,10 +22,8 @@ const App = () => {
     <AuthProvider>
       <Router>
         <Routes>
-          
           <Route path="/" element={<Home  />}   />
           <Route path="/contact-us" element={<Contact />} />
-          
           <Route 
             path="/articles/:category/:subcategory/:id" 
             element={<ArticleDetail  />} 

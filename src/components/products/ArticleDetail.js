@@ -11,6 +11,7 @@ import { handleOrder } from '../functions/make_order';
 import { MdOutlineZoomIn } from "react-icons/md";
 import { FaFileDownload } from "react-icons/fa";
 import NavbarComponent from '../includes/navbar';
+import SEO from '../utils/seo';
 
 const ArticleDetail = () => {
   const navigate = useNavigate();
@@ -54,13 +55,15 @@ const ArticleDetail = () => {
   if (error) return <div className="error-message">{error}</div>;
 
   return (
+    <>
+    <SEO
+      title={article?.name}
+      description={`Découvrez l'article ${article?.name} - Abrasif Italia`}
+      image={`${process.env.REACT_APP_API_BASE_URL}${article.image}`}
+      keywords="abrasifs tunisie, polissage tunisie, Klindex tunisie, équipement industriel tunisie, produits abrasifs professionnels, matériel de polissage, fournitures industrielles, ponceuse, disques abrasifs, pâte à polir, showroom Ariana, showroom Sousse, showroom L'Aouina , produit de nettoyage , chariot de nettoyage , machine de nettoyage en tunisie , hyper grinder tunisie , machine de polissage en tunisie"
+    />
     <div className="article-detail-page">
       <NavbarComponent
-        pageTitle={article?.name || 'Article'}
-        description={`Découvrez l'article ${article?.name} - Abrasif Italia`}
-        ImgUrl={`${process.env.REACT_APP_API_BASE_URL}${article.image}`}
-        keywords={`${article.category?.name} ${article.subcategory?.name} ${article.name}`}
-        ProductUrl={`https://abrasifitalia.com/articles/${article.category?.name}/${article.subcategory?.name}/${article._id}`}
       />
       <div className="article-detail-container">
         <div className="article-header">
@@ -184,6 +187,7 @@ const ArticleDetail = () => {
         </div>
       )}
     </div>
+    </>
   );
 };
 

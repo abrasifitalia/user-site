@@ -6,6 +6,7 @@ import '../styles/Animation.css';
 import '../styles/our_products.css'; 
 import { fetchData } from "../functions/product_data";
 import NavbarComponent from "../includes/navbar";
+import SEO from "../utils/seo";
 
 const ArticlesList = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -76,11 +77,16 @@ const ArticlesList = () => {
   if (loading) return <Loading />;
 
   return (
+     <>
+    <SEO
+      title="Nos Article"
+      description="✓ Large gamme de produits abrasifs professionnels ✓ Distributeur officiel Klindex ✓ Prix compétitifs ✓ Livraison rapide ✓ Expertise technique ✓ Service après-vente"
+      image="https://abrasifitalia.com/assets/logo-v1.png"
+      keywords="abrasifs tunisie,  polissage tunisie, Klindex tunisie, équipement industriel tunisie, produits abrasifs professionnels, matériel de polissage, fournitures industrielles, ponceuse, disques abrasifs, pâte à polir, showroom Ariana, showroom Sousse, showroom L'Aouina , produit de nettoyage , chariot de nettoyage , machine de nettoyage en tunisie , hyper grinder tunisie , machine de polissage en tunisie"
+
+    />
     <div>
       <NavbarComponent 
-        pageTitle="Nos Produits"
-        description="Découvrez nos produits abrasifs de qualité supérieure, conçus pour répondre à toutes vos besoins en matière de nettoyage et de polissage."
-        keywords="produits abrasifs, produits de nettoyage, produits de polissage, produits industriels, produits professionnels, produits abrasifs professionnels, produits de nettoyage professionnels, produits de polissage professionnels, produits abrasifs tunisie, produits de nettoyage tunisie, produits de polissage tunisie, produits industriels tunisie, produits professionnels tunisie, produits abrasifs professionnels tunisie, produits de nettoyage professionnels tunisie, produits de polissage professionnels tunisie, produits abrasifs professionnels tunisie, produits de nettoyage professionnels tunisie, produits de polissage professionnels tunisie, produits abrasifs professionnels tunisie, produits de nettoyage professionnels tunisie, produits de polissage professionnels tunisie"
       />
       
       <div className="filter-banner bg-white shadow-sm py-4">
@@ -175,6 +181,7 @@ const ArticlesList = () => {
       </div>
       <Footer />
     </div>
+    </>
   );
 };
 

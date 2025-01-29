@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { ShoppingCart, Search, Menu, Heart, Contact } from 'lucide-react';
 import Carousel from './Carousel';
 
 
@@ -12,6 +11,7 @@ import WhatsappToggle from '../includes/whatsapp-toggle';
 import { fetchData } from '../functions/product_data';
 import { softScroll } from '../utils/soft_scroll';
 import NavbarComponent from '../includes/navbar';
+import SEO from '../utils/seo';
 
 
 const HomePage = () => {
@@ -27,10 +27,16 @@ const HomePage = () => {
 
 
   return (
+    <>
+      <SEO
+        title="N°1 des Produits Abrasifs et Équipements de Polissage en Tunisie"
+        description="✓ Large gamme de produits abrasifs professionnels ✓ Distributeur officiel Klindex ✓ Prix compétitifs ✓ Livraison rapide ✓ Expertise technique ✓ Service après-vente"
+        image="https://abrasifitalia.com/assets/logo-v1.png"
+        keywords="abrasifs tunisie, polissage tunisie, Klindex tunisie, équipement industriel tunisie, produits abrasifs professionnels, matériel de polissage, fournitures industrielles, ponceuse, disques abrasifs, pâte à polir, showroom Ariana, showroom Sousse, showroom L'Aouina , produit de nettoyage , chariot de nettoyage , machine de nettoyage en tunisie , hyper grinder tunisie , machine de polissage en tunisie"
+      />
     <div className="min-h-screen bg-gray-50">
-    
-      <NavbarComponent pageTitle="Accueil" description="Bienvenue sur Abrasif Italia, votre source de produits abrasifs de qualité supérieure."
-       />
+     
+      <NavbarComponent />
       
       <div className="container mx-auto ">
         {/* Carousel Section */}
@@ -49,7 +55,9 @@ const HomePage = () => {
       <WhatsappToggle />
       {/* Footer */}
       <Footer />
+     
     </div>
+    </>
   );
 };
 

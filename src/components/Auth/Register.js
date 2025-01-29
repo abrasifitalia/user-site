@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Container, Form, Button } from 'react-bootstrap';
-import Navbar from '../includes/navbar';
 import Footer from '../includes/footer';
 import { Link } from 'react-router-dom';
 import { FiUser, FiMail, FiLock, FiPhone } from 'react-icons/fi';
 import Modal from '../includes/Modal';
 import '../styles/auth.css';
+import SEO from '../utils/seo';
+import NavbarComponent from '../includes/navbar';
 
 const Register = () => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -57,11 +58,18 @@ const Register = () => {
   };
 
   return (
+     <>
+    <SEO
+      title="Inscription"
+      description="Créez votre compte client pour accéder à nos produits et services."
+      image="https://abrasifitalia.com/assets/logo-v1.png"
+      keywords="abrasifs tunisie,  polissage tunisie, Klindex tunisie, équipement industriel tunisie, produits abrasifs professionnels, matériel de polissage, fournitures industrielles, ponceuse, disques abrasifs, pâte à polir, showroom Ariana, showroom Sousse, showroom L'Aouina , produit de nettoyage , chariot de nettoyage , machine de nettoyage en tunisie , hyper grinder tunisie , machine de polissage en tunisie"
+
+    />
     <div className="min-vh-100 bg-light">
-      <Navbar 
-        pageTitle="Inscription" 
-        description="Créez votre compte client pour accéder à nos produits et services." 
+      <NavbarComponent
       />
+
 
       <Container className="auth-container">
         <div className="auth-card">
@@ -211,7 +219,9 @@ const Register = () => {
         variant="danger" 
       />
     </div>
+    </>
   );
 };
+
 
 export default Register;

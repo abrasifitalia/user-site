@@ -5,6 +5,7 @@ import { FiUser, FiMail, FiPhone, FiFileText, FiMessageCircle } from 'react-icon
 import OrderModal from '../includes/Modal'; // Import the shared modal
 import '../styles/contact.css'; // Import the new CSS file
 import NavbarComponent from '../includes/navbar';
+import SEO from '../utils/seo';
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -55,8 +56,15 @@ const ContactPage = () => {
   };
 
   return (
+    <>
+    <SEO
+      title="Contactez-nous"
+      description="Contactez-nous pour toute question ou demande d'informations concernant nos produits et services."
+      image="https://abrasifitalia.com/assets/logo-v1.png"
+      keywords="contact, abrasifs tunisie, polissage tunisie, Klindex tunisie, équipement industriel tunisie, produits abrasifs professionnels, service client, assistance, demande d'information"
+    />
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-blue-100">
-      <NavbarComponent pageTitle="Contactez-nous" description="Contactez-nous pour toute question ou demande d'informations." />
+      <NavbarComponent />
       <div className="contact-container">
         <div className="contact-card">
           <h1 className="contact-title">Contactez-nous</h1>
@@ -156,6 +164,7 @@ const ContactPage = () => {
 
       <Footer />
     </div>
+    </>
   );
 };
 
