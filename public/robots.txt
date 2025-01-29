@@ -1,9 +1,9 @@
 User-agent: *
 Allow: /$
-Allow: /articles/
-Allow: /contact-us/
-Disallow: /login/
-Disallow: /register/
+Allow: /articles
+Allow: /contact-us
+Disallow: /login
+Disallow: /register
 Disallow: /*.pdf$
 Disallow: /*.docx$
 Disallow: /*.xlsx$
