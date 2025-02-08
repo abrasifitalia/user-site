@@ -1,10 +1,18 @@
 /* product_details.css */
+.noto-sans-arabic {
+  font-family: "Noto Sans Arabic", serif;
+  font-optical-sizing: auto;
+  font-weight: 400; /* Set a default weight, adjust as necessary */
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+}
+
 .article-detail-page {
   background-color: #f9fafb;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Noto Sans Arabic", serif; /* Updated font-family */
 }
 
 .article-detail-container {
@@ -94,6 +102,8 @@
   font-size: 1rem;
   color: #4b5563;
   line-height: 1.6;
+  font-weight: bold;
+  font-family: "Noto Sans Arabic", serif;
 }
 
 .download-link {
@@ -127,17 +137,21 @@
 }
 
 .features-list {
-  list-style: none;
+  list-style: disc; /* Changed to disc for a pointed list */
   padding: 0;
+  margin-left: 1.5rem; /* Added margin for better indentation */
+  color: black; /* Set the color of the list items to black */
 }
 
 .feature-item {
   font-size: 1rem;
   color: #4b5563;
-  padding: 0.5rem 0;
+  padding: 0.2rem 0;
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  font-family: "Noto Sans Arabic", serif;
+  font-weight: bold;
 }
 
 .feature-item i {

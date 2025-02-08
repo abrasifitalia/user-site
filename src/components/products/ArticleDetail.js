@@ -91,7 +91,6 @@ const ArticleDetail = () => {
           </div>
           <div className="article-info">
             <div className="article-description">
-              <h3 className="section-title">Description</h3>
               <p className="description-text">
                 {article.description.split('\n').map((line, index) => (
                   <span key={index}>
@@ -112,8 +111,7 @@ const ArticleDetail = () => {
             )}
             {article.video && (
               <div className="article-video">
-                <h3 className="section-title">Vidéo</h3>
-                <video controls className="video-player" loading="lazy">
+                <video controls className="video-player" autoPlay loading="lazy">
                   <source src={`${process.env.REACT_APP_API_BASE_URL}${article.video}`} type="video/mp4" />
                   Votre navigateur ne supporte pas la vidéo.
                 </video>
@@ -121,12 +119,15 @@ const ArticleDetail = () => {
             )}
             {article.fonctionnalite && (
               <div className="article-features">
-                <h3 className="section-title">Fonctionnalités</h3>
+             {/* <h3 className="section-title">Fonctionnalités</h3> */}
                 <ul className="features-list">
                   {(Array.isArray(article.fonctionnalite) ? article.fonctionnalite : article.fonctionnalite.split('\r\n')).map((feature, index) => (
-                    <li key={index} className="feature-item">
-                      <i className="fas fa-check-circle"></i> <span>{feature.trim()}</span>
-                    </li>
+                    <React.Fragment key={index}>
+                      <li className="feature-item">
+                        <i className="fas fa-check-circle"></i> <span>{feature.trim()}</span>
+                      </li>
+                      <hr />
+                    </React.Fragment>
                   ))}
                 </ul>
               </div>
