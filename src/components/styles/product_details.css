@@ -12,7 +12,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  font-family: "Noto Sans Arabic", serif; /* Updated font-family */
+  font-family:noto-sans-arabic;
 }
 
 .article-detail-container {
@@ -103,8 +103,7 @@
   color: #4b5563;
   line-height: 1.6;
   font-weight: bold;
-  font-family: "Noto Sans Arabic", serif;
-}
+  font-family:noto-sans-arabic;}
 
 .download-link {
   display: inline-flex;
@@ -150,7 +149,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-family: "Noto Sans Arabic", serif;
+  font-family:noto-sans-arabic;
   font-weight: bold;
 }
 
