@@ -12,7 +12,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  font-family:noto-sans-arabic;
+  font-family: noto-sans-arabic;
 }
 
 .article-detail-container {
@@ -69,7 +69,6 @@
   height: auto;
   border-radius: 8px;
   transition: transform 0.3s ease;
-
 }
 
 .zoom-button {
@@ -103,7 +102,8 @@
   color: #4b5563;
   line-height: 1.6;
   font-weight: bold;
-  font-family:noto-sans-arabic;}
+  font-family: noto-sans-arabic;
+}
 
 .download-link {
   display: inline-flex;
@@ -149,7 +149,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-family:noto-sans-arabic;
+  font-family: noto-sans-arabic;
   font-weight: bold;
 }
 
@@ -236,4 +236,41 @@
   max-width: 100%;
   max-height: 100%;
   border-radius: 8px;
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 768px) {
+  .article-title {
+    font-size: 2rem; /* Adjusted for smaller screens */
+  }
+
+  .article-category {
+    font-size: 0.9rem; /* Adjusted for smaller screens */
+  }
+
+  .article-description {
+    font-size: 0.9rem; /* Adjusted for smaller screens */
+    font-family: noto-sans-arabic; /* Ensuring font family is applied */
+  }
+
+  .order-button {
+    font-size: 0.9rem; /* Adjusted for smaller screens */
+  }
+
+  .quantity-field {
+    width: 50px; /* Adjusted for smaller screens */
+  }
+
+  .quantity-label {
+    font-size: 0.9rem; /* Adjusted for smaller screens */
+  }
+
+  /* Ensure font family is applied for all text elements */
+  .article-title,
+  .article-category,
+  .article-description,
+  .order-button,
+  .quantity-label {
+    font-family: noto-sans-arabic; /* Ensuring font family is applied */
+  }
 }
