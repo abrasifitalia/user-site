@@ -12,7 +12,17 @@ const ArticleBanner = ({ articles, isLoading, categories, subCategories }) => {
     const subcategoryName = subCategories.find(subCat => subCat._id === article.subcategory)?.name || 'undefined';
     navigate(`/articles/${categoryName}/${subcategoryName}/${article._id}`);
   };
-  
+
+  // Shuffle articles to display them in a random order
+  const shuffleArray = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  };
+
+  const shuffledArticles = shuffleArray([...articles]); // Create a shuffled copy of the articles
 
   // Define responsive breakpoints for the carousel
   const responsive = {
@@ -52,7 +62,7 @@ const ArticleBanner = ({ articles, isLoading, categories, subCategories }) => {
           containerClass="carousel-container"
           removeArrowOnDeviceType={["tablet", "mobile", "desktop"]} // Remove arrows for smaller devices
         >
-          {articles.map((article) => (
+          {shuffledArticles.map((article) => (
             <div key={article._id} className="p-2 ">
               <div className="card h-100 shadow-sm relative border border-white">
                 <img
