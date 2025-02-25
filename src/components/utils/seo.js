@@ -23,7 +23,7 @@ const SEO = ({
     <Helmet>
       <title>{fullTitle}</title>
       <meta name="description" content={fullDescription} />
-      <meta name="keywords" content={keywords || "abrasifs tunisie, polissage tunisie, Klindex tunisie"} />
+      <meta name="keywords" content={keywords || "abrasifs tunisie, polissage tunisie, Klindex , hypergrinder , nettoyage tunisie , chariot de nettoyage "} />
       
       {/* Open Graph */}
       <meta property="og:title" content={fullTitle} />

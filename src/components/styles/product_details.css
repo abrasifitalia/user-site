@@ -1,10 +1,6 @@
 /* product_details.css */
-.noto-sans-arabic {
-  font-family: "Noto Sans Arabic", serif;
-  font-optical-sizing: auto;
-  font-weight: 400; /* Set a default weight, adjust as necessary */
-  font-style: normal;
-  font-variation-settings: "wdth" 100;
+.roboto {
+  font-family: 'Roboto', sans-serif;
 }
 
 .article-detail-page {
@@ -12,7 +8,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  font-family: noto-sans-arabic;
+  font-family: roboto;
 }
 
 .article-detail-container {
@@ -102,7 +98,7 @@
   color: #4b5563;
   line-height: 1.6;
   font-weight: bold;
-  font-family: noto-sans-arabic;
+  font-family: roboto;
 }
 
 .download-link {
@@ -149,7 +145,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-family: noto-sans-arabic;
+  font-family: roboto;
   font-weight: bold;
 }
 
@@ -249,8 +245,8 @@
   }
 
   .article-description {
-    font-size: 0.9rem; /* Adjusted for smaller screens */
-    font-family: noto-sans-arabic; /* Ensuring font family is applied */
+    font-size: 1rem; /* Adjusted for smaller screens */
+    font-family: roboto; /* Ensuring font family is applied */
   }
 
   .order-button {
@@ -271,6 +267,6 @@
   .article-description,
   .order-button,
   .quantity-label {
-    font-family: noto-sans-arabic; /* Ensuring font family is applied */
+    font-family: roboto; /* Ensuring font family is applied */
   }
 }

@@ -1,4 +1,8 @@
 /* styles/ArticlesList.css */
+body {
+  font-family: 'Roboto', sans-serif; /* Set the font for the entire body */
+}
+
 .filter-banner {
   position: sticky;
   top: 0;
@@ -6,10 +10,12 @@
   background-color: #fff;
   padding: 1rem 0;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: 'Roboto', sans-serif; /* Ensure Roboto font is applied here */
 }
 
 .search-banner input {
   transition: all 0.3s ease;
+  font-family: 'Roboto', sans-serif; /* Ensure Roboto font is applied here */
 }
 
 .search-banner input:focus {
@@ -19,6 +25,7 @@
 
 .category-buttons .btn {
   transition: all 0.3s ease;
+  font-family: 'Roboto', sans-serif; /* Ensure Roboto font is applied here */
 }
 
 .category-buttons .btn:hover {
@@ -36,11 +43,12 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   padding: 10px;
   margin: auto;
+  font-family: 'Roboto', sans-serif; /* Ensure Roboto font is applied here */
 }
-
 
 .dropdown-item {
   transition: all 0.3s ease;
+  font-family: 'Roboto', sans-serif; /* Ensure Roboto font is applied here */
 }
 
 .dropdown-item:hover {
@@ -48,8 +56,10 @@
   color: #fff !important;
   transform: translateX(5px);
 }
+
 .card {
   transition: transform 0.2s;
+  font-family: 'Roboto', sans-serif; /* Ensure Roboto font is applied here */
 }
 
 .card:hover {
@@ -68,11 +78,14 @@
   color: white;
   padding: 0.5rem;
   border-radius: 0.25rem;
+  font-family: 'Roboto', sans-serif; /* Ensure Roboto font is applied here */
 }
 
 .card-text {
   font-size: 0.875rem;
   color: #6c757d;
+  font-family: 'Roboto', sans-serif; 
+  font-weight: bold;
 }
 
 .truncate-lines-3 {
@@ -80,4 +93,5 @@
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  font-family: 'Roboto', sans-serif; /* Ensure Roboto font is applied here */
 }

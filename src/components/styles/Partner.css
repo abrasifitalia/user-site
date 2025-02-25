@@ -1,8 +1,16 @@
 /* Optional: Styling for smoother scrolling on webkit browsers */
 .scroll-container {
     -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
-  }
+    font-family: "Atkinson Hyperlegible Next", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
 .carousel-container .react-multi-carousel-item {
     padding: 10px; /* Adds space between carousel items */
-  }
-  
+    font-family: "Atkinson Hyperlegible Next", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}

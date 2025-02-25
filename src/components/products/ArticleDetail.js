@@ -60,7 +60,7 @@ const ArticleDetail = () => {
       title={article?.name}
       description={`Découvrez l'article ${article?.name} - Abrasif Italia`}
       image={`${process.env.REACT_APP_API_BASE_URL}${article.image}`}
-      keywords="abrasifs tunisie, polissage tunisie, Klindex tunisie, équipement industriel tunisie, produits abrasifs professionnels, matériel de polissage, fournitures industrielles, ponceuse, disques abrasifs, pâte à polir, showroom Ariana, showroom Sousse, showroom L'Aouina , produit de nettoyage , chariot de nettoyage , machine de nettoyage en tunisie , hyper grinder tunisie , machine de polissage en tunisie"
+      keywords="abrasif tunisie , chariot de nettoyage tunisie , produit de nettoyage , polissage , poncage , segment cassani , segmant frankfurt , lustrage , hypergrinder tunisie , klindex tunisie"
     />
     <div className="article-detail-page">
       <NavbarComponent

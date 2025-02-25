@@ -1,17 +1,16 @@
-.noto-sans-arabic {
-  font-family: "Noto Sans Arabic", serif;
+.atkinson-hyperlegible-next-400 {
+  font-family: "Atkinson Hyperlegible Next", serif;
   font-optical-sizing: auto;
-  font-weight: 400; /* Set a default weight, adjust as necessary */
+  font-weight: 400;
   font-style: normal;
-  font-variation-settings: "wdth" 100;
 }
 
 .brand-name-arabic {
-  font-family: noto-sans-arabic;
+  font-family: atkinson-hyperlegible-next-400;
   font-size: 1.5rem;
 }
 .brand-name-french {
-  font-family: "Noto Sans Arabic", serif;
+  font-family: "Atkinson Hyperlegible Next", serif;
   font-size: 0.85em;
 }
 .primary-color {
@@ -40,14 +39,14 @@
   align-items: center;
 }
 
-.navbar-item{
-  font-family:noto-sans-arabic;
+.navbar-item {
+  font-family: atkinson-hyperlegible-next-400;
   font-size: 0.95em;
 }
 
-.navbar-item-icon{
+.navbar-item-icon {
   font-size: 1.3em;
-  color:#dc3545;
+  color: #dc3545;
 }
 
 .nav-link:hover {
