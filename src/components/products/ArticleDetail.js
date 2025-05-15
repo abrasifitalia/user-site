@@ -12,6 +12,7 @@ import { MdOutlineZoomIn } from "react-icons/md";
 import { FaFileDownload } from "react-icons/fa";
 import NavbarComponent from '../includes/navbar';
 import SEO from '../utils/seo';
+import { handleManualQuote } from '../functions/manual_quote';
 
 const ArticleDetail = () => {
   const navigate = useNavigate();
@@ -28,6 +29,12 @@ const ArticleDetail = () => {
     variant: ''
   });
   const [isZoomed, setIsZoomed] = useState(false); // State for zoomed image modal
+  const [showQuoteModal, setShowQuoteModal] = useState(false);
+  const [quoteForm, setQuoteForm] = useState({
+    name: '',
+    email: '',
+    phone: '',
+  });
 
   useEffect(() => {
     if (!id) {
@@ -50,6 +57,113 @@ const ArticleDetail = () => {
   const handleZoom = () => {
     setIsZoomed(!isZoomed); // Toggle zoom modal
   };
+
+  const handleQuoteOption = () => {
+    const clientId = localStorage.getItem('clientId');
+    if (clientId) {
+      makeOrder(article._id, quantity, article.category?.name, article.subcategory?.name);
+    } else {
+      setShowQuoteModal(true);
+    }
+  };
+
+  const handleManualSubmit = async (e) => {
+    e.preventDefault();
+    const quoteData = {
+      ...quoteForm,
+      articleId: article._id,
+      quantity: quantity,
+      articleName: article.name,
+      category: article.category?.name,
+      subCategory: article.subcategory?.name
+    };
+
+    const success = await handleManualQuote(quoteData, setIsSubmitting, setModalState);
+    if (success) {
+      setShowQuoteModal(false);
+      setQuoteForm({ name: '', email: '', phone: '' });
+    }
+  };
+
+  const renderOrderSection = () => (
+    <div className="order-section">
+      <button
+        onClick={handleQuoteOption}
+        disabled={isSubmitting}
+        className={`order-button ${isSubmitting ? 'loading' : ''}`}
+      >
+        {isSubmitting ? (
+          <>
+            <span className="spinner"></span>
+            Chargement...
+          </>
+        ) : (
+          <>
+            <i className="fas fa-file-alt"></i> Demande de devis
+            <div className="quantity-input">
+              <input
+                type="number"
+                value={quantity}
+                onChange={(e) => setQuantity(e.target.value)}
+                min="1"
+                max="10"
+                className="quantity-field"
+                onClick={handleInputClick}
+              />
+              <span className="quantity-label">pcs</span>
+            </div>
+          </>
+        )}
+      </button>
+
+      {/* Manual Quote Modal */}
+      {showQuoteModal && (
+        <div className="modal-overlay" onClick={() => setShowQuoteModal(false)}>
+          <div className="modal-content" onClick={e => e.stopPropagation()}>
+            <h2 className="modal-title">Demande de devis</h2>
+            <div className="modal-options">
+              <button 
+                className="login-option"
+                onClick={() => navigate(`/login?redirectPath=${encodeURIComponent(window.location.pathname)}`)}
+              >
+                Se connecter
+              </button>
+              <div className="or-divider">OU</div>
+              <form onSubmit={handleManualSubmit} className="quote-form">
+                <input
+                  type="text"
+                  placeholder="Nom complet"
+                  value={quoteForm.name}
+                  onChange={e => setQuoteForm({...quoteForm, name: e.target.value})}
+                  required
+                />
+                <input
+                  type="email"
+                  placeholder="Email"
+                  value={quoteForm.email}
+                  onChange={e => setQuoteForm({...quoteForm, email: e.target.value})}
+                  required
+                />
+                <input
+                  type="tel"
+                  placeholder="Numéro de téléphone"
+                  value={quoteForm.phone}
+                  onChange={e => setQuoteForm({...quoteForm, phone: e.target.value})}
+                  required
+                />
+                <button type="submit" disabled={isSubmitting}>
+                  Envoyer la demande
+                </button>
+              </form>
+            </div>
+            <button className="modal-close" onClick={() => setShowQuoteModal(false)}>
+              ×
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
 
   if (loading) return <Loading />;
   if (error) return <div className="error-message">{error}</div>;
@@ -132,36 +246,7 @@ const ArticleDetail = () => {
                 </ul>
               </div>
             )}
-            <div className="order-section">
-              <button
-                onClick={() => makeOrder(article._id, quantity, article.category?.name, article.subcategory?.name)}
-                disabled={isSubmitting}
-                className={`order-button ${isSubmitting ? 'loading' : ''}`}
-              >
-                {isSubmitting ? (
-                  <>
-                    <span className="spinner"></span>
-                    Chargement...
-                  </>
-                ) : (
-                  <>
-                    <i className="fas fa-file-alt"></i> Demande de devis
-                    <div className="quantity-input">
-                      <input
-                        type="number"
-                        value={quantity}
-                        onChange={(e) => setQuantity(e.target.value)}
-                        min="1"
-                        max="10"
-                        className="quantity-field"
-                        onClick={handleInputClick}
-                      />
-                      <span className="quantity-label">pcs</span>
-                    </div>
-                  </>
-                )}
-              </button>
-            </div>
+            {renderOrderSection()}
           </div>
         </div>
         <SimilarProducts categoryId={article.category?._id} subCategoryId={article.subcategory?._id} />
