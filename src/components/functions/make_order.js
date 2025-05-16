@@ -25,7 +25,7 @@ export const handleOrder = async (clientId, articleId, articleQuantity,Category,
 
     setIsSubmitting(true);
     try {
-       await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/order/order`, orderData);
+       await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/order/create_order`, orderData);
       setModalState({
         show: true,
         title: "Succès",

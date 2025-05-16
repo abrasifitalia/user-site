@@ -35,7 +35,7 @@ const Register = () => {
     setError('');
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/client/client/register`, {
+      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/client/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
