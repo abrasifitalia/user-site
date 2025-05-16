@@ -7,6 +7,8 @@ import Contact from './components/Home/Contact';
 import ArticleDetail from './components/products/ArticleDetail';
 import Login from './components/Auth/Login';
 import Register from './components/Auth/Register';
+import ForgotPassword from './components/Auth/ForgotPassword';
+import ResetPassword from './components/Auth/ResetPassword';
 
 import Articleliste from './components/products/Public-ArticlesList';
 
@@ -30,6 +32,8 @@ const App = () => {
           />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/articles" element={<Articleliste />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
