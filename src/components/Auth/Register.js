@@ -8,6 +8,8 @@ import Modal from '../includes/Modal';
 import '../styles/auth.css';
 import SEO from '../utils/seo';
 import NavbarComponent from '../includes/navbar';
+import { API_ENDPOINTS } from '../../config/api';
+import EmailVerification from './EmailVerification';
 
 const Register = () => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -20,6 +22,7 @@ const Register = () => {
   });
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [showVerification, setShowVerification] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -35,7 +38,7 @@ const Register = () => {
     setError('');
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/client/register`, {
+      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}${API_ENDPOINTS.register}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
@@ -44,7 +47,7 @@ const Register = () => {
       const data = await response.json();
 
       if (response.ok) {
-        navigate('/login');
+        setShowVerification(true);
       } else {
         setError(data.message || "Erreur lors de la création du compte");
         setModalVisible(true);
@@ -56,6 +59,10 @@ const Register = () => {
       setIsLoading(false);
     }
   };
+
+  if (showVerification) {
+    return <EmailVerification email={formData.email} />;
+  }
 
   return (
      <>

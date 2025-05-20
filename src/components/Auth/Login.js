@@ -9,6 +9,8 @@ import { Container, Form, Button } from 'react-bootstrap';
 import '../styles/auth.css';
 import SEO from '../utils/seo';
 import NavbarComponent from '../includes/navbar';
+import { API_ENDPOINTS } from '../../config/api';
+import EmailVerification from './EmailVerification';
 
 const Login = () => {
     const { login } = useAuth();
@@ -16,6 +18,7 @@ const Login = () => {
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [modalVisible, setModalVisible] = useState(false);
+    const [needsVerification, setNeedsVerification] = useState(false);
     const navigate = useNavigate();
 
     const searchParams = new URLSearchParams(window.location.search);
@@ -31,7 +34,7 @@ const Login = () => {
         setError('');
 
         try {
-            const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/client/login`, {
+            const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}${API_ENDPOINTS.login}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData),
@@ -40,18 +43,22 @@ const Login = () => {
             const data = await response.json();
 
             if (response.ok) {
-                localStorage.setItem('clientName', data.clientName);
-                localStorage.setItem('clientId', data.clientId);
-                localStorage.setItem('token', data.token);
+                if (data.needsVerification) {
+                    setNeedsVerification(true);
+                } else {
+                    localStorage.setItem('clientName', data.clientName);
+                    localStorage.setItem('clientId', data.clientId);
+                    localStorage.setItem('token', data.token);
 
-                login({
-                    clientName: data.clientName,
-                    clientId: data.clientId,
-                    token: data.token,
-                });
+                    login({
+                        clientName: data.clientName,
+                        clientId: data.clientId,
+                        token: data.token,
+                    });
 
-                const redirectPath = redirectPathFromQuery || data.redirectPath || '/articles';
-                navigate(redirectPath);
+                    const redirectPath = redirectPathFromQuery || data.redirectPath || '/articles';
+                    navigate(redirectPath);
+                }
             } else {
                 setError(data.message || 'Erreur de connexion');
                 setModalVisible(true);
@@ -63,6 +70,10 @@ const Login = () => {
             setIsLoading(false);
         }
     };
+
+    if (needsVerification) {
+        return <EmailVerification email={formData.email} />;
+    }
 
     return (
          <>

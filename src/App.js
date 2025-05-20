@@ -7,8 +7,6 @@ import Contact from './components/Home/Contact';
 import ArticleDetail from './components/products/ArticleDetail';
 import Login from './components/Auth/Login';
 import Register from './components/Auth/Register';
-import ForgotPassword from './components/Auth/ForgotPassword';
-import ResetPassword from './components/Auth/ResetPassword';
 
 import Articleliste from './components/products/Public-ArticlesList';
 
@@ -18,6 +16,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { CookieController } from './components/utils/cookie';
 import PageNotFound from './components/utils/page_not-found';
+import ForgotPassword from './components/Auth/ForgotPassword';
+import ResetPassword from './components/Auth/ResetPassword';
 
 const App = () => {
   return (
@@ -32,9 +32,9 @@ const App = () => {
           />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/articles" element={<Articleliste />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password" element={<ResetPassword />} />
-          <Route path="/articles" element={<Articleliste />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
         <CookieController />
