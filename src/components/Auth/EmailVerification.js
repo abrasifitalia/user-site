@@ -49,14 +49,17 @@ const EmailVerification = ({ email, onSuccess }) => {
         });
         
         if (data.token) {
-          login({
-            clientName: data.clientName,
-            clientId: data.clientId,
-            token: data.token
-          });
+          // If we get a token, perform auto-login
+          localStorage.setItem('clientName', data.clientName);
+          localStorage.setItem('clientId', data.clientId);
+          localStorage.setItem('token', data.token);
+          
+          // Navigate to articles page after successful verification and auto-login
+          setTimeout(() => navigate('/articles'), 2000);
+        } else {
+          // If no token, redirect to login
+          setTimeout(() => navigate('/login'), 2000);
         }
-        
-        setTimeout(() => navigate('/articles'), 2000);
       } else {
         setModalState({
           show: true,

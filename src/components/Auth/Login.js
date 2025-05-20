@@ -42,23 +42,21 @@ const Login = () => {
 
             const data = await response.json();
 
-            if (response.ok) {
-                if (data.needsVerification) {
-                    setNeedsVerification(true);
-                } else {
-                    localStorage.setItem('clientName', data.clientName);
-                    localStorage.setItem('clientId', data.clientId);
-                    localStorage.setItem('token', data.token);
+            if (data.needsVerification) {
+                setNeedsVerification(true);
+            } else if (response.ok) {
+                localStorage.setItem('clientName', data.clientName);
+                localStorage.setItem('clientId', data.clientId);
+                localStorage.setItem('token', data.token);
 
-                    login({
-                        clientName: data.clientName,
-                        clientId: data.clientId,
-                        token: data.token,
-                    });
+                login({
+                    clientName: data.clientName,
+                    clientId: data.clientId,
+                    token: data.token,
+                });
 
-                    const redirectPath = redirectPathFromQuery || data.redirectPath || '/articles';
-                    navigate(redirectPath);
-                }
+                const redirectPath = redirectPathFromQuery || data.redirectPath || '/articles';
+                navigate(redirectPath);
             } else {
                 setError(data.message || 'Erreur de connexion');
                 setModalVisible(true);
@@ -72,7 +70,35 @@ const Login = () => {
     };
 
     if (needsVerification) {
-        return <EmailVerification email={formData.email} />;
+        return (
+            <div className="min-vh-100 bg-light">
+                <NavbarComponent />
+                <Container className="auth-container">
+                    <div className="auth-card">
+                        <EmailVerification 
+                            email={formData.email}
+                            onSuccess={(data) => {
+                                if (data?.token) {
+                                    // Auto-login if token is provided
+                                    login({
+                                        clientName: data.clientName,
+                                        clientId: data.clientId,
+                                        token: data.token
+                                    });
+                                    const redirectPath = redirectPathFromQuery || '/articles';
+                                    navigate(redirectPath);
+                                } else {
+                                    // Otherwise just redirect to login
+                                    setNeedsVerification(false);
+                                    navigate('/login');
+                                }
+                            }}
+                        />
+                    </div>
+                </Container>
+                <Footer />
+            </div>
+        );
     }
 
     return (
